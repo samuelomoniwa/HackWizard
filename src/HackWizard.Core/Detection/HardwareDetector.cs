@@ -94,7 +94,7 @@ public sealed class HardwareDetector
 
     private static void DetectDevices(HardwareReport r, CancellationToken ct)
     {
-        var all = Cimv2("SELECT Name, PNPDeviceID, PNPClass, HardwareID, CompatibleID, Service, Present FROM Win32_PnPEntity");
+        var all = Cimv2("SELECT DeviceID, Name, PNPDeviceID, PNPClass, HardwareID, CompatibleID, Service, Present FROM Win32_PnPEntity");
         foreach (var e in all)
         {
             ct.ThrowIfCancellationRequested();
@@ -169,11 +169,11 @@ public sealed class HardwareDetector
     private static void DetectAcpi(HardwareReport r)
     {
         foreach (var hid in AcpiHidsOfInterest)
-            foreach (var e in Cimv2($@"SELECT PNPDeviceID FROM Win32_PnPEntity WHERE PNPDeviceID LIKE 'ACPI\\{hid}%'"))
+            foreach (var e in Cimv2($@"SELECT DeviceID, PNPDeviceID FROM Win32_PnPEntity WHERE PNPDeviceID LIKE 'ACPI\\{hid}%'"))
                 r.AcpiDevices.Add(new AcpiDeviceRecord { Hid = hid, AcpiPath = BiosName(e), PnpId = S(e, "PNPDeviceID") });
 
         // First processor object: Processor() objects enumerate as ACPI\GenuineIntel_-_… / ACPI\AuthenticAMD_-_…, Device objects as ACPI\ACPI0007.
-        var cpu = Cimv2("SELECT PNPDeviceID FROM Win32_PnPEntity WHERE PNPClass = 'Processor'").FirstOrDefault();
+        var cpu = Cimv2("SELECT DeviceID, PNPDeviceID FROM Win32_PnPEntity WHERE PNPClass = 'Processor'").FirstOrDefault();
         if (cpu != null)
         {
             var id = S(cpu, "PNPDeviceID");

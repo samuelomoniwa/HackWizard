@@ -26,7 +26,7 @@ public static class UsbScanner
     public static List<UsbController> ListControllers()
     {
         var list = new List<UsbController>();
-        foreach (var e in WmiHelper.Cimv2("SELECT Name, PNPDeviceID, CompatibleID FROM Win32_PnPEntity WHERE PNPDeviceID LIKE 'PCI%'"))
+        foreach (var e in WmiHelper.Cimv2("SELECT DeviceID, Name, PNPDeviceID, CompatibleID FROM Win32_PnPEntity WHERE PNPDeviceID LIKE 'PCI%'"))
         {
             var compat = WmiHelper.A(e, "CompatibleID");
             if (!compat.Any(c => c.StartsWith(@"PCI\CC_0C03", StringComparison.OrdinalIgnoreCase))) continue;
