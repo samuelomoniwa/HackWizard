@@ -1,7 +1,8 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:vm="clr-namespace:HackWizard.App.ViewModels"
-                    xmlns:conv="clr-namespace:HackWizard.App.Converters">
+                    xmlns:conv="clr-namespace:HackWizard.App.Converters"
+                    xmlns:usb="clr-namespace:HackWizard.Core.Usb;assembly=HackWizard.Core">
 
     <conv:StatusBrushConverter x:Key="StatusBrush"/>
     <conv:StatusGlyphConverter x:Key="StatusGlyph"/>
@@ -113,6 +114,54 @@
                                 <Expander Header="Show source (.dsl)" Foreground="{DynamicResource Brush.Foreground}">
                                     <TextBox Text="{Binding Dsl, Mode=OneWay}" Style="{StaticResource Mono}" MaxHeight="260"/>
                                 </Expander>
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:UsbMapViewModel}">
+        <StackPanel>
+            <Border Style="{StaticResource Card}"><TextBlock Text="{Binding Instructions}"/></Border>
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                <Button Content="{Binding DiscoverButtonText}" Command="{Binding ToggleDiscoveryCommand}" Style="{StaticResource PrimaryButton}"/>
+                <Button Content="_Auto-select used ports" Command="{Binding AutoSelectCommand}"/>
+                <Button Content="Select _none (skip mapping)" Command="{Binding ClearCommand}"/>
+                <Button Content="_Forget and rescan" Command="{Binding ResetCommand}"/>
+            </StackPanel>
+            <TextBlock Text="{Binding Summary}" FontWeight="SemiBold" Margin="0,0,0,8"/>
+            <ItemsControl ItemsSource="{Binding Controllers}" Focusable="False">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border Style="{StaticResource Card}">
+                            <StackPanel>
+                                <TextBlock Text="{Binding Header}" FontWeight="Bold"/>
+                                <TextBlock Text="{Binding CountText}" Foreground="{DynamicResource Brush.Muted}" Margin="0,2,0,6"/>
+                                <DataGrid ItemsSource="{Binding Ports}" IsReadOnly="False" CanUserAddRows="False" CanUserDeleteRows="False" MaxHeight="460">
+                                    <DataGrid.Columns>
+                                        <DataGridTemplateColumn Header="Use">
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate><CheckBox IsChecked="{Binding Selected, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center"/></DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                        </DataGridTemplateColumn>
+                                        <DataGridTextColumn Header="Port" Binding="{Binding Name}" IsReadOnly="True"/>
+                                        <DataGridTextColumn Header="#" Binding="{Binding Number}" IsReadOnly="True"/>
+                                        <DataGridTextColumn Header="Type" Binding="{Binding ProtocolText}" IsReadOnly="True"/>
+                                        <DataGridTemplateColumn Header="Connector">
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <ComboBox MinWidth="200" ItemsSource="{x:Static usb:UsbConnectors.All}" SelectedValuePath="Value" DisplayMemberPath="Label"
+                                                              SelectedValue="{Binding Connector, UpdateSourceTrigger=PropertyChanged}"/>
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                        </DataGridTemplateColumn>
+                                        <DataGridTextColumn Header="Pair" Binding="{Binding CompanionText}" IsReadOnly="True"/>
+                                        <DataGridTextColumn Header="Now" Binding="{Binding LiveText}" IsReadOnly="True"/>
+                                        <DataGridTextColumn Header="Last device seen" Binding="{Binding LastDevice}" IsReadOnly="True" Width="*"/>
+                                    </DataGrid.Columns>
+                                </DataGrid>
                             </StackPanel>
                         </Border>
                     </DataTemplate>

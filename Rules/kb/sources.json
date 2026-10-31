@@ -317,11 +317,12 @@
     },
     {
       "id": "usbtoolbox-kext",
-      "kind": "utility",
+      "kind": "kext",
       "repo": "USBToolBox/kext",
       "assetPattern": "^USBToolBox-.*-RELEASE\\.zip$",
       "provides": [
-        "USBToolBox.kext"
+        "USBToolBox.kext",
+        "UTBDefault.kext"
       ],
       "license": "See USBToolBox/kext"
     },

@@ -18,6 +18,8 @@ public sealed class WizardContext
     /// <summary>true = About This Mac shows the Mac model's Intel CPU name; false = the real CPU name.</summary>
     public bool ShowMacCpuName { get; set; }
     public IReadOnlyList<GeneratedSsdt> Ssdts { get; set; } = Array.Empty<GeneratedSsdt>();
+    /// <summary>USB map from step 5; null or empty selection = no map (UTBDefault.kext is used).</summary>
+    public HackWizard.Core.Usb.UsbMapState? UsbMap { get; set; }
     public AcpiDumpResult? AcpiDump { get; set; }
     public DownloadSet? Downloads { get; set; }
     public BuildResult? Build { get; set; }

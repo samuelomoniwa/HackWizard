@@ -8,7 +8,7 @@ namespace HackWizard.App.ViewModels;
 public sealed class FinalViewModel : StepViewModel
 {
     public FinalViewModel(WizardContext ctx) : base(ctx) => RestartToBiosCommand = new RelayCommand(RestartToBios);
-    public override string Title => "9. Install macOS";
+    public override string Title => "10. Install macOS";
     public override string Explanation => "Your USB drive is ready. Follow this checklist exactly. Keep this page (or the copy on the USB) open on your phone.";
     public RelayCommand RestartToBiosCommand { get; }
 
@@ -25,7 +25,7 @@ public sealed class FinalViewModel : StepViewModel
             {
                 $"1. {wired}: the installer downloads macOS from Apple and Wi-Fi is not available in the installer.",
                 "2. Insert the HackWizard USB drive.",
-                $"3. Click 'Restart into BIOS' below (or press {setup} at power-on), apply the settings from step 8, then save and exit.",
+                $"3. Click 'Restart into BIOS' below (or press {setup} at power-on), apply the settings from step 9, then save and exit.",
                 $"4. When the PC restarts, press {boot} repeatedly and choose the USB drive (often listed as 'UEFI: <USB name>').",
                 "5. In the OpenCore picker select the macOS Base System / Install macOS entry (press Space if you don't see it). Lots of scrolling text is normal.",
                 "6. In macOS Utilities open Disk Utility → View → Show All Devices → select the internal disk (top level) → Erase: Name 'Macintosh HD', Format APFS, Scheme GUID Partition Map. THIS ERASES WINDOWS.",

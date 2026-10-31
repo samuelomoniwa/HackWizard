@@ -13,7 +13,7 @@ public sealed class UsbViewModel : StepViewModel
         RefreshCommand = new RelayCommand(Refresh);
         WriteCommand = new AsyncRelayCommand(WriteAsync);
     }
-    public override string Title => "7. Write the USB drive";
+    public override string Title => "8. Write the USB drive";
     public override string Explanation =>
         "Insert a USB drive of 8 GB or larger. EVERYTHING on it will be erased. Only USB drives are listed — internal disks and the Windows disk are never shown. " +
         "Use 'Dry run' to see what would happen, or 'Simulate' to write to an image file instead of a real drive.";

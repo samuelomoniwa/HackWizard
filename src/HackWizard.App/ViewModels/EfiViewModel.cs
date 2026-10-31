@@ -13,7 +13,7 @@ public sealed class EfiViewModel : StepViewModel
         CheckCoverageCommand = new RelayCommand(() => Ctx.Dialogs.OpenPath("https://checkcoverage.apple.com/"));
         OpenFolderCommand = new RelayCommand(() => { if (Ctx.Build != null) Ctx.Dialogs.OpenPath(Ctx.Build.StagingDir); });
     }
-    public override string Title => "6. Build the OpenCore EFI";
+    public override string Title => "7. Build the OpenCore EFI";
     public override string Explanation =>
         "Builds EFI/OC/config.plist from OpenCore's own Sample.plist (never a third-party EFI), applying the Dortania settings for your CPU generation, " +
         "kexts in the correct load order, graphics and audio properties, and a freshly generated serial for your Mac model. OpenCore's ocvalidate must report no errors before you can continue.";

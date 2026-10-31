@@ -86,6 +86,9 @@ public static class EfiPipeline
             HfsPlus = await TryGet(dm, kb.Source("hfsplus"), P("hfsplus"), ct)
         };
         var kexts = ResolveKexts(kb, c, macos);
+        var utbSrc = kb.Source("usbtoolbox-kext");
+        foreach (var n in new[] { "USBToolBox.kext", "UTBDefault.kext" })
+            if (kexts.All(k => k.BundleName != n)) kexts.Add(new KextRequest(n, utbSrc));
         foreach (var src in kexts.Select(k => k.Source).Distinct())
         {
             var art = await dm.GetAsync(src, P(src.Id), ct);
@@ -181,11 +184,21 @@ public static class EfiPipeline
         var kextInfos = new List<KextInfo>();
         foreach (var (req, art) in d.Kexts)
         {
+            if (req.BundleName == "UTBDefault.kext" && ctx.UsbMap is { SelectedCount: > 0 }) continue;
             var src = DownloadManager.FindInExtracted(art.ExtractedDir ?? throw new InvalidOperationException($"{art.SourceId} is not an archive."), req.BundleName);
             var dst = Path.Combine(oc, "Kexts", req.BundleName);
             CopyDir(src, dst);
             kextInfos.AddRange(KextInfo.ReadWithPlugins(dst, req.BundleName));
         }
+        if (ctx.UsbMap is { SelectedCount: > 0 } usbMap)
+        {
+            if (usbMap.OverLimit) throw new InvalidOperationException("USB map has more than 15 ports on a controller. Fix it in step 5.");
+            var utbMap = Path.Combine(oc, "Kexts", "UTBMap.kext");
+            HackWizard.Core.Usb.UtbMapWriter.Write(usbMap, utbMap);
+            kextInfos.AddRange(KextInfo.ReadWithPlugins(utbMap, "UTBMap.kext"));
+            notes.Add($"USB map: UTBMap.kext with {usbMap.SelectedCount} ports on {usbMap.Mapped.Count()} controller(s).");
+        }
+        else notes.Add("No USB map: UTBDefault.kext enables all ports (up to 15 per controller). Map them later.");
         var ordered = KextOrderer.Order(kextInfos);
 
         foreach (var s in ctx.Ssdts) File.WriteAllBytes(Path.Combine(oc, "ACPI", s.Name + ".aml"), s.Aml);

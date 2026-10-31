@@ -24,6 +24,7 @@ public abstract class StepViewModel : ObservableObject
 
     public abstract bool CanProceed { get; }
     public virtual Task OnEnterAsync() => Task.CompletedTask;
+    public virtual void OnLeave() { }
 
     public event Action? StateChanged;
     protected void RaiseState() { OnPropertyChanged(nameof(CanProceed)); StateChanged?.Invoke(); }

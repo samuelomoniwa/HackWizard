@@ -27,6 +27,7 @@ public sealed class MainViewModel : ObservableObject
         get => _index;
         private set
         {
+            if (_index != value) Steps[_index].OnLeave();
             if (!SetProperty(ref _index, value)) return;
             OnPropertyChanged(nameof(Current)); OnPropertyChanged(nameof(StepLabel)); OnPropertyChanged(nameof(OverallProgress));
             Refresh();
@@ -44,7 +45,7 @@ public sealed class MainViewModel : ObservableObject
         Ctx = ctx;
         Steps = new ObservableCollection<StepViewModel>
         {
-            new PreflightViewModel(ctx), new HardwareViewModel(ctx), new CompatibilityViewModel(ctx), new AcpiViewModel(ctx),
+            new PreflightViewModel(ctx), new HardwareViewModel(ctx), new CompatibilityViewModel(ctx), new AcpiViewModel(ctx), new UsbMapViewModel(ctx),
             new DownloadsViewModel(ctx), new EfiViewModel(ctx), new UsbViewModel(ctx), new BiosViewModel(ctx), new FinalViewModel(ctx)
         };
         foreach (var s in Steps) s.StateChanged += Refresh;

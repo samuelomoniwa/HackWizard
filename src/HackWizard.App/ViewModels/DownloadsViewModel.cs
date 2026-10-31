@@ -16,7 +16,7 @@ public sealed class DownloadItem : ObservableObject
 public sealed class DownloadsViewModel : StepViewModel
 {
     public DownloadsViewModel(WizardContext ctx) : base(ctx) => StartCommand = new AsyncRelayCommand(StartAsync);
-    public override string Title => "5. Downloads";
+    public override string Title => "6. Downloads";
     public override string Explanation =>
         "Downloads the latest stable OpenCore, the drivers (kexts) your hardware needs and macOS Recovery, only from their official sources. " +
         "Every file is hash-checked and logged. Large files resume if interrupted. Nothing is written to any disk except HackWizard's cache.";

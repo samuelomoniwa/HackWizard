@@ -18,7 +18,7 @@ public sealed class BiosViewModel : StepViewModel
         ReadLenovoCommand = new AsyncRelayCommand(ReadLenovoAsync);
         ApplyLenovoCommand = new AsyncRelayCommand<object?>(ApplyLenovoAsync);
     }
-    public override string Title => "8. Firmware (BIOS/UEFI) settings";
+    public override string Title => "9. Firmware (BIOS/UEFI) settings";
     public override string Explanation =>
         "These firmware settings must be changed before the USB will boot. The list is tailored to your PC (maker, model, CPU, laptop/desktop). " +
         "On Lenovo ThinkPads HackWizard can optionally apply supported settings through Lenovo's official WMI interface (off by default; you see every change first).";
