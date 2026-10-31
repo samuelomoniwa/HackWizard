@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "kbVersion": "2.0.3",
+  "kbVersion": "2.0.4",
   "updateUrl": "https://raw.githubusercontent.com/samuelomoniwa/HackWizard/main/Rules",
   "files": {
     "kb/cpu-codenames.json": "B3E0EA69C0C5430EF174E7D748F59B655B2AE4FDA688D755E8BB1BD09F43088F",

@@ -10,7 +10,7 @@ $repo = "$user/HackWizard"
 Write-Host "== GitHub account: $user" -ForegroundColor Cyan
 
 # --- Use gh's login for git, and remove old saved GitHub logins ---
-cmdkey /list | Select-String 'Target:\s*(\S*github\S*)' | ForEach-Object { cmdkey /delete:$($_.Matches[0].Groups[1].Value) | Out-Null }
+cmdkey /list | Select-String 'Target:\s*(git:https://\S*github\S*)' | ForEach-Object { cmdkey /delete:$($_.Matches[0].Groups[1].Value) | Out-Null }
 gh auth setup-git
 
 # --- Point the knowledge-base update URL at this repository ---
@@ -52,3 +52,4 @@ if ($LASTEXITCODE) {
 if ($LASTEXITCODE) { throw "Push failed" }
 Write-Host "== Done: https://github.com/$repo" -ForegroundColor Green
 Write-Host "   EXE: $(Resolve-Path .\artifacts\publish\HackWizard.exe -ErrorAction SilentlyContinue)"
+
