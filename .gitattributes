@@ -1,0 +1,4 @@
+# Knowledge-base files are hash-pinned in Rules/manifest.json: never normalise their line endings.
+Rules/** -text
+*.command text eol=lf
+*.sh text eol=lf

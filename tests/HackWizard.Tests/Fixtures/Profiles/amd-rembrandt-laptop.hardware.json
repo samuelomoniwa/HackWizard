@@ -1,0 +1,106 @@
+{
+  "schemaVersion": 2,
+  "hostOs": "Microsoft Windows 10.0.22631",
+  "hostArchitecture": "X64",
+  "system": {
+    "manufacturer": "LENOVO",
+    "model": "21CF",
+    "machineType": "21CF",
+    "family": "ThinkPad T14 Gen 3",
+    "version": "ThinkPad T14 Gen 3",
+    "biosVendor": "LENOVO",
+    "biosVersion": "1.0",
+    "biosDate": "2024-01-01",
+    "isLaptop": true,
+    "memoryBytes": 17179869184,
+    "displayWidth": 1920,
+    "displayHeight": 1080
+  },
+  "cpu": {
+    "vendor": "AuthenticAMD",
+    "name": "AMD Ryzen 7 PRO 6850U",
+    "family": 25,
+    "model": 68,
+    "stepping": 1,
+    "codename": "",
+    "physicalCores": 8,
+    "logicalProcessors": 16
+  },
+  "devices": [
+    {
+      "category": "Gpu",
+      "name": "AMD Radeon(TM) 680M",
+      "pnpId": "PCI\\VEN_1002&DEV_1681\\0",
+      "vendorId": "1002",
+      "deviceId": "1681",
+      "bus": "PCI",
+      "ocDevicePath": "PciRoot(0x0)/Pci(0x8,0x1)/Pci(0x0,0x0)",
+      "acpiPath": "",
+      "compatibleIds": [],
+      "service": ""
+    },
+    {
+      "category": "Wifi",
+      "name": "Qualcomm WCN685x Wi-Fi 6E",
+      "pnpId": "PCI\\VEN_17CB&DEV_1103\\0",
+      "vendorId": "17CB",
+      "deviceId": "1103",
+      "bus": "PCI",
+      "ocDevicePath": "PciRoot(0x0)/Pci(0x2,0x2)/Pci(0x0,0x0)",
+      "acpiPath": "",
+      "compatibleIds": [],
+      "service": ""
+    },
+    {
+      "category": "Input",
+      "name": "Standard PS/2 Keyboard",
+      "pnpId": "ACPI\\PNP0303\\0",
+      "vendorId": "",
+      "deviceId": "",
+      "bus": "ACPI",
+      "ocDevicePath": "",
+      "acpiPath": "",
+      "compatibleIds": [
+        "*PNP0303"
+      ],
+      "service": ""
+    },
+    {
+      "category": "Input",
+      "name": "PS/2 Mouse",
+      "pnpId": "ACPI\\SYN1234\\0",
+      "vendorId": "",
+      "deviceId": "",
+      "bus": "ACPI",
+      "ocDevicePath": "",
+      "acpiPath": "",
+      "compatibleIds": [
+        "*PNP0F13"
+      ],
+      "service": ""
+    }
+  ],
+  "disks": [
+    {
+      "number": 0,
+      "model": "SAMSUNG MZVL2512HCJQ",
+      "serial": "S",
+      "busType": "NVMe",
+      "sizeBytes": 512000000000,
+      "isSystem": true,
+      "isBoot": true,
+      "isRemovable": false
+    }
+  ],
+  "trackpadInterface": "PS2",
+  "ethernetMac": "001122334455",
+  "acpiDevices": [
+    {
+      "hid": "PNP0C09",
+      "acpiPath": "\\_SB.PCI0.LPC0.EC0",
+      "pnpId": "ACPI\\PNP0C09\\0"
+    }
+  ],
+  "dsdtSymbols": [],
+  "warnings": []
+}

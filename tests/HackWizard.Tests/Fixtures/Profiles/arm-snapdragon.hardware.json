@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 2,
+  "hostOs": "Microsoft Windows 10.0.22631",
+  "hostArchitecture": "Arm64",
+  "system": {
+    "manufacturer": "Microsoft Corporation",
+    "model": "Surface Pro 11",
+    "machineType": "",
+    "family": "Surface Pro",
+    "version": "Surface Pro",
+    "biosVendor": "Microsoft Corporation",
+    "biosVersion": "1.0",
+    "biosDate": "2024-01-01",
+    "isLaptop": true,
+    "memoryBytes": 17179869184,
+    "displayWidth": 1920,
+    "displayHeight": 1080
+  },
+  "cpu": {
+    "vendor": "Unknown",
+    "name": "Snapdragon(R) X Elite",
+    "family": 0,
+    "model": 0,
+    "stepping": 0,
+    "codename": "",
+    "physicalCores": 12,
+    "logicalProcessors": 24
+  },
+  "devices": [],
+  "disks": [
+    {
+      "number": 0,
+      "model": "Surface SSD",
+      "serial": "S",
+      "busType": "NVMe",
+      "sizeBytes": 512000000000,
+      "isSystem": true,
+      "isBoot": true,
+      "isRemovable": false
+    }
+  ],
+  "trackpadInterface": "Unknown",
+  "ethernetMac": "001122334455",
+  "acpiDevices": [],
+  "dsdtSymbols": [],
+  "warnings": []
+}

@@ -1,0 +1,58 @@
+{
+  "blocked": false,
+  "smbios": "MacBookPro16,2",
+  "recommended": "sequoia",
+  "blockedMacos": [],
+  "kexts": [
+    "@IntelBluetooth",
+    "@IntelWifi",
+    "AppleALC.kext",
+    "BrightnessKeys.kext",
+    "ECEnabler.kext",
+    "Lilu.kext",
+    "NootedRed.kext",
+    "RealtekRTL8111.kext",
+    "SMCBatteryManager.kext",
+    "SMCLightSensor.kext",
+    "VirtualSMC.kext",
+    "VoodooPS2Controller.kext"
+  ],
+  "ssdts": [
+    "SSDT-ALS0",
+    "SSDT-EC-USBX-LAPTOP",
+    "SSDT-PNLF"
+  ],
+  "bootArgs": [
+    "-v",
+    "keepsyms=1",
+    "debug=0x100"
+  ],
+  "deviceProperties": {},
+  "audioLayout": 11,
+  "audioCodec": "",
+  "capabilities": [
+    "gpu",
+    "net-install"
+  ],
+  "matchedRules": [
+    "audio.hdmi",
+    "audio.realtek.alc257",
+    "biometric",
+    "bt.intel",
+    "camera.uvc",
+    "cardreader",
+    "cpu.amd.zen",
+    "disk.sata",
+    "eth.realtek.rtl8111",
+    "gpu.amd.nootedred",
+    "model.lenovo.t495",
+    "platform.amd-laptop.sleep",
+    "platform.baseline",
+    "platform.input.ps2",
+    "platform.laptop",
+    "platform.laptop.no-als",
+    "smbios.amd.laptop",
+    "usb.controller",
+    "wifi.intel"
+  ]
+}

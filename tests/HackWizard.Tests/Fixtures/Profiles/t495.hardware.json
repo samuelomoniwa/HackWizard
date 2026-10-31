@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 2, "hostOs": "Microsoft Windows 10.0.22631", "hostArchitecture": "X64",
+  "system": { "manufacturer": "LENOVO", "model": "20NJ0012US", "machineType": "20NJ", "family": "ThinkPad T495", "version": "ThinkPad T495",
+    "biosVendor": "LENOVO", "biosVersion": "R12ET65W (1.35 )", "biosDate": "2023-08-04", "isLaptop": true, "memoryBytes": 17179869184, "displayWidth": 1920, "displayHeight": 1080 },
+  "cpu": { "vendor": "AuthenticAMD", "name": "AMD Ryzen 3 PRO 3300U w/ Radeon Vega Mobile Gfx", "family": 23, "model": 24, "stepping": 1, "codename": "Picasso (Zen+)", "physicalCores": 4, "logicalProcessors": 4 },
+  "devices": [
+    { "category": "Gpu", "name": "AMD Radeon(TM) Vega 6 Graphics", "pnpId": "PCI\\VEN_1002&DEV_15D8\\0", "vendorId": "1002", "deviceId": "15D8", "bus": "PCI", "ocDevicePath": "PciRoot(0x0)/Pci(0x8,0x1)/Pci(0x0,0x0)" },
+    { "category": "Lpc", "name": "AMD LPC Bridge", "pnpId": "PCI\\VEN_1022&DEV_790E\\0", "vendorId": "1022", "deviceId": "790E", "bus": "PCI", "acpiPath": "\\_SB.PCI0.LPC0", "compatibleIds": ["PCI\\CC_0601"] },
+    { "category": "Wifi", "name": "Intel(R) Wireless-AC 9260 160MHz", "pnpId": "PCI\\VEN_8086&DEV_2526\\0", "vendorId": "8086", "deviceId": "2526", "bus": "PCI", "service": "Netwtw08" },
+    { "category": "Bluetooth", "name": "Intel(R) Wireless Bluetooth(R)", "pnpId": "USB\\VID_8087&PID_0025\\0", "vendorId": "8087", "deviceId": "0025", "bus": "USB" },
+    { "category": "Network", "name": "Realtek PCIe GbE Family Controller", "pnpId": "PCI\\VEN_10EC&DEV_8168\\0", "vendorId": "10EC", "deviceId": "8168", "bus": "PCI", "macAddress": "8C1645AABBCC" },
+    { "category": "AudioCodec", "name": "Realtek High Definition Audio", "pnpId": "HDAUDIO\\FUNC_01&VEN_10EC&DEV_0257\\0", "vendorId": "10EC", "deviceId": "0257", "bus": "HDAUDIO", "ocDevicePath": "PciRoot(0x0)/Pci(0x8,0x1)/Pci(0x0,0x6)" },
+    { "category": "AudioCodec", "name": "AMD High Definition Audio Device", "pnpId": "HDAUDIO\\FUNC_01&VEN_1002&DEV_AA01\\0", "vendorId": "1002", "deviceId": "AA01", "bus": "HDAUDIO", "ocDevicePath": "PciRoot(0x0)/Pci(0x8,0x1)/Pci(0x0,0x1)" },
+    { "category": "Usb", "name": "AMD USB 3.10 eXtensible Host Controller", "pnpId": "PCI\\VEN_1022&DEV_15E0\\0", "vendorId": "1022", "deviceId": "15E0", "bus": "PCI" },
+    { "category": "Camera", "name": "Integrated Camera", "pnpId": "USB\\VID_04F2&PID_B67C\\0", "vendorId": "04F2", "deviceId": "B67C", "bus": "USB" },
+    { "category": "Biometric", "name": "Synaptics FP Sensors (WBF)", "pnpId": "USB\\VID_06CB&PID_00BD\\0", "vendorId": "06CB", "deviceId": "00BD", "bus": "USB" },
+    { "category": "CardReader", "name": "Realtek PCIE CardReader", "pnpId": "PCI\\VEN_10EC&DEV_522A\\0", "vendorId": "10EC", "deviceId": "522A", "bus": "PCI", "service": "RtsPer" },
+    { "category": "Input", "name": "Standard PS/2 Keyboard", "pnpId": "ACPI\\LEN0071\\0", "bus": "ACPI", "compatibleIds": ["*PNP0303"] },
+    { "category": "Input", "name": "ThinkPad UltraNav", "pnpId": "ACPI\\LEN2068\\0", "bus": "ACPI", "compatibleIds": ["*PNP0F13"] }
+  ],
+  "disks": [
+    { "number": 0, "model": "SAMSUNG MZNLN128HAHQ-00H1", "serial": "S3T7", "busType": "SATA", "sizeBytes": 128035676160, "isSystem": true, "isBoot": true, "isRemovable": false },
+    { "number": 1, "model": "SanDisk Ultra USB 3.0", "serial": "4C53", "busType": "USB", "sizeBytes": 30752000000, "isRemovable": true }
+  ],
+  "trackpadInterface": "PS2",
+  "ethernetMac": "8C1645AABBCC",
+  "acpiDevices": [
+    { "hid": "PNP0C09", "acpiPath": "\\_SB.PCI0.LPC0.EC0", "pnpId": "ACPI\\PNP0C09\\0" },
+    { "hid": "PNP0A08", "acpiPath": "\\_SB.PCI0", "pnpId": "ACPI\\PNP0A08\\0" },
+    { "hid": "CPU", "acpiPath": "\\_SB.C000", "pnpId": "ACPI\\AuthenticAMD_-_AMD64_Family_23_Model_24\\0" }
+  ],
+  "dsdtSymbols": [],
+  "warnings": []
+}

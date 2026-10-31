@@ -1,0 +1,18 @@
+name: Hardware report / new PC support
+description: Share a hardware report so HackWizard can support (or correctly reject) your PC.
+labels: [hardware]
+body:
+  - type: markdown
+    attributes:
+      value: "Run HackWizard to the 'Hardware detection' step, then attach `%ProgramData%\\HackWizard\\reports\\hardware-report.json`. It contains no serial numbers. Remove the MAC address if you prefer."
+  - type: input
+    id: model
+    attributes: { label: PC maker and model, placeholder: "e.g. Dell XPS 13 9370" }
+    validations: { required: true }
+  - type: textarea
+    id: report
+    attributes: { label: hardware-report.json, description: Drag the file here or paste its contents., render: json }
+    validations: { required: true }
+  - type: textarea
+    id: result
+    attributes: { label: What happened?, description: "Compatibility result, and — if you installed — what works and what doesn't (graphics, audio layout, Wi-Fi, sleep, trackpad, USB)." }

@@ -1,0 +1,152 @@
+{
+  "schemaVersion": 2,
+  "category": "platform",
+  "rules": [
+    {
+      "id": "platform.arm64",
+      "scope": "system",
+      "component": "Processor architecture",
+      "match": { "architecture": "Arm64" },
+      "status": "Unsupported",
+      "blocking": true,
+      "notes": ["This is an ARM PC (e.g. Snapdragon). macOS for PCs only exists for x86-64 Intel/AMD processors; there is no way to run it here."]
+    },
+    {
+      "id": "platform.firmware.legacy",
+      "scope": "system",
+      "component": "Firmware",
+      "match": { "isUefi": false },
+      "status": "Unsupported",
+      "blocking": true,
+      "notes": ["Windows is booted in Legacy BIOS/CSM mode. OpenCore requires UEFI. Switch the firmware to UEFI boot (convert Windows with MBR2GPT) and run HackWizard again. PCs without UEFI are not supported."]
+    },
+    {
+      "id": "platform.baseline",
+      "scope": "always",
+      "component": "OpenCore baseline",
+      "status": "Info",
+      "priority": 0,
+      "kexts": ["Lilu.kext", "VirtualSMC.kext"],
+      "bootArgs": ["-v", "keepsyms=1", "debug=0x100"],
+      "configPatches": {
+        "Misc.Debug.AppleDebug": true,
+        "Misc.Debug.ApplePanic": true,
+        "Misc.Debug.DisableWatchDog": true,
+        "Misc.Debug.Target": 67,
+        "Misc.Security.AllowSetDefault": true,
+        "Misc.Security.BlacklistAppleUpdate": true,
+        "Misc.Security.ScanPolicy": 0,
+        "Misc.Security.SecureBootModel": "Disabled",
+        "Misc.Security.Vault": "Optional",
+        "Misc.Boot.HideAuxiliary": true,
+        "Misc.Boot.PickerMode": "Builtin",
+        "UEFI.ConnectDrivers": true,
+        "UEFI.Quirks.RequestBootVarRouting": true,
+        "PlatformInfo.Generic.SpoofVendor": true,
+        "PlatformInfo.UpdateSMBIOSMode": "Create",
+        "Kernel.Quirks.DisableLinkeditJettison": true,
+        "Kernel.Quirks.PanicNoKextDump": true,
+        "Kernel.Quirks.PowerTimeoutKernelPanic": true,
+        "Kernel.Quirks.XhciPortLimit": false
+      },
+      "requires": {
+        "gpu": "Graphics: no GPU that macOS can drive was found. Laptops with Intel 11th-gen (Tiger Lake) or newer, or AMD Ryzen 6000-series or newer graphics have no macOS driver, and laptop graphics chips cannot be replaced, so macOS cannot run usefully on them. Desktops: install a supported AMD Radeon card (RX 460–590, Vega, RX 5500/5600/5700, RX 6600/6650/6800/6900) and run HackWizard again."
+      },
+      "recommends": {
+        "net-install": "Network: no built-in Ethernet that macOS supports was found. The macOS installer downloads macOS from Apple and Wi-Fi does not work inside it. Use a USB-to-Ethernet adapter that macOS supports natively (for example ASIX AX88179 or Realtek RTL8153 based), or an iPhone's USB Personal Hotspot."
+      },
+      "notes": ["Lilu + VirtualSMC, verbose install boot-args, SecureBootModel=Disabled and ScanPolicy=0 for the install (Dortania)."]
+    },
+    {
+      "id": "platform.laptop",
+      "scope": "system",
+      "component": "Laptop platform",
+      "match": { "isLaptop": true },
+      "status": "Supported",
+      "priority": 10,
+      "kexts": ["SMCBatteryManager.kext", "BrightnessKeys.kext", "ECEnabler.kext"],
+      "ssdts": ["SSDT-EC-USBX-LAPTOP", "SSDT-PNLF"],
+      "notes": ["Battery via SMCBatteryManager (+ECEnabler for wide EC fields), backlight via SSDT-PNLF, fake EC + USB power via SSDT-EC-USBX."]
+    },
+    {
+      "id": "platform.desktop",
+      "scope": "system",
+      "component": "Desktop platform",
+      "match": { "isLaptop": false },
+      "status": "Supported",
+      "priority": 10,
+      "ssdts": ["SSDT-EC-USBX-DESKTOP"],
+      "notes": ["Fake EC + USB power properties via SSDT-EC-USBX."]
+    },
+    {
+      "id": "platform.laptop.no-als",
+      "scope": "system",
+      "component": "Ambient light sensor",
+      "match": { "isLaptop": true, "acpiHid": "ACPI0008", "hasAcpiHid": false },
+      "status": "Info",
+      "priority": 10,
+      "kexts": ["SMCLightSensor.kext"],
+      "ssdts": ["SSDT-ALS0"],
+      "notes": ["No hardware light sensor; a fake ALS0 keeps the brightness slider persistent."]
+    },
+    {
+      "id": "platform.input.ps2",
+      "scope": "system",
+      "component": "Keyboard / Trackpad",
+      "match": { "trackpadInterface": "PS2" },
+      "status": "Supported",
+      "priority": 10,
+      "kexts": ["VoodooPS2Controller.kext"],
+      "notes": ["PS/2 keyboard, trackpad and TrackPoint via VoodooPS2Controller (includes VoodooInput)."]
+    },
+    {
+      "id": "platform.input.i2c",
+      "scope": "system",
+      "component": "Keyboard / Trackpad",
+      "match": { "trackpadInterface": "I2C" },
+      "status": "Partial",
+      "priority": 10,
+      "kexts": ["VoodooPS2Controller.kext", "VoodooI2C.kext", "VoodooI2CHID.kext"],
+      "ssdts": ["SSDT-XOSI"],
+      "notes": ["I2C-HID trackpad via VoodooI2C. Many trackpads work immediately; some need GPIO pinning (see VoodooI2C docs). A USB mouse is useful during install."]
+    },
+    {
+      "id": "platform.input.unknown-laptop",
+      "scope": "system",
+      "component": "Keyboard / Trackpad",
+      "match": { "isLaptop": true, "trackpadInterface": "Unknown" },
+      "status": "Partial",
+      "priority": 10,
+      "kexts": ["VoodooPS2Controller.kext"],
+      "notes": ["Trackpad interface not detected; the PS/2 driver is added for the keyboard. Keep a USB mouse handy."]
+    },
+    {
+      "id": "platform.amd-laptop.sleep",
+      "scope": "system",
+      "component": "Sleep / Wake",
+      "match": { "isLaptop": true, "cpuVendor": "AuthenticAMD" },
+      "status": "Partial",
+      "priority": 10,
+      "notes": ["Sleep is often broken on AMD laptops. If it misbehaves, disable sleep."],
+      "postInstall": ["If sleep fails: sudo pmset -a hibernatemode 0 && sudo pmset -a standby 0 && sudo pmset -a autopoweroff 0"]
+    },
+    {
+      "id": "platform.laptop.modern-standby",
+      "scope": "system",
+      "component": "Sleep / Wake",
+      "match": { "isLaptop": true, "cpuVendor": "GenuineIntel", "cpuModels": [126, 165, 166] },
+      "status": "Partial",
+      "priority": 10,
+      "notes": ["Many 10th-gen laptops only implement Windows 'Modern Standby' (S0ix), which macOS cannot use; sleep may not work."]
+    },
+    {
+      "id": "platform.amd.cpur",
+      "scope": "system",
+      "component": "CPU ACPI objects",
+      "match": { "cpuVendor": "AuthenticAMD", "isLaptop": false, "acpiHid": "ACPI0007" },
+      "status": "Partial",
+      "priority": 10,
+      "notes": ["This board declares CPUs as ACPI0007 devices (common on B550/A520). If the installer stalls early, these boards need SSDT-CPUR from Dortania's AMD guide (not generated automatically)."]
+    }
+  ]
+}

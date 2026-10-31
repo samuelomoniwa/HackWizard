@@ -1,0 +1,105 @@
+{
+  "schemaVersion": 2,
+  "category": "audio",
+  "rules": [
+    {
+      "id": "audio.realtek.alc257",
+      "scope": "device",
+      "group": "audio",
+      "component": "Audio (codec)",
+      "match": {
+        "category": "AudioCodec",
+        "pciIds": [
+          "10EC:0257"
+        ]
+      },
+      "status": "Supported",
+      "priority": 59,
+      "kexts": [
+        "AppleALC.kext"
+      ],
+      "audioLayouts": [
+        11,
+        18,
+        86,
+        97,
+        99,
+        100,
+        101
+      ],
+      "macos": {
+        "warn": {
+          "tahoe": "AppleALC relies on Apple's AppleHDA driver, which is reported to be removed in macOS Tahoe: expect no analog audio (speakers/headphones)."
+        }
+      },
+      "notes": [
+        "Realtek ALC257 via AppleALC (curated layout list, layout 11 first)."
+      ]
+    },
+    {
+      "id": "audio.hda.analog",
+      "scope": "device",
+      "group": "audio",
+      "component": "Audio (codec)",
+      "match": {
+        "category": "AudioCodec",
+        "pciIds": [
+          "10EC:*",
+          "14F1:*",
+          "111D:*",
+          "1013:*",
+          "1106:*",
+          "11D4:*",
+          "8384:*",
+          "1AEC:*"
+        ]
+      },
+      "status": "Supported",
+      "priority": 60,
+      "kexts": [
+        "AppleALC.kext"
+      ],
+      "audioAutoLayout": true,
+      "macos": {
+        "warn": {
+          "tahoe": "AppleALC relies on Apple's AppleHDA driver, which is reported to be removed in macOS Tahoe: expect no analog audio (speakers/headphones)."
+        }
+      },
+      "notes": [
+        "Analog audio via AppleALC. Valid layout-ids for this codec are read from AppleALC's own database at build time; if the first one gives no sound, the post-install guide lists the others."
+      ]
+    },
+    {
+      "id": "audio.hdmi",
+      "scope": "device",
+      "group": "audio",
+      "component": "HDMI/DP audio",
+      "match": {
+        "category": "AudioCodec",
+        "pciIds": [
+          "8086:*",
+          "1002:*",
+          "10DE:*"
+        ]
+      },
+      "status": "Info",
+      "priority": 60,
+      "notes": [
+        "HDMI/DisplayPort audio follows the GPU: works with supported Intel/AMD graphics, not with NVIDIA."
+      ]
+    },
+    {
+      "id": "audio.codec.fallback",
+      "scope": "device",
+      "component": "Audio (codec)",
+      "fallback": true,
+      "match": {
+        "category": "AudioCodec"
+      },
+      "status": "Unsupported",
+      "notes": [
+        "Unknown or unsupported audio codec (e.g. Intel SST/SOF DSP-only audio). A USB audio adapter works."
+      ]
+    }
+  ]
+}

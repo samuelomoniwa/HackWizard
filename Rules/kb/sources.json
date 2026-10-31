@@ -1,0 +1,341 @@
+{
+  "schemaVersion": 2,
+  "sources": [
+    {
+      "id": "opencore",
+      "kind": "opencore",
+      "repo": "acidanthera/OpenCorePkg",
+      "assetPattern": "^OpenCore-[0-9.]+-RELEASE\\.zip$",
+      "provides": [
+        "OpenCore"
+      ],
+      "license": "BSD-3-Clause"
+    },
+    {
+      "id": "lilu",
+      "kind": "kext",
+      "repo": "acidanthera/Lilu",
+      "assetPattern": "^Lilu-.*-RELEASE\\.zip$",
+      "provides": [
+        "Lilu.kext"
+      ],
+      "license": "BSD-3-Clause"
+    },
+    {
+      "id": "virtualsmc",
+      "kind": "kext",
+      "repo": "acidanthera/VirtualSMC",
+      "assetPattern": "^VirtualSMC-.*-RELEASE\\.zip$",
+      "provides": [
+        "VirtualSMC.kext",
+        "SMCBatteryManager.kext",
+        "SMCLightSensor.kext",
+        "SMCProcessor.kext",
+        "SMCSuperIO.kext"
+      ],
+      "license": "BSD-3-Clause"
+    },
+    {
+      "id": "whatevergreen",
+      "kind": "kext",
+      "repo": "acidanthera/WhateverGreen",
+      "assetPattern": "^WhateverGreen-.*-RELEASE\\.zip$",
+      "provides": [
+        "WhateverGreen.kext"
+      ],
+      "license": "BSD-3-Clause"
+    },
+    {
+      "id": "applealc",
+      "kind": "kext",
+      "repo": "acidanthera/AppleALC",
+      "assetPattern": "^AppleALC-.*-RELEASE\\.zip$",
+      "provides": [
+        "AppleALC.kext"
+      ],
+      "license": "BSD-3-Clause"
+    },
+    {
+      "id": "applealc-src",
+      "kind": "data",
+      "type": "github-zipball",
+      "repo": "acidanthera/AppleALC",
+      "provides": [
+        "AppleALC-Resources"
+      ],
+      "license": "BSD-3-Clause",
+      "notes": "Source archive of the matching AppleALC release; only Resources/*/Info.plist is read to find valid layout-ids for the detected codec."
+    },
+    {
+      "id": "voodoops2",
+      "kind": "kext",
+      "repo": "acidanthera/VoodooPS2",
+      "assetPattern": "^VoodooPS2Controller-.*-RELEASE\\.zip$",
+      "provides": [
+        "VoodooPS2Controller.kext"
+      ],
+      "license": "BSD-3-Clause"
+    },
+    {
+      "id": "voodooi2c",
+      "kind": "kext",
+      "repo": "VoodooI2C/VoodooI2C",
+      "assetPattern": "^VoodooI2C-.*\\.zip$",
+      "provides": [
+        "VoodooI2C.kext",
+        "VoodooI2CHID.kext"
+      ],
+      "license": "GPL-2.0",
+      "excludePattern": "(?i)debug"
+    },
+    {
+      "id": "brightnesskeys",
+      "kind": "kext",
+      "repo": "acidanthera/BrightnessKeys",
+      "assetPattern": "^BrightnessKeys-.*-RELEASE\\.zip$",
+      "provides": [
+        "BrightnessKeys.kext"
+      ],
+      "license": "BSD-3-Clause"
+    },
+    {
+      "id": "nootedred",
+      "kind": "kext",
+      "repo": "ChefKissInc/NootedRed",
+      "assetPattern": "(?i)\\.zip$",
+      "provides": [
+        "NootedRed.kext"
+      ],
+      "license": "ChefKiss Open Knowledge License v1",
+      "excludePattern": "(?i)(debug|source)",
+      "notes": "Experimental. Downloaded for the end user only; HackWizard does not redistribute it. Review its license before redistributing anything that contains it."
+    },
+    {
+      "id": "ecenabler",
+      "kind": "kext",
+      "repo": "averycblack/ECEnabler",
+      "assetPattern": "^ECEnabler-.*-RELEASE\\.zip$",
+      "provides": [
+        "ECEnabler.kext"
+      ],
+      "license": "BSD-3-Clause",
+      "notes": "Listed in Dortania's kext guide."
+    },
+    {
+      "id": "restrictevents",
+      "kind": "kext",
+      "repo": "acidanthera/RestrictEvents",
+      "assetPattern": "^RestrictEvents-.*-RELEASE\\.zip$",
+      "provides": [
+        "RestrictEvents.kext"
+      ],
+      "license": "BSD-3-Clause"
+    },
+    {
+      "id": "nvmefix",
+      "kind": "kext",
+      "repo": "acidanthera/NVMeFix",
+      "assetPattern": "^NVMeFix-.*-RELEASE\\.zip$",
+      "provides": [
+        "NVMeFix.kext"
+      ],
+      "license": "BSD-3-Clause"
+    },
+    {
+      "id": "rtl8111",
+      "kind": "kext",
+      "repo": "Mieze/RTL8111_driver_for_OS_X",
+      "assetPattern": "(?i)^RealtekRTL8111.*\\.zip$",
+      "provides": [
+        "RealtekRTL8111.kext"
+      ],
+      "license": "GPL-2.0",
+      "notes": "Listed in Dortania's kext guide (author: Mieze)."
+    },
+    {
+      "id": "rtl8100",
+      "kind": "kext",
+      "repo": "Mieze/RealtekRTL8100",
+      "assetPattern": "(?i)^RealtekRTL8100.*\\.zip$",
+      "provides": [
+        "RealtekRTL8100.kext"
+      ],
+      "license": "GPL-2.0"
+    },
+    {
+      "id": "lucyrtl8125",
+      "kind": "kext",
+      "repo": "Mieze/LucyRTL8125Ethernet",
+      "assetPattern": "(?i)^LucyRTL8125.*\\.zip$",
+      "provides": [
+        "LucyRTL8125Ethernet.kext"
+      ],
+      "license": "GPL-2.0"
+    },
+    {
+      "id": "atherose2200",
+      "kind": "kext",
+      "repo": "Mieze/AtherosE2200Ethernet",
+      "assetPattern": "(?i)^AtherosE2200.*\\.zip$",
+      "provides": [
+        "AtherosE2200Ethernet.kext"
+      ],
+      "license": "GPL-2.0"
+    },
+    {
+      "id": "intelmausi",
+      "kind": "kext",
+      "repo": "acidanthera/IntelMausi",
+      "assetPattern": "^IntelMausi-.*-RELEASE\\.zip$",
+      "provides": [
+        "IntelMausi.kext"
+      ],
+      "license": "GPL-2.0"
+    },
+    {
+      "id": "itlwm",
+      "kind": "kext",
+      "repo": "OpenIntelWireless/itlwm",
+      "assetPattern": "^itlwm_v.*_stable\\.kext\\.zip$",
+      "provides": [
+        "itlwm.kext"
+      ],
+      "license": "GPL-2.0 / ISC (OpenBSD)"
+    },
+    {
+      "id": "airportitlwm-sonoma144",
+      "kind": "kext",
+      "repo": "OpenIntelWireless/itlwm",
+      "assetPattern": "^AirportItlwm_v.*_stable_Sonoma14\\.4\\.kext\\.zip$",
+      "provides": [
+        "AirportItlwm.kext|airportitlwm-sonoma144"
+      ],
+      "license": "GPL-2.0 / ISC (OpenBSD)"
+    },
+    {
+      "id": "airportitlwm-ventura",
+      "kind": "kext",
+      "repo": "OpenIntelWireless/itlwm",
+      "assetPattern": "^AirportItlwm_v.*_stable_Ventura\\.kext\\.zip$",
+      "provides": [
+        "AirportItlwm.kext|airportitlwm-ventura"
+      ],
+      "license": "GPL-2.0 / ISC (OpenBSD)"
+    },
+    {
+      "id": "airportitlwm-monterey",
+      "kind": "kext",
+      "repo": "OpenIntelWireless/itlwm",
+      "assetPattern": "^AirportItlwm_v.*_stable_Monterey\\.kext\\.zip$",
+      "provides": [
+        "AirportItlwm.kext|airportitlwm-monterey"
+      ],
+      "license": "GPL-2.0 / ISC (OpenBSD)"
+    },
+    {
+      "id": "heliport",
+      "kind": "utility",
+      "repo": "OpenIntelWireless/HeliPort",
+      "assetPattern": "(?i)^HeliPort.*\\.dmg$",
+      "provides": [
+        "HeliPort.dmg"
+      ],
+      "license": "BSD-3-Clause"
+    },
+    {
+      "id": "intelbtfw",
+      "kind": "kext",
+      "repo": "OpenIntelWireless/IntelBluetoothFirmware",
+      "assetPattern": "(?i)^IntelBluetooth-.*\\.zip$",
+      "provides": [
+        "IntelBluetoothFirmware.kext",
+        "IntelBTPatcher.kext"
+      ],
+      "license": "GPL-2.0"
+    },
+    {
+      "id": "brcmpatchram",
+      "kind": "kext",
+      "repo": "acidanthera/BrcmPatchRAM",
+      "assetPattern": "^BrcmPatchRAM-.*-RELEASE\\.zip$",
+      "provides": [
+        "BlueToolFixup.kext",
+        "BrcmPatchRAM3.kext",
+        "BrcmFirmwareData.kext"
+      ],
+      "license": "BSD-3-Clause"
+    },
+    {
+      "id": "airportbrcmfixup",
+      "kind": "kext",
+      "repo": "acidanthera/AirportBrcmFixup",
+      "assetPattern": "^AirportBrcmFixup-.*-RELEASE\\.zip$",
+      "provides": [
+        "AirportBrcmFixup.kext"
+      ],
+      "license": "BSD-3-Clause"
+    },
+    {
+      "id": "amdvanilla",
+      "kind": "patches",
+      "type": "raw",
+      "url": "https://raw.githubusercontent.com/AMD-OSX/AMD_Vanilla/master/patches.plist",
+      "provides": [
+        "patches.plist"
+      ],
+      "license": "See AMD-OSX/AMD_Vanilla"
+    },
+    {
+      "id": "hfsplus",
+      "kind": "driver",
+      "type": "raw",
+      "url": "https://github.com/acidanthera/OcBinaryData/raw/master/Drivers/HfsPlus.efi",
+      "provides": [
+        "HfsPlus.efi"
+      ],
+      "license": "Apple (redistributed by acidanthera/OcBinaryData)"
+    },
+    {
+      "id": "usbtoolbox-win",
+      "kind": "utility",
+      "repo": "USBToolBox/tool",
+      "assetPattern": "^Windows\\.exe$",
+      "provides": [
+        "USBToolBox-Windows.exe"
+      ],
+      "license": "See USBToolBox/tool"
+    },
+    {
+      "id": "usbtoolbox-mac",
+      "kind": "utility",
+      "repo": "USBToolBox/tool",
+      "assetPattern": "^macOS\\.zip$",
+      "provides": [
+        "USBToolBox-macOS.zip"
+      ],
+      "license": "See USBToolBox/tool"
+    },
+    {
+      "id": "usbtoolbox-kext",
+      "kind": "utility",
+      "repo": "USBToolBox/kext",
+      "assetPattern": "^USBToolBox-.*-RELEASE\\.zip$",
+      "provides": [
+        "USBToolBox.kext"
+      ],
+      "license": "See USBToolBox/kext"
+    },
+    {
+      "id": "iasl",
+      "kind": "tool",
+      "type": "raw",
+      "url": "",
+      "optional": true,
+      "provides": [
+        "iasl.exe"
+      ],
+      "license": "Intel ACPICA (BSD/GPL dual)",
+      "notes": "Optional. Set url (and sha256) to an ACPICA Windows tools zip to cross-check the generated SSDTs. HackWizard compiles SSDTs with its own AML encoder."
+    }
+  ]
+}

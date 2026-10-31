@@ -1,0 +1,70 @@
+{
+  "blocked": false,
+  "smbios": "MacBookPro15,2",
+  "recommended": "sequoia",
+  "blockedMacos": [
+    "tahoe"
+  ],
+  "kexts": [
+    "@IntelBluetooth",
+    "@IntelWifi",
+    "AppleALC.kext",
+    "BrightnessKeys.kext",
+    "ECEnabler.kext",
+    "Lilu.kext",
+    "RealtekRTL8111.kext",
+    "SMCBatteryManager.kext",
+    "SMCLightSensor.kext",
+    "VirtualSMC.kext",
+    "VoodooI2C.kext",
+    "VoodooI2CHID.kext",
+    "VoodooPS2Controller.kext",
+    "WhateverGreen.kext"
+  ],
+  "ssdts": [
+    "SSDT-ALS0",
+    "SSDT-AWAC",
+    "SSDT-EC-USBX-LAPTOP",
+    "SSDT-PLUG",
+    "SSDT-PNLF",
+    "SSDT-XOSI"
+  ],
+  "bootArgs": [
+    "-v",
+    "keepsyms=1",
+    "debug=0x100"
+  ],
+  "deviceProperties": {
+    "PciRoot(0x0)/Pci(0x2,0x0)": [
+      "AAPL,ig-platform-id",
+      "device-id",
+      "framebuffer-fbmem",
+      "framebuffer-patch-enable",
+      "framebuffer-stolenmem"
+    ]
+  },
+  "audioLayout": null,
+  "audioCodec": "10EC:0236",
+  "capabilities": [
+    "gpu",
+    "net-install"
+  ],
+  "matchedRules": [
+    "audio.hda.analog",
+    "bt.intel",
+    "cpu.intel.coffee.mobile",
+    "cpu.intel.common",
+    "disk.nvme.known-bad",
+    "disk.sata",
+    "eth.realtek.rtl8111",
+    "gpu.intel.uhd620.spoof",
+    "platform.baseline",
+    "platform.input.i2c",
+    "platform.intel.awac",
+    "platform.laptop",
+    "platform.laptop.no-als",
+    "smbios.coffee.u",
+    "usb.controller",
+    "wifi.intel"
+  ]
+}

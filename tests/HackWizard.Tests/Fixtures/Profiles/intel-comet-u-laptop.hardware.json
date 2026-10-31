@@ -1,0 +1,190 @@
+{
+  "schemaVersion": 2,
+  "hostOs": "Microsoft Windows 10.0.22631",
+  "hostArchitecture": "X64",
+  "system": {
+    "manufacturer": "Dell Inc.",
+    "model": "Inspiron 5593",
+    "machineType": "",
+    "family": "Inspiron 5593",
+    "version": "Inspiron 5593",
+    "biosVendor": "Dell Inc.",
+    "biosVersion": "1.0",
+    "biosDate": "2024-01-01",
+    "isLaptop": true,
+    "memoryBytes": 17179869184,
+    "displayWidth": 1920,
+    "displayHeight": 1080
+  },
+  "cpu": {
+    "vendor": "GenuineIntel",
+    "name": "Intel(R) Core(TM) i5-10210U CPU @ 1.60GHz",
+    "family": 6,
+    "model": 142,
+    "stepping": 12,
+    "codename": "",
+    "physicalCores": 4,
+    "logicalProcessors": 8
+  },
+  "devices": [
+    {
+      "category": "Gpu",
+      "name": "Intel(R) UHD Graphics",
+      "pnpId": "PCI\\VEN_8086&DEV_9B41\\0",
+      "vendorId": "8086",
+      "deviceId": "9B41",
+      "bus": "PCI",
+      "ocDevicePath": "PciRoot(0x0)/Pci(0x2,0x0)",
+      "acpiPath": "\\_SB.PCI0.GFX0",
+      "compatibleIds": [],
+      "service": ""
+    },
+    {
+      "category": "Lpc",
+      "name": "LPC Controller",
+      "pnpId": "PCI\\VEN_8086&DEV_0284\\0",
+      "vendorId": "8086",
+      "deviceId": "0284",
+      "bus": "PCI",
+      "ocDevicePath": "",
+      "acpiPath": "\\_SB.PCI0.LPCB",
+      "compatibleIds": [
+        "PCI\\CC_0601"
+      ],
+      "service": ""
+    },
+    {
+      "category": "Wifi",
+      "name": "Killer(R) Wi-Fi 6 AX1650i 160MHz",
+      "pnpId": "PCI\\VEN_8086&DEV_02F0\\0",
+      "vendorId": "8086",
+      "deviceId": "02F0",
+      "bus": "PCI",
+      "ocDevicePath": "PciRoot(0x0)/Pci(0x14,0x3)",
+      "acpiPath": "",
+      "compatibleIds": [],
+      "service": ""
+    },
+    {
+      "category": "Bluetooth",
+      "name": "Intel(R) Wireless Bluetooth(R)",
+      "pnpId": "USB\\VID_8087&PID_0026\\0",
+      "vendorId": "8087",
+      "deviceId": "0026",
+      "bus": "USB",
+      "ocDevicePath": "",
+      "acpiPath": "",
+      "compatibleIds": [],
+      "service": ""
+    },
+    {
+      "category": "Network",
+      "name": "Realtek PCIe GbE Family Controller",
+      "pnpId": "PCI\\VEN_10EC&DEV_8168\\0",
+      "vendorId": "10EC",
+      "deviceId": "8168",
+      "bus": "PCI",
+      "ocDevicePath": "PciRoot(0x0)/Pci(0x1c,0x5)/Pci(0x0,0x0)",
+      "acpiPath": "",
+      "compatibleIds": [],
+      "service": ""
+    },
+    {
+      "category": "AudioCodec",
+      "name": "Realtek Audio",
+      "pnpId": "HDAUDIO\\FUNC_01&VEN_10EC&DEV_0236\\0",
+      "vendorId": "10EC",
+      "deviceId": "0236",
+      "bus": "HDAUDIO",
+      "ocDevicePath": "PciRoot(0x0)/Pci(0x1f,0x3)",
+      "acpiPath": "",
+      "compatibleIds": [],
+      "service": ""
+    },
+    {
+      "category": "Usb",
+      "name": "Intel USB 3.1 xHCI",
+      "pnpId": "PCI\\VEN_8086&DEV_02ED\\0",
+      "vendorId": "8086",
+      "deviceId": "02ED",
+      "bus": "PCI",
+      "ocDevicePath": "PciRoot(0x0)/Pci(0x14,0x0)",
+      "acpiPath": "\\_SB.PCI0.XHC",
+      "compatibleIds": [],
+      "service": ""
+    },
+    {
+      "category": "Input",
+      "name": "Standard PS/2 Keyboard",
+      "pnpId": "ACPI\\PNP0303\\0",
+      "vendorId": "",
+      "deviceId": "",
+      "bus": "ACPI",
+      "ocDevicePath": "",
+      "acpiPath": "",
+      "compatibleIds": [
+        "*PNP0303"
+      ],
+      "service": ""
+    },
+    {
+      "category": "Input",
+      "name": "I2C HID Device",
+      "pnpId": "ACPI\\ELAN0001\\0",
+      "vendorId": "",
+      "deviceId": "",
+      "bus": "ACPI",
+      "ocDevicePath": "",
+      "acpiPath": "",
+      "compatibleIds": [
+        "PNP0C50"
+      ],
+      "service": ""
+    }
+  ],
+  "disks": [
+    {
+      "number": 0,
+      "model": "SK hynix BC501 HFM256GDGTNG",
+      "serial": "S",
+      "busType": "NVMe",
+      "sizeBytes": 512000000000,
+      "isSystem": true,
+      "isBoot": true,
+      "isRemovable": false
+    },
+    {
+      "number": 1,
+      "model": "ST1000LM035",
+      "serial": "S",
+      "busType": "SATA",
+      "sizeBytes": 512000000000,
+      "isSystem": false,
+      "isBoot": false,
+      "isRemovable": false
+    }
+  ],
+  "trackpadInterface": "I2C",
+  "ethernetMac": "001122334455",
+  "acpiDevices": [
+    {
+      "hid": "PNP0C09",
+      "acpiPath": "\\_SB.PCI0.LPCB.ECDV",
+      "pnpId": "ACPI\\PNP0C09\\0"
+    },
+    {
+      "hid": "CPU",
+      "acpiPath": "\\_PR_.CPU0",
+      "pnpId": "ACPI\\GenuineIntel_-_Intel64\\0"
+    },
+    {
+      "hid": "ACPI000E",
+      "acpiPath": "\\_SB.AWAC",
+      "pnpId": "ACPI\\ACPI000E\\0"
+    }
+  ],
+  "dsdtSymbols": [
+    "STAS"
+  ],
+  "warnings": []
+}

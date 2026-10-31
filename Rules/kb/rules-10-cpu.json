@@ -1,0 +1,549 @@
+{
+  "schemaVersion": 2,
+  "category": "cpu",
+  "rules": [
+    {
+      "id": "cpu.intel.common",
+      "scope": "cpu",
+      "component": "CPU",
+      "match": {
+        "cpuVendor": "GenuineIntel",
+        "cpuFamilies": [
+          6
+        ],
+        "cpuModels": [
+          60,
+          69,
+          70,
+          61,
+          71,
+          78,
+          94,
+          142,
+          158,
+          165,
+          166,
+          126,
+          167,
+          151,
+          183,
+          191,
+          198,
+          140,
+          141,
+          154,
+          186,
+          170,
+          189,
+          197
+        ]
+      },
+      "status": "Supported",
+      "priority": 20,
+      "configPatches": {
+        "Booter.Quirks.AvoidRuntimeDefrag": true,
+        "Booter.Quirks.DevirtualiseMmio": false,
+        "Booter.Quirks.EnableSafeModeSlide": true,
+        "Booter.Quirks.EnableWriteUnprotector": true,
+        "Booter.Quirks.ProtectUefiServices": false,
+        "Booter.Quirks.ProvideCustomSlide": true,
+        "Booter.Quirks.RebuildAppleMemoryMap": false,
+        "Booter.Quirks.SetupVirtualMap": true,
+        "Booter.Quirks.SyncRuntimePermissions": false,
+        "Kernel.Quirks.AppleCpuPmCfgLock": false,
+        "Kernel.Quirks.AppleXcpmCfgLock": true,
+        "Kernel.Quirks.DisableIoMapper": true,
+        "Kernel.Quirks.ProvideCurrentCpuInfo": false,
+        "Kernel.Emulate.DummyPowerManagement": false
+      },
+      "notes": [
+        "Intel Core: Dortania Booter/Kernel quirks for the detected generation; CFG Lock assumed locked (AppleXcpmCfgLock) \u2014 unlocking it in BIOS is better if offered."
+      ]
+    },
+    {
+      "id": "cpu.intel.haswell-broadwell",
+      "scope": "cpu",
+      "component": "CPU generation",
+      "match": {
+        "cpuVendor": "GenuineIntel",
+        "cpuFamilies": [
+          6
+        ],
+        "cpuModels": [
+          60,
+          69,
+          70,
+          61,
+          71
+        ]
+      },
+      "status": "Supported",
+      "priority": 21,
+      "configPatches": {
+        "Kernel.Quirks.AppleCpuPmCfgLock": true
+      },
+      "ssdts": [
+        "SSDT-PLUG"
+      ],
+      "notes": [
+        "Haswell/Broadwell (4th/5th gen)."
+      ]
+    },
+    {
+      "id": "cpu.intel.skylake",
+      "scope": "cpu",
+      "component": "CPU generation",
+      "match": {
+        "cpuVendor": "GenuineIntel",
+        "cpuFamilies": [
+          6
+        ],
+        "cpuModels": [
+          78,
+          94
+        ]
+      },
+      "status": "Supported",
+      "priority": 21,
+      "ssdts": [
+        "SSDT-PLUG"
+      ],
+      "notes": [
+        "Skylake (6th gen)."
+      ]
+    },
+    {
+      "id": "cpu.intel.kaby",
+      "scope": "cpu",
+      "component": "CPU generation",
+      "match": {
+        "cpuVendor": "GenuineIntel",
+        "cpuFamilies": [
+          6
+        ],
+        "cpuModels": [
+          142,
+          158
+        ],
+        "cpuSteppingMax": 9
+      },
+      "status": "Supported",
+      "priority": 21,
+      "ssdts": [
+        "SSDT-PLUG"
+      ],
+      "notes": [
+        "Kaby Lake (7th gen) / Amber Lake."
+      ]
+    },
+    {
+      "id": "cpu.intel.coffee.mobile",
+      "scope": "cpu",
+      "component": "CPU generation",
+      "match": {
+        "cpuVendor": "GenuineIntel",
+        "cpuFamilies": [
+          6
+        ],
+        "cpuModels": [
+          142
+        ],
+        "cpuSteppingMin": 10
+      },
+      "status": "Supported",
+      "priority": 21,
+      "configPatches": {
+        "Booter.Quirks.EnableWriteUnprotector": false,
+        "Booter.Quirks.RebuildAppleMemoryMap": true,
+        "Booter.Quirks.SyncRuntimePermissions": true
+      },
+      "ssdts": [
+        "SSDT-PLUG"
+      ],
+      "notes": [
+        "8th-10th gen U-series (Kaby Lake R / Whiskey Lake / Comet Lake U42): Coffee Lake laptop quirks."
+      ]
+    },
+    {
+      "id": "cpu.intel.coffee.h-laptop",
+      "scope": "cpu",
+      "component": "CPU generation",
+      "match": {
+        "cpuVendor": "GenuineIntel",
+        "cpuFamilies": [
+          6
+        ],
+        "cpuModels": [
+          158
+        ],
+        "cpuSteppingMin": 10,
+        "isLaptop": true
+      },
+      "status": "Supported",
+      "priority": 21,
+      "configPatches": {
+        "Booter.Quirks.EnableWriteUnprotector": false,
+        "Booter.Quirks.RebuildAppleMemoryMap": true,
+        "Booter.Quirks.SyncRuntimePermissions": true
+      },
+      "ssdts": [
+        "SSDT-PLUG"
+      ],
+      "notes": [
+        "Coffee Lake H (8th/9th gen laptop)."
+      ]
+    },
+    {
+      "id": "cpu.intel.coffee.desktop",
+      "scope": "cpu",
+      "component": "CPU generation",
+      "match": {
+        "cpuVendor": "GenuineIntel",
+        "cpuFamilies": [
+          6
+        ],
+        "cpuModels": [
+          158
+        ],
+        "cpuSteppingMin": 10,
+        "isLaptop": false
+      },
+      "status": "Supported",
+      "priority": 21,
+      "configPatches": {
+        "Booter.Quirks.DevirtualiseMmio": true
+      },
+      "ssdts": [
+        "SSDT-PLUG",
+        "SSDT-PMC"
+      ],
+      "notes": [
+        "Coffee Lake desktop (8th/9th gen, 300-series): SSDT-PMC restores NVRAM. On Z390 boards that hang early, also enable ProtectUefiServices."
+      ]
+    },
+    {
+      "id": "cpu.intel.comet.desktop",
+      "scope": "cpu",
+      "component": "CPU generation",
+      "match": {
+        "cpuVendor": "GenuineIntel",
+        "cpuFamilies": [
+          6
+        ],
+        "cpuModels": [
+          165
+        ],
+        "isLaptop": false
+      },
+      "status": "Supported",
+      "priority": 21,
+      "configPatches": {
+        "Booter.Quirks.EnableWriteUnprotector": false,
+        "Booter.Quirks.RebuildAppleMemoryMap": true,
+        "Booter.Quirks.SyncRuntimePermissions": true,
+        "Booter.Quirks.DevirtualiseMmio": true,
+        "Booter.Quirks.ProtectUefiServices": true
+      },
+      "ssdts": [
+        "SSDT-PLUG"
+      ],
+      "notes": [
+        "Comet Lake desktop (10th gen, 400-series)."
+      ]
+    },
+    {
+      "id": "cpu.intel.comet.h-laptop",
+      "scope": "cpu",
+      "component": "CPU generation",
+      "match": {
+        "cpuVendor": "GenuineIntel",
+        "cpuFamilies": [
+          6
+        ],
+        "cpuModels": [
+          165
+        ],
+        "isLaptop": true
+      },
+      "status": "Supported",
+      "priority": 21,
+      "configPatches": {
+        "Booter.Quirks.EnableWriteUnprotector": false,
+        "Booter.Quirks.RebuildAppleMemoryMap": true,
+        "Booter.Quirks.SyncRuntimePermissions": true
+      },
+      "ssdts": [
+        "SSDT-PLUG"
+      ],
+      "notes": [
+        "Comet Lake H (10th gen laptop)."
+      ]
+    },
+    {
+      "id": "cpu.intel.comet.u62",
+      "scope": "cpu",
+      "component": "CPU generation",
+      "match": {
+        "cpuVendor": "GenuineIntel",
+        "cpuFamilies": [
+          6
+        ],
+        "cpuModels": [
+          166
+        ]
+      },
+      "status": "Supported",
+      "priority": 21,
+      "configPatches": {
+        "Booter.Quirks.EnableWriteUnprotector": false,
+        "Booter.Quirks.RebuildAppleMemoryMap": true,
+        "Booter.Quirks.SyncRuntimePermissions": true,
+        "Kernel.Emulate.Cpuid1Data": {
+          "data": "EC060800000000000000000000000000"
+        },
+        "Kernel.Emulate.Cpuid1Mask": {
+          "data": "FFFFFFFF000000000000000000000000"
+        }
+      },
+      "ssdts": [
+        "SSDT-PLUG"
+      ],
+      "notes": [
+        "Comet Lake U62 (10th gen U): CPUID spoofed to a supported Comet Lake ID."
+      ]
+    },
+    {
+      "id": "cpu.intel.icelake",
+      "scope": "cpu",
+      "component": "CPU generation",
+      "match": {
+        "cpuVendor": "GenuineIntel",
+        "cpuFamilies": [
+          6
+        ],
+        "cpuModels": [
+          126
+        ]
+      },
+      "status": "Supported",
+      "priority": 21,
+      "configPatches": {
+        "Booter.Quirks.EnableWriteUnprotector": false,
+        "Booter.Quirks.RebuildAppleMemoryMap": true,
+        "Booter.Quirks.SyncRuntimePermissions": true,
+        "Booter.Quirks.DevirtualiseMmio": true,
+        "Booter.Quirks.ProtectUefiServices": true,
+        "Booter.Quirks.SetupVirtualMap": false
+      },
+      "ssdts": [
+        "SSDT-PLUG",
+        "SSDT-RHUB"
+      ],
+      "notes": [
+        "Ice Lake (10th gen laptop): SetupVirtualMap off and SSDT-RHUB per Dortania."
+      ]
+    },
+    {
+      "id": "cpu.intel.rocket",
+      "scope": "cpu",
+      "component": "CPU generation",
+      "match": {
+        "cpuVendor": "GenuineIntel",
+        "cpuFamilies": [
+          6
+        ],
+        "cpuModels": [
+          167
+        ],
+        "isLaptop": false
+      },
+      "status": "Supported",
+      "priority": 21,
+      "configPatches": {
+        "Booter.Quirks.EnableWriteUnprotector": false,
+        "Booter.Quirks.RebuildAppleMemoryMap": true,
+        "Booter.Quirks.SyncRuntimePermissions": true,
+        "Booter.Quirks.DevirtualiseMmio": true,
+        "Booter.Quirks.ProtectUefiServices": true,
+        "Kernel.Emulate.Cpuid1Data": {
+          "data": "55060A00000000000000000000000000"
+        },
+        "Kernel.Emulate.Cpuid1Mask": {
+          "data": "FFFFFFFF000000000000000000000000"
+        }
+      },
+      "ssdts": [
+        "SSDT-PLUG"
+      ],
+      "notes": [
+        "Rocket Lake (11th gen desktop): CPUID spoofed to Comet Lake; its iGPU is unsupported, so a supported AMD GPU is required."
+      ]
+    },
+    {
+      "id": "cpu.intel.alder-plus.desktop",
+      "scope": "cpu",
+      "component": "CPU generation",
+      "match": {
+        "cpuVendor": "GenuineIntel",
+        "cpuFamilies": [
+          6
+        ],
+        "cpuModels": [
+          151,
+          183,
+          191,
+          198
+        ],
+        "isLaptop": false
+      },
+      "status": "Partial",
+      "priority": 21,
+      "configPatches": {
+        "Booter.Quirks.EnableWriteUnprotector": false,
+        "Booter.Quirks.RebuildAppleMemoryMap": true,
+        "Booter.Quirks.SyncRuntimePermissions": true,
+        "Booter.Quirks.DevirtualiseMmio": true,
+        "Booter.Quirks.ProtectUefiServices": true,
+        "Kernel.Emulate.Cpuid1Data": {
+          "data": "55060A00000000000000000000000000"
+        },
+        "Kernel.Emulate.Cpuid1Mask": {
+          "data": "FFFFFFFF000000000000000000000000"
+        },
+        "Kernel.Quirks.ProvideCurrentCpuInfo": true
+      },
+      "notes": [
+        "Alder/Raptor Lake (12th-14th gen) and Arrow Lake desktop: CPUID spoofed to Comet Lake with ProvideCurrentCpuInfo; P- and E-cores appear identical (optional third-party CpuTopologyRebuild can improve this). Arrow Lake is experimental. iGPU unsupported: a supported AMD GPU is required."
+      ]
+    },
+    {
+      "id": "cpu.intel.unsupported-igpu-mobile",
+      "scope": "cpu",
+      "component": "CPU generation",
+      "match": {
+        "cpuVendor": "GenuineIntel",
+        "cpuFamilies": [
+          6
+        ],
+        "cpuModels": [
+          140,
+          141,
+          154,
+          186,
+          170,
+          189,
+          197,
+          167,
+          151,
+          183,
+          191,
+          198
+        ],
+        "isLaptop": true
+      },
+      "status": "Partial",
+      "priority": 21,
+      "notes": [
+        "11th-gen or newer laptop CPU. The CPU itself can be patched, but its integrated graphics have no macOS driver (see Graphics)."
+      ]
+    },
+    {
+      "id": "cpu.amd.zen",
+      "scope": "cpu",
+      "component": "CPU",
+      "match": {
+        "cpuVendor": "AuthenticAMD",
+        "cpuFamilies": [
+          23,
+          25
+        ]
+      },
+      "status": "Supported",
+      "priority": 20,
+      "configPatches": {
+        "$amdVanilla": true,
+        "Booter.Quirks.AvoidRuntimeDefrag": true,
+        "Booter.Quirks.DevirtualiseMmio": false,
+        "Booter.Quirks.EnableSafeModeSlide": true,
+        "Booter.Quirks.EnableWriteUnprotector": false,
+        "Booter.Quirks.ProvideCustomSlide": true,
+        "Booter.Quirks.RebuildAppleMemoryMap": true,
+        "Booter.Quirks.SetupVirtualMap": true,
+        "Booter.Quirks.SyncRuntimePermissions": true,
+        "Kernel.Emulate.DummyPowerManagement": true,
+        "Kernel.Quirks.AppleCpuPmCfgLock": false,
+        "Kernel.Quirks.AppleXcpmCfgLock": false,
+        "Kernel.Quirks.DisableIoMapper": false,
+        "Kernel.Quirks.ProvideCurrentCpuInfo": true
+      },
+      "notes": [
+        "AMD Ryzen (Zen\u2013Zen 4): AMD_Vanilla kernel patches with the core count set to the physical core count; Dortania AMD quirks. No virtualisation (Hypervisor.framework) and some apps (Adobe, some Intel-only plugins) may not work on AMD."
+      ]
+    },
+    {
+      "id": "cpu.amd.zen5",
+      "scope": "cpu",
+      "component": "CPU",
+      "match": {
+        "cpuVendor": "AuthenticAMD",
+        "cpuFamilies": [
+          26
+        ]
+      },
+      "status": "Partial",
+      "priority": 20,
+      "configPatches": {
+        "$amdVanilla": true,
+        "Booter.Quirks.AvoidRuntimeDefrag": true,
+        "Booter.Quirks.DevirtualiseMmio": false,
+        "Booter.Quirks.EnableSafeModeSlide": true,
+        "Booter.Quirks.EnableWriteUnprotector": false,
+        "Booter.Quirks.ProvideCustomSlide": true,
+        "Booter.Quirks.RebuildAppleMemoryMap": true,
+        "Booter.Quirks.SetupVirtualMap": true,
+        "Booter.Quirks.SyncRuntimePermissions": true,
+        "Kernel.Emulate.DummyPowerManagement": true,
+        "Kernel.Quirks.AppleCpuPmCfgLock": false,
+        "Kernel.Quirks.AppleXcpmCfgLock": false,
+        "Kernel.Quirks.DisableIoMapper": false,
+        "Kernel.Quirks.ProvideCurrentCpuInfo": true
+      },
+      "notes": [
+        "AMD Zen 5 (family 1Ah): experimental \u2014 check the AMD_Vanilla release notes for current support."
+      ]
+    },
+    {
+      "id": "cpu.unsupported",
+      "scope": "cpu",
+      "component": "CPU",
+      "fallback": true,
+      "match": {},
+      "status": "Unsupported",
+      "blocking": true,
+      "priority": 20,
+      "notes": [
+        "This processor is not covered: Intel 3rd gen (Ivy Bridge) and older, Intel HEDT/Xeon-W, Atom/Pentium Silver/Celeron N-series SoCs, AMD FX/Athlon (pre-Ryzen) and non-Intel/AMD x86 CPUs. These need manual, version-limited setups outside HackWizard's scope."
+      ]
+    },
+    {
+      "id": "platform.intel.awac",
+      "scope": "system",
+      "component": "Real-time clock",
+      "match": {
+        "cpuVendor": "GenuineIntel",
+        "acpiHid": "ACPI000E",
+        "acpiHidsAbsent": [
+          "PNP0B00"
+        ]
+      },
+      "status": "Supported",
+      "priority": 22,
+      "ssdts": [
+        "SSDT-AWAC"
+      ],
+      "notes": [
+        "This board exposes only the AWAC clock (300-series and newer); SSDT-AWAC restores the legacy RTC macOS needs."
+      ]
+    }
+  ]
+}

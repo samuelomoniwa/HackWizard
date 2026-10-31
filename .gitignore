@@ -1,0 +1,6 @@
+bin/
+obj/
+artifacts/
+*.user
+.vs/
+tests/HackWizard.Tests/Golden/*.received

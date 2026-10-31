@@ -1,0 +1,46 @@
+name: CI
+on:
+  push: { branches: [main] }
+  pull_request:
+  workflow_dispatch:
+jobs:
+  knowledge-base:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install jsonschema
+      - name: Lint rules
+        run: python tools/kb_tool.py lint
+      - name: Expected profile results are up to date
+        run: |
+          python tools/kb_tool.py expect
+          git diff --exit-code tests/HackWizard.Tests/Fixtures/Profiles || (echo "Run 'python tools/kb_tool.py expect' and commit the result." && exit 1)
+      - name: Manifest hashes are up to date
+        run: |
+          python tools/kb_tool.py manifest > /dev/null
+          git diff --exit-code Rules/manifest.json || (echo "Run 'python tools/kb_tool.py manifest' and commit the result." && exit 1)
+  build-test:
+    runs-on: windows-latest
+    needs: knowledge-base
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with: { dotnet-version: "8.0.x" }
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install jsonschema
+      - name: Build, unit + ocvalidate integration tests, publish
+        shell: pwsh
+        env: { GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}" }
+        run: ./build.ps1 -IntegrationTests
+      - uses: actions/upload-artifact@v4
+        with:
+          name: HackWizard-win-x64
+          path: |
+            artifacts/publish/HackWizard.exe
+            artifacts/publish/HackWizard.exe.sha256
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: { name: test-results, path: "artifacts/test-results" }

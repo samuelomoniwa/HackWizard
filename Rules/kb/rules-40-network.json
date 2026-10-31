@@ -1,0 +1,437 @@
+{
+  "schemaVersion": 2,
+  "category": "network",
+  "rules": [
+    {
+      "id": "wifi.intel",
+      "scope": "device",
+      "group": "net",
+      "component": "Wi-Fi",
+      "match": {
+        "category": "Wifi",
+        "pciIds": [
+          "8086:08B1",
+          "8086:08B2",
+          "8086:095A",
+          "8086:095B",
+          "8086:3165",
+          "8086:3166",
+          "8086:24F3",
+          "8086:24F4",
+          "8086:24FB",
+          "8086:24FD",
+          "8086:2526",
+          "8086:9DF0",
+          "8086:A370",
+          "8086:31DC",
+          "8086:30DC",
+          "8086:271B",
+          "8086:271C",
+          "8086:2723",
+          "8086:2725",
+          "8086:02F0",
+          "8086:06F0",
+          "8086:34F0",
+          "8086:4DF0",
+          "8086:A0F0",
+          "8086:43F0",
+          "8086:3DF0",
+          "8086:51F0",
+          "8086:51F1",
+          "8086:54F0",
+          "8086:7A70",
+          "8086:7AF0",
+          "8086:7E40",
+          "8086:7F70",
+          "8086:2729"
+        ]
+      },
+      "status": "Partial",
+      "priority": 40,
+      "kexts": [
+        "@IntelWifi"
+      ],
+      "notes": [
+        "Intel Wi-Fi via OpenIntelWireless. Ventura/Sonoma use AirportItlwm (native Wi-Fi menu); Sequoia and later use itlwm + the HeliPort app. AirDrop, Handoff, Sidecar and other Continuity features do not work. Wi-Fi 7 (BE200) is unsupported."
+      ],
+      "postInstall": [
+        "If Wi-Fi uses itlwm: install HeliPort (Utilities/PostInstall) and add it to Login Items."
+      ]
+    },
+    {
+      "id": "wifi.broadcom.native",
+      "scope": "device",
+      "group": "net",
+      "component": "Wi-Fi",
+      "match": {
+        "category": "Wifi",
+        "pciIds": [
+          "14E4:43A0",
+          "14E4:43BA",
+          "14E4:43B1",
+          "14E4:4331",
+          "14E4:4353"
+        ]
+      },
+      "status": "Supported",
+      "priority": 40,
+      "notes": [
+        "Broadcom Apple-compatible card (e.g. BCM94360/BCM943602): full Wi-Fi, AirDrop and Handoff up to macOS Ventura."
+      ],
+      "macos": {
+        "warn": {
+          "sonoma": "Apple removed the drivers for this Broadcom Wi-Fi family in Sonoma; Wi-Fi needs post-install root patches not handled by HackWizard.",
+          "sequoia": "Apple removed the drivers for this Broadcom Wi-Fi family in Sonoma and later.",
+          "tahoe": "Apple removed the drivers for this Broadcom Wi-Fi family in Sonoma and later."
+        }
+      }
+    },
+    {
+      "id": "wifi.broadcom.fixup",
+      "scope": "device",
+      "group": "net",
+      "component": "Wi-Fi",
+      "match": {
+        "category": "Wifi",
+        "pciIds": [
+          "14E4:43A3",
+          "14E4:43B3",
+          "14E4:4357",
+          "14E4:43A9"
+        ]
+      },
+      "status": "Partial",
+      "priority": 40,
+      "kexts": [
+        "AirportBrcmFixup.kext"
+      ],
+      "notes": [
+        "Broadcom card supported with AirportBrcmFixup (e.g. DW1820A/BCM4350) up to Ventura; some revisions need extra properties."
+      ],
+      "macos": {
+        "warn": {
+          "sonoma": "Broadcom Wi-Fi drivers were removed in Sonoma.",
+          "sequoia": "Broadcom Wi-Fi drivers were removed in Sonoma and later.",
+          "tahoe": "Broadcom Wi-Fi drivers were removed in Sonoma and later."
+        }
+      }
+    },
+    {
+      "id": "wifi.fallback",
+      "scope": "device",
+      "component": "Wi-Fi",
+      "fallback": true,
+      "match": {
+        "category": "Wifi"
+      },
+      "status": "Unsupported",
+      "notes": [
+        "No macOS driver for this Wi-Fi chip (Realtek, MediaTek, Qualcomm/Killer and Atheros cards are unsupported). Replace it with an Intel or Broadcom M.2 card if your PC allows, or use a USB/Ethernet connection."
+      ]
+    },
+    {
+      "id": "bt.intel",
+      "scope": "device",
+      "group": "bt",
+      "component": "Bluetooth",
+      "match": {
+        "category": "Bluetooth",
+        "pciIds": [
+          "8087:07DC",
+          "8087:0A2A",
+          "8087:0A2B",
+          "8087:0AA7",
+          "8087:0AAA",
+          "8087:0025",
+          "8087:0026",
+          "8087:0029",
+          "8087:0032",
+          "8087:0033"
+        ]
+      },
+      "status": "Partial",
+      "priority": 40,
+      "kexts": [
+        "@IntelBluetooth"
+      ],
+      "notes": [
+        "Intel Bluetooth via IntelBluetoothFirmware + IntelBTPatcher + BlueToolFixup. Mice/keyboards/headphones usually work; Continuity does not."
+      ]
+    },
+    {
+      "id": "bt.broadcom",
+      "scope": "device",
+      "group": "bt",
+      "component": "Bluetooth",
+      "match": {
+        "category": "Bluetooth",
+        "pciIds": [
+          "0A5C:*",
+          "05AC:*"
+        ]
+      },
+      "status": "Supported",
+      "priority": 40,
+      "kexts": [
+        "BrcmPatchRAM3.kext",
+        "BrcmFirmwareData.kext",
+        "BlueToolFixup.kext"
+      ],
+      "notes": [
+        "Broadcom Bluetooth via BrcmPatchRAM."
+      ]
+    },
+    {
+      "id": "bt.fallback",
+      "scope": "device",
+      "component": "Bluetooth",
+      "fallback": true,
+      "match": {
+        "category": "Bluetooth"
+      },
+      "status": "Unsupported",
+      "notes": [
+        "No macOS driver for this Bluetooth chip (Realtek/MediaTek/Qualcomm). A USB Bluetooth dongle with a Broadcom chip works."
+      ]
+    },
+    {
+      "id": "eth.realtek.rtl8111",
+      "scope": "device",
+      "group": "net",
+      "component": "Ethernet",
+      "match": {
+        "category": "Network",
+        "pciIds": [
+          "10EC:8168",
+          "10EC:8111"
+        ]
+      },
+      "status": "Supported",
+      "priority": 40,
+      "kexts": [
+        "RealtekRTL8111.kext"
+      ],
+      "provides": [
+        "net-install"
+      ],
+      "notes": [
+        "Realtek RTL8111/8168 Gigabit."
+      ]
+    },
+    {
+      "id": "eth.realtek.rtl8100",
+      "scope": "device",
+      "group": "net",
+      "component": "Ethernet",
+      "match": {
+        "category": "Network",
+        "pciIds": [
+          "10EC:8136"
+        ]
+      },
+      "status": "Supported",
+      "priority": 40,
+      "kexts": [
+        "RealtekRTL8100.kext"
+      ],
+      "provides": [
+        "net-install"
+      ],
+      "notes": [
+        "Realtek RTL8100/8101 Fast Ethernet."
+      ]
+    },
+    {
+      "id": "eth.realtek.rtl8125",
+      "scope": "device",
+      "group": "net",
+      "component": "Ethernet",
+      "match": {
+        "category": "Network",
+        "pciIds": [
+          "10EC:8125",
+          "10EC:3000"
+        ]
+      },
+      "status": "Supported",
+      "priority": 40,
+      "kexts": [
+        "LucyRTL8125Ethernet.kext"
+      ],
+      "provides": [
+        "net-install"
+      ],
+      "notes": [
+        "Realtek RTL8125 2.5GbE."
+      ]
+    },
+    {
+      "id": "eth.intel.mausi",
+      "scope": "device",
+      "group": "net",
+      "component": "Ethernet",
+      "match": {
+        "category": "Network",
+        "pciIds": [
+          "8086:1502",
+          "8086:1503",
+          "8086:153A",
+          "8086:153B",
+          "8086:155A",
+          "8086:1559",
+          "8086:15A0",
+          "8086:15A1",
+          "8086:15A2",
+          "8086:15A3",
+          "8086:156F",
+          "8086:1570",
+          "8086:15B7",
+          "8086:15B8",
+          "8086:15B9",
+          "8086:15BB",
+          "8086:15BC",
+          "8086:15BD",
+          "8086:15BE",
+          "8086:15D6",
+          "8086:15D7",
+          "8086:15D8",
+          "8086:15E3",
+          "8086:0D4C",
+          "8086:0D4D",
+          "8086:0D4E",
+          "8086:0D4F",
+          "8086:0D53",
+          "8086:0D55",
+          "8086:15F9",
+          "8086:15FA",
+          "8086:15FB",
+          "8086:15FC",
+          "8086:1A1C",
+          "8086:1A1D",
+          "8086:1A1E",
+          "8086:1A1F",
+          "8086:550A",
+          "8086:550B",
+          "8086:550C",
+          "8086:550D"
+        ]
+      },
+      "status": "Supported",
+      "priority": 40,
+      "kexts": [
+        "IntelMausi.kext"
+      ],
+      "provides": [
+        "net-install"
+      ],
+      "notes": [
+        "Intel I217/I218/I219 family via IntelMausi."
+      ]
+    },
+    {
+      "id": "eth.intel.i225",
+      "scope": "device",
+      "group": "net",
+      "component": "Ethernet",
+      "match": {
+        "category": "Network",
+        "pciIds": [
+          "8086:15F2",
+          "8086:15F3",
+          "8086:125B",
+          "8086:125C",
+          "8086:125D",
+          "8086:3100",
+          "8086:3102"
+        ]
+      },
+      "status": "Partial",
+      "priority": 40,
+      "notes": [
+        "Intel I225/I226 2.5GbE: works natively on some revisions in macOS 12+, others need third-party drivers. Use a USB Ethernet adapter for the install if it does not connect."
+      ]
+    },
+    {
+      "id": "eth.intel.i211",
+      "scope": "device",
+      "group": "net",
+      "component": "Ethernet",
+      "match": {
+        "category": "Network",
+        "pciIds": [
+          "8086:1539",
+          "8086:1533"
+        ]
+      },
+      "status": "Partial",
+      "priority": 40,
+      "notes": [
+        "Intel I210/I211: native on recent macOS with a device-id spoof on some boards; otherwise needs a third-party driver."
+      ]
+    },
+    {
+      "id": "eth.killer",
+      "scope": "device",
+      "group": "net",
+      "component": "Ethernet",
+      "match": {
+        "category": "Network",
+        "pciIds": [
+          "1969:E091",
+          "1969:E0A1",
+          "1969:E0B1"
+        ]
+      },
+      "status": "Supported",
+      "priority": 40,
+      "kexts": [
+        "AtherosE2200Ethernet.kext"
+      ],
+      "provides": [
+        "net-install"
+      ],
+      "notes": [
+        "Killer E2200/E2400/E2500 via AtherosE2200Ethernet."
+      ]
+    },
+    {
+      "id": "eth.aquantia",
+      "scope": "device",
+      "group": "net",
+      "component": "Ethernet",
+      "match": {
+        "category": "Network",
+        "pciIds": [
+          "1D6A:07B1",
+          "1D6A:D107",
+          "1D6A:87B1",
+          "1D6A:00B1"
+        ]
+      },
+      "status": "Supported",
+      "priority": 40,
+      "configPatches": {
+        "Kernel.Quirks.ForceAquantiaEthernet": true
+      },
+      "provides": [
+        "net-install"
+      ],
+      "notes": [
+        "Aquantia AQC107/AQC113 10GbE: native driver with ForceAquantiaEthernet."
+      ]
+    },
+    {
+      "id": "net.fallback",
+      "scope": "device",
+      "component": "Ethernet",
+      "fallback": true,
+      "match": {
+        "category": "Network"
+      },
+      "status": "Unsupported",
+      "notes": [
+        "No macOS driver for this Ethernet controller."
+      ]
+    }
+  ]
+}

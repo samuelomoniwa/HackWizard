@@ -1,0 +1,52 @@
+{
+  "blocked": true,
+  "smbios": "",
+  "recommended": "",
+  "blockedMacos": [],
+  "kexts": [
+    "AppleALC.kext",
+    "BrightnessKeys.kext",
+    "ECEnabler.kext",
+    "Lilu.kext",
+    "NVMeFix.kext",
+    "SMCBatteryManager.kext",
+    "SMCLightSensor.kext",
+    "VirtualSMC.kext",
+    "VoodooI2C.kext",
+    "VoodooI2CHID.kext",
+    "VoodooPS2Controller.kext",
+    "WhateverGreen.kext"
+  ],
+  "ssdts": [
+    "SSDT-ALS0",
+    "SSDT-EC-USBX-LAPTOP",
+    "SSDT-PNLF",
+    "SSDT-XOSI"
+  ],
+  "bootArgs": [
+    "-v",
+    "keepsyms=1",
+    "debug=0x100"
+  ],
+  "deviceProperties": {
+    "PciRoot(0x0)/Pci(0x6,0x0)/Pci(0x0,0x0)": [
+      "disable-gpu"
+    ]
+  },
+  "audioLayout": null,
+  "audioCodec": "10EC:0245",
+  "capabilities": [],
+  "matchedRules": [
+    "audio.hda.analog",
+    "cpu.intel.common",
+    "cpu.intel.unsupported-igpu-mobile",
+    "disk.nvme",
+    "gpu.intel.unsupported-gen",
+    "gpu.nvidia",
+    "platform.baseline",
+    "platform.input.i2c",
+    "platform.laptop",
+    "platform.laptop.no-als",
+    "wifi.fallback"
+  ]
+}

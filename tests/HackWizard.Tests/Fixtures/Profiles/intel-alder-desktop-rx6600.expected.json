@@ -1,0 +1,42 @@
+{
+  "blocked": false,
+  "smbios": "MacPro7,1",
+  "recommended": "sequoia",
+  "blockedMacos": [],
+  "kexts": [
+    "AppleALC.kext",
+    "Lilu.kext",
+    "NVMeFix.kext",
+    "RestrictEvents.kext",
+    "VirtualSMC.kext",
+    "WhateverGreen.kext"
+  ],
+  "ssdts": [
+    "SSDT-EC-USBX-DESKTOP"
+  ],
+  "bootArgs": [
+    "-v",
+    "keepsyms=1",
+    "debug=0x100",
+    "agdpmod=pikera"
+  ],
+  "deviceProperties": {},
+  "audioLayout": null,
+  "audioCodec": "10EC:0897",
+  "capabilities": [
+    "gpu",
+    "gpu-dgpu"
+  ],
+  "matchedRules": [
+    "audio.hda.analog",
+    "cpu.intel.alder-plus.desktop",
+    "cpu.intel.common",
+    "disk.nvme",
+    "eth.intel.i225",
+    "gpu.amd.navi",
+    "gpu.intel.unsupported-gen",
+    "platform.baseline",
+    "platform.desktop",
+    "smbios.intel.dgpu-only"
+  ]
+}

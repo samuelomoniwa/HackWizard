@@ -1,0 +1,435 @@
+{
+  "schemaVersion": 2,
+  "codenames": [
+    {
+      "vendor": "GenuineIntel",
+      "family": 6,
+      "modelMin": 42,
+      "modelMax": 42,
+      "steppingMin": 0,
+      "steppingMax": 15,
+      "name": "Sandy Bridge",
+      "microarchitecture": "2nd gen"
+    },
+    {
+      "vendor": "GenuineIntel",
+      "family": 6,
+      "modelMin": 58,
+      "modelMax": 58,
+      "steppingMin": 0,
+      "steppingMax": 15,
+      "name": "Ivy Bridge",
+      "microarchitecture": "3rd gen"
+    },
+    {
+      "vendor": "GenuineIntel",
+      "family": 6,
+      "modelMin": 60,
+      "modelMax": 60,
+      "steppingMin": 0,
+      "steppingMax": 15,
+      "name": "Haswell",
+      "microarchitecture": "4th gen"
+    },
+    {
+      "vendor": "GenuineIntel",
+      "family": 6,
+      "modelMin": 69,
+      "modelMax": 70,
+      "steppingMin": 0,
+      "steppingMax": 15,
+      "name": "Haswell",
+      "microarchitecture": "4th gen"
+    },
+    {
+      "vendor": "GenuineIntel",
+      "family": 6,
+      "modelMin": 61,
+      "modelMax": 61,
+      "steppingMin": 0,
+      "steppingMax": 15,
+      "name": "Broadwell",
+      "microarchitecture": "5th gen"
+    },
+    {
+      "vendor": "GenuineIntel",
+      "family": 6,
+      "modelMin": 71,
+      "modelMax": 71,
+      "steppingMin": 0,
+      "steppingMax": 15,
+      "name": "Broadwell",
+      "microarchitecture": "5th gen"
+    },
+    {
+      "vendor": "GenuineIntel",
+      "family": 6,
+      "modelMin": 78,
+      "modelMax": 78,
+      "steppingMin": 0,
+      "steppingMax": 15,
+      "name": "Skylake",
+      "microarchitecture": "6th gen"
+    },
+    {
+      "vendor": "GenuineIntel",
+      "family": 6,
+      "modelMin": 94,
+      "modelMax": 94,
+      "steppingMin": 0,
+      "steppingMax": 15,
+      "name": "Skylake",
+      "microarchitecture": "6th gen"
+    },
+    {
+      "vendor": "GenuineIntel",
+      "family": 6,
+      "modelMin": 142,
+      "modelMax": 142,
+      "steppingMin": 0,
+      "steppingMax": 9,
+      "name": "Kaby Lake / Amber Lake",
+      "microarchitecture": "7th gen"
+    },
+    {
+      "vendor": "GenuineIntel",
+      "family": 6,
+      "modelMin": 142,
+      "modelMax": 142,
+      "steppingMin": 10,
+      "steppingMax": 15,
+      "name": "Kaby Lake R / Whiskey Lake / Comet Lake U",
+      "microarchitecture": "8th\u201310th gen"
+    },
+    {
+      "vendor": "GenuineIntel",
+      "family": 6,
+      "modelMin": 158,
+      "modelMax": 158,
+      "steppingMin": 0,
+      "steppingMax": 9,
+      "name": "Kaby Lake",
+      "microarchitecture": "7th gen"
+    },
+    {
+      "vendor": "GenuineIntel",
+      "family": 6,
+      "modelMin": 158,
+      "modelMax": 158,
+      "steppingMin": 10,
+      "steppingMax": 15,
+      "name": "Coffee Lake",
+      "microarchitecture": "8th/9th gen"
+    },
+    {
+      "vendor": "GenuineIntel",
+      "family": 6,
+      "modelMin": 165,
+      "modelMax": 166,
+      "steppingMin": 0,
+      "steppingMax": 15,
+      "name": "Comet Lake",
+      "microarchitecture": "10th gen"
+    },
+    {
+      "vendor": "GenuineIntel",
+      "family": 6,
+      "modelMin": 126,
+      "modelMax": 126,
+      "steppingMin": 0,
+      "steppingMax": 15,
+      "name": "Ice Lake",
+      "microarchitecture": "10th gen"
+    },
+    {
+      "vendor": "GenuineIntel",
+      "family": 6,
+      "modelMin": 140,
+      "modelMax": 141,
+      "steppingMin": 0,
+      "steppingMax": 15,
+      "name": "Tiger Lake",
+      "microarchitecture": "11th gen"
+    },
+    {
+      "vendor": "GenuineIntel",
+      "family": 6,
+      "modelMin": 167,
+      "modelMax": 167,
+      "steppingMin": 0,
+      "steppingMax": 15,
+      "name": "Rocket Lake",
+      "microarchitecture": "11th gen"
+    },
+    {
+      "vendor": "GenuineIntel",
+      "family": 6,
+      "modelMin": 151,
+      "modelMax": 151,
+      "steppingMin": 0,
+      "steppingMax": 15,
+      "name": "Alder Lake-S",
+      "microarchitecture": "12th gen"
+    },
+    {
+      "vendor": "GenuineIntel",
+      "family": 6,
+      "modelMin": 154,
+      "modelMax": 154,
+      "steppingMin": 0,
+      "steppingMax": 15,
+      "name": "Alder Lake-P/U",
+      "microarchitecture": "12th gen"
+    },
+    {
+      "vendor": "GenuineIntel",
+      "family": 6,
+      "modelMin": 183,
+      "modelMax": 183,
+      "steppingMin": 0,
+      "steppingMax": 15,
+      "name": "Raptor Lake-S",
+      "microarchitecture": "13th/14th gen"
+    },
+    {
+      "vendor": "GenuineIntel",
+      "family": 6,
+      "modelMin": 186,
+      "modelMax": 186,
+      "steppingMin": 0,
+      "steppingMax": 15,
+      "name": "Raptor Lake-P",
+      "microarchitecture": "13th gen"
+    },
+    {
+      "vendor": "GenuineIntel",
+      "family": 6,
+      "modelMin": 191,
+      "modelMax": 191,
+      "steppingMin": 0,
+      "steppingMax": 15,
+      "name": "Raptor Lake-S (refresh)",
+      "microarchitecture": "14th gen"
+    },
+    {
+      "vendor": "GenuineIntel",
+      "family": 6,
+      "modelMin": 170,
+      "modelMax": 170,
+      "steppingMin": 0,
+      "steppingMax": 15,
+      "name": "Meteor Lake",
+      "microarchitecture": "Core Ultra 1"
+    },
+    {
+      "vendor": "GenuineIntel",
+      "family": 6,
+      "modelMin": 189,
+      "modelMax": 189,
+      "steppingMin": 0,
+      "steppingMax": 15,
+      "name": "Lunar Lake",
+      "microarchitecture": "Core Ultra 2"
+    },
+    {
+      "vendor": "GenuineIntel",
+      "family": 6,
+      "modelMin": 197,
+      "modelMax": 198,
+      "steppingMin": 0,
+      "steppingMax": 15,
+      "name": "Arrow Lake",
+      "microarchitecture": "Core Ultra 2"
+    },
+    {
+      "vendor": "AuthenticAMD",
+      "family": 21,
+      "modelMin": 0,
+      "modelMax": 255,
+      "steppingMin": 0,
+      "steppingMax": 15,
+      "name": "Bulldozer family",
+      "microarchitecture": "15h"
+    },
+    {
+      "vendor": "AuthenticAMD",
+      "family": 22,
+      "modelMin": 0,
+      "modelMax": 255,
+      "steppingMin": 0,
+      "steppingMax": 15,
+      "name": "Jaguar/Puma",
+      "microarchitecture": "16h"
+    },
+    {
+      "vendor": "AuthenticAMD",
+      "family": 23,
+      "modelMin": 1,
+      "modelMax": 1,
+      "steppingMin": 0,
+      "steppingMax": 15,
+      "name": "Summit Ridge",
+      "microarchitecture": "Zen"
+    },
+    {
+      "vendor": "AuthenticAMD",
+      "family": 23,
+      "modelMin": 8,
+      "modelMax": 8,
+      "steppingMin": 0,
+      "steppingMax": 15,
+      "name": "Pinnacle Ridge",
+      "microarchitecture": "Zen+"
+    },
+    {
+      "vendor": "AuthenticAMD",
+      "family": 23,
+      "modelMin": 17,
+      "modelMax": 17,
+      "steppingMin": 0,
+      "steppingMax": 15,
+      "name": "Raven Ridge",
+      "microarchitecture": "Zen"
+    },
+    {
+      "vendor": "AuthenticAMD",
+      "family": 23,
+      "modelMin": 24,
+      "modelMax": 24,
+      "steppingMin": 0,
+      "steppingMax": 15,
+      "name": "Picasso",
+      "microarchitecture": "Zen+"
+    },
+    {
+      "vendor": "AuthenticAMD",
+      "family": 23,
+      "modelMin": 32,
+      "modelMax": 32,
+      "steppingMin": 0,
+      "steppingMax": 15,
+      "name": "Dali / Pollock",
+      "microarchitecture": "Zen"
+    },
+    {
+      "vendor": "AuthenticAMD",
+      "family": 23,
+      "modelMin": 49,
+      "modelMax": 49,
+      "steppingMin": 0,
+      "steppingMax": 15,
+      "name": "Rome / Castle Peak",
+      "microarchitecture": "Zen 2"
+    },
+    {
+      "vendor": "AuthenticAMD",
+      "family": 23,
+      "modelMin": 96,
+      "modelMax": 96,
+      "steppingMin": 0,
+      "steppingMax": 15,
+      "name": "Renoir",
+      "microarchitecture": "Zen 2"
+    },
+    {
+      "vendor": "AuthenticAMD",
+      "family": 23,
+      "modelMin": 104,
+      "modelMax": 104,
+      "steppingMin": 0,
+      "steppingMax": 15,
+      "name": "Lucienne",
+      "microarchitecture": "Zen 2"
+    },
+    {
+      "vendor": "AuthenticAMD",
+      "family": 23,
+      "modelMin": 113,
+      "modelMax": 113,
+      "steppingMin": 0,
+      "steppingMax": 15,
+      "name": "Matisse",
+      "microarchitecture": "Zen 2"
+    },
+    {
+      "vendor": "AuthenticAMD",
+      "family": 23,
+      "modelMin": 144,
+      "modelMax": 145,
+      "steppingMin": 0,
+      "steppingMax": 15,
+      "name": "Van Gogh",
+      "microarchitecture": "Zen 2"
+    },
+    {
+      "vendor": "AuthenticAMD",
+      "family": 23,
+      "modelMin": 160,
+      "modelMax": 160,
+      "steppingMin": 0,
+      "steppingMax": 15,
+      "name": "Mendocino",
+      "microarchitecture": "Zen 2"
+    },
+    {
+      "vendor": "AuthenticAMD",
+      "family": 25,
+      "modelMin": 33,
+      "modelMax": 33,
+      "steppingMin": 0,
+      "steppingMax": 15,
+      "name": "Vermeer",
+      "microarchitecture": "Zen 3"
+    },
+    {
+      "vendor": "AuthenticAMD",
+      "family": 25,
+      "modelMin": 80,
+      "modelMax": 80,
+      "steppingMin": 0,
+      "steppingMax": 15,
+      "name": "Cezanne / Barcelo",
+      "microarchitecture": "Zen 3"
+    },
+    {
+      "vendor": "AuthenticAMD",
+      "family": 25,
+      "modelMin": 64,
+      "modelMax": 68,
+      "steppingMin": 0,
+      "steppingMax": 15,
+      "name": "Rembrandt",
+      "microarchitecture": "Zen 3+"
+    },
+    {
+      "vendor": "AuthenticAMD",
+      "family": 25,
+      "modelMin": 97,
+      "modelMax": 97,
+      "steppingMin": 0,
+      "steppingMax": 15,
+      "name": "Raphael",
+      "microarchitecture": "Zen 4"
+    },
+    {
+      "vendor": "AuthenticAMD",
+      "family": 25,
+      "modelMin": 116,
+      "modelMax": 120,
+      "steppingMin": 0,
+      "steppingMax": 15,
+      "name": "Phoenix / Hawk Point",
+      "microarchitecture": "Zen 4"
+    },
+    {
+      "vendor": "AuthenticAMD",
+      "family": 26,
+      "modelMin": 0,
+      "modelMax": 255,
+      "steppingMin": 0,
+      "steppingMax": 15,
+      "name": "Zen 5 family",
+      "microarchitecture": "Zen 5"
+    }
+  ]
+}

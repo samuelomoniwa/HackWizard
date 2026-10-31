@@ -1,0 +1,204 @@
+{
+  "schemaVersion": 2,
+  "versions": [
+    {
+      "id": "tahoe",
+      "name": "macOS Tahoe 26",
+      "darwinMajor": 25,
+      "boardId": "Mac-CFF7D910A743CAAF",
+      "osType": "latest",
+      "supportedSmbios": [
+        "MacBookPro16,1",
+        "MacBookPro16,2",
+        "MacBookPro16,4",
+        "iMac20,1",
+        "iMac20,2",
+        "MacPro7,1"
+      ],
+      "kextVariants": {
+        "IntelWifi": [
+          "itlwm.kext"
+        ],
+        "IntelBluetooth": [
+          "IntelBluetoothFirmware.kext",
+          "IntelBTPatcher.kext",
+          "BlueToolFixup.kext"
+        ]
+      },
+      "notes": [
+        "Last macOS for Intel Macs. Newest; least tested with community kexts."
+      ]
+    },
+    {
+      "id": "sequoia",
+      "name": "macOS Sequoia 15",
+      "darwinMajor": 24,
+      "boardId": "Mac-7BA5B2D9E42DDD94",
+      "osType": "default",
+      "supportedSmbios": [
+        "MacBookPro15,1",
+        "MacBookPro15,2",
+        "MacBookPro15,3",
+        "MacBookPro15,4",
+        "MacBookPro16,1",
+        "MacBookPro16,2",
+        "MacBookPro16,3",
+        "MacBookPro16,4",
+        "MacBookAir9,1",
+        "iMac19,1",
+        "iMac19,2",
+        "iMac20,1",
+        "iMac20,2",
+        "iMacPro1,1",
+        "MacPro7,1",
+        "Macmini8,1"
+      ],
+      "kextVariants": {
+        "IntelWifi": [
+          "itlwm.kext"
+        ],
+        "IntelBluetooth": [
+          "IntelBluetoothFirmware.kext",
+          "IntelBTPatcher.kext",
+          "BlueToolFixup.kext"
+        ]
+      },
+      "notes": [
+        "No official AirportItlwm build: Intel Wi-Fi uses itlwm + HeliPort."
+      ]
+    },
+    {
+      "id": "sonoma",
+      "name": "macOS Sonoma 14",
+      "darwinMajor": 23,
+      "boardId": "Mac-827FAC58A8FDFA22",
+      "osType": "default",
+      "supportedSmbios": [
+        "MacBookPro15,1",
+        "MacBookPro15,2",
+        "MacBookPro15,3",
+        "MacBookPro15,4",
+        "MacBookPro16,1",
+        "MacBookPro16,2",
+        "MacBookPro16,3",
+        "MacBookPro16,4",
+        "MacBookAir9,1",
+        "iMac19,1",
+        "iMac19,2",
+        "iMac20,1",
+        "iMac20,2",
+        "iMacPro1,1",
+        "MacPro7,1",
+        "Macmini8,1"
+      ],
+      "kextVariants": {
+        "IntelWifi": [
+          "AirportItlwm.kext|airportitlwm-sonoma144"
+        ],
+        "IntelBluetooth": [
+          "IntelBluetoothFirmware.kext",
+          "IntelBTPatcher.kext",
+          "BlueToolFixup.kext"
+        ]
+      },
+      "notes": [
+        "AirportItlwm build for 14.4+; update to the latest 14.x."
+      ]
+    },
+    {
+      "id": "ventura",
+      "name": "macOS Ventura 13",
+      "darwinMajor": 22,
+      "boardId": "Mac-B4831CEBD52A0C4C",
+      "osType": "default",
+      "supportedSmbios": [
+        "MacBookPro14,1",
+        "MacBookPro14,2",
+        "MacBookPro14,3",
+        "MacBookPro15,1",
+        "MacBookPro15,2",
+        "MacBookPro15,3",
+        "MacBookPro15,4",
+        "MacBookPro16,1",
+        "MacBookPro16,2",
+        "MacBookPro16,3",
+        "MacBookPro16,4",
+        "MacBookAir9,1",
+        "iMac18,1",
+        "iMac18,2",
+        "iMac18,3",
+        "iMac19,1",
+        "iMac19,2",
+        "iMac20,1",
+        "iMac20,2",
+        "iMacPro1,1",
+        "MacPro7,1",
+        "Macmini8,1"
+      ],
+      "kextVariants": {
+        "IntelWifi": [
+          "AirportItlwm.kext|airportitlwm-ventura"
+        ],
+        "IntelBluetooth": [
+          "IntelBluetoothFirmware.kext",
+          "IntelBTPatcher.kext",
+          "BlueToolFixup.kext"
+        ]
+      },
+      "notes": []
+    },
+    {
+      "id": "monterey",
+      "name": "macOS Monterey 12",
+      "darwinMajor": 21,
+      "boardId": "Mac-E43C1C25D4880AD6",
+      "osType": "default",
+      "supportedSmbios": [
+        "MacBookPro11,4",
+        "MacBookPro11,5",
+        "MacBookPro12,1",
+        "MacBookPro13,1",
+        "MacBookPro13,2",
+        "MacBookPro13,3",
+        "MacBookPro14,1",
+        "MacBookPro14,2",
+        "MacBookPro14,3",
+        "MacBookPro15,1",
+        "MacBookPro15,2",
+        "MacBookPro15,3",
+        "MacBookPro15,4",
+        "MacBookPro16,1",
+        "MacBookPro16,2",
+        "MacBookPro16,3",
+        "MacBookPro16,4",
+        "MacBookAir9,1",
+        "iMac16,1",
+        "iMac16,2",
+        "iMac17,1",
+        "iMac18,1",
+        "iMac18,2",
+        "iMac18,3",
+        "iMac19,1",
+        "iMac19,2",
+        "iMac20,1",
+        "iMac20,2",
+        "iMacPro1,1",
+        "MacPro7,1",
+        "Macmini8,1"
+      ],
+      "kextVariants": {
+        "IntelWifi": [
+          "AirportItlwm.kext|airportitlwm-monterey"
+        ],
+        "IntelBluetooth": [
+          "IntelBluetoothFirmware.kext",
+          "IntelBTPatcher.kext",
+          "BlueToolFixup.kext"
+        ]
+      },
+      "notes": [
+        "Highest version for Haswell/Broadwell/Skylake integrated graphics."
+      ]
+    }
+  ]
+}

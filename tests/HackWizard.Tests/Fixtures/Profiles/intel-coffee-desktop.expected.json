@@ -1,0 +1,51 @@
+{
+  "blocked": false,
+  "smbios": "iMac19,1",
+  "recommended": "sequoia",
+  "blockedMacos": [
+    "tahoe"
+  ],
+  "kexts": [
+    "AppleALC.kext",
+    "IntelMausi.kext",
+    "Lilu.kext",
+    "NVMeFix.kext",
+    "VirtualSMC.kext",
+    "WhateverGreen.kext"
+  ],
+  "ssdts": [
+    "SSDT-AWAC",
+    "SSDT-EC-USBX-DESKTOP",
+    "SSDT-PLUG",
+    "SSDT-PMC"
+  ],
+  "bootArgs": [
+    "-v",
+    "keepsyms=1",
+    "debug=0x100"
+  ],
+  "deviceProperties": {
+    "PciRoot(0x0)/Pci(0x2,0x0)": [
+      "AAPL,ig-platform-id"
+    ]
+  },
+  "audioLayout": null,
+  "audioCodec": "10EC:1220",
+  "capabilities": [
+    "gpu",
+    "net-install"
+  ],
+  "matchedRules": [
+    "audio.hda.analog",
+    "cpu.intel.coffee.desktop",
+    "cpu.intel.common",
+    "disk.nvme",
+    "eth.intel.mausi",
+    "gpu.intel.coffee.desktop",
+    "platform.baseline",
+    "platform.desktop",
+    "platform.intel.awac",
+    "smbios.coffee.desktop",
+    "usb.controller"
+  ]
+}

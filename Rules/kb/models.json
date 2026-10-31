@@ -1,0 +1,587 @@
+{
+  "schemaVersion": 2,
+  "vendorDefaults": {
+    "LENOVO": {
+      "setupKey": "F1 (ThinkPad) / F2 or the Novo button (IdeaPad/Legion/Yoga)",
+      "bootMenuKey": "F12",
+      "notes": "On ThinkPads, Enter at the logo shows the startup interrupt menu."
+    },
+    "HP": {
+      "setupKey": "F10",
+      "bootMenuKey": "F9",
+      "notes": "Press Esc at power-on for the startup menu."
+    },
+    "Hewlett-Packard": {
+      "setupKey": "F10",
+      "bootMenuKey": "F9",
+      "notes": "Press Esc at power-on for the startup menu."
+    },
+    "Dell": {
+      "setupKey": "F2",
+      "bootMenuKey": "F12",
+      "notes": ""
+    },
+    "ASUSTeK": {
+      "setupKey": "F2 (laptops) / Del (desktops)",
+      "bootMenuKey": "Esc (laptops) / F8 (desktops)",
+      "notes": ""
+    },
+    "Acer": {
+      "setupKey": "F2",
+      "bootMenuKey": "F12 (enable 'F12 Boot Menu' in BIOS first)",
+      "notes": ""
+    },
+    "Micro-Star": {
+      "setupKey": "Del (desktops) / Del or F2 (laptops)",
+      "bootMenuKey": "F11",
+      "notes": ""
+    },
+    "Gigabyte": {
+      "setupKey": "Del",
+      "bootMenuKey": "F12",
+      "notes": ""
+    },
+    "ASRock": {
+      "setupKey": "F2 / Del",
+      "bootMenuKey": "F11",
+      "notes": ""
+    },
+    "Microsoft": {
+      "setupKey": "Hold Volume Up, then press and release Power",
+      "bootMenuKey": "Hold Volume Down, then press Power",
+      "notes": "Surface devices: in UEFI set Secure Boot to 'None'. Most Surface hardware (Wi-Fi, cameras, touch) is unsupported in macOS."
+    },
+    "Samsung": {
+      "setupKey": "F2",
+      "bootMenuKey": "F10",
+      "notes": ""
+    },
+    "Toshiba": {
+      "setupKey": "F2",
+      "bootMenuKey": "F12",
+      "notes": ""
+    },
+    "Dynabook": {
+      "setupKey": "F2",
+      "bootMenuKey": "F12",
+      "notes": ""
+    },
+    "Huawei": {
+      "setupKey": "F2",
+      "bootMenuKey": "F12",
+      "notes": ""
+    },
+    "Framework": {
+      "setupKey": "F2",
+      "bootMenuKey": "F12",
+      "notes": ""
+    },
+    "Intel": {
+      "setupKey": "F2",
+      "bootMenuKey": "F10",
+      "notes": "Intel NUC."
+    },
+    "DEFAULT": {
+      "setupKey": "Del / F2 / F1 / Esc (check your manual)",
+      "bootMenuKey": "F12 / F11 / F9 / Esc",
+      "notes": "HackWizard's 'Restart into BIOS' button works on any UEFI PC, so you don't need to know the key."
+    }
+  },
+  "genericSettings": [
+    {
+      "id": "secureboot",
+      "title": "Secure Boot",
+      "menuPath": "Security / Boot / Authentication \u2192 Secure Boot",
+      "value": "Disabled",
+      "why": "OpenCore and its drivers are not signed with Microsoft's keys; the firmware will refuse to start them.",
+      "ifMissing": "Some BIOSes require setting 'OS Type' to 'Other OS' or deleting the Secure Boot keys.",
+      "required": true
+    },
+    {
+      "id": "uefionly",
+      "title": "Boot mode",
+      "menuPath": "Boot \u2192 Boot Mode / CSM",
+      "value": "UEFI only (CSM / Legacy off)",
+      "why": "OpenCore is a UEFI application; CSM can break graphics initialisation.",
+      "ifMissing": "If there is no CSM option your PC is already UEFI-only.",
+      "required": true
+    },
+    {
+      "id": "fastboot",
+      "title": "Fast Boot",
+      "menuPath": "Boot \u2192 Fast Boot",
+      "value": "Disabled",
+      "why": "Ensures USB is initialised so you can boot from it.",
+      "ifMissing": "Fine to skip.",
+      "required": false
+    },
+    {
+      "id": "sata",
+      "title": "SATA mode",
+      "menuPath": "Advanced \u2192 Storage / SATA Configuration \u2192 SATA Mode",
+      "value": "AHCI",
+      "why": "macOS cannot see disks behind Intel RST/RAID.",
+      "ifMissing": "On many laptops this is called 'RAID On' vs 'AHCI'. If Windows was installed in RAID mode it may need Safe Mode once \u2014 but you are erasing it anyway.",
+      "required": false
+    },
+    {
+      "id": "vmd",
+      "title": "Intel VMD",
+      "menuPath": "Advanced \u2192 Storage / VMD Setup \u2192 Enable VMD controller",
+      "value": "Disabled",
+      "why": "VMD hides NVMe drives from macOS.",
+      "ifMissing": "Only on some 11th-gen+ Intel PCs.",
+      "required": false,
+      "when": {
+        "cpuVendor": "GenuineIntel"
+      }
+    },
+    {
+      "id": "cfglock",
+      "title": "CFG Lock",
+      "menuPath": "Advanced \u2192 Power & Performance \u2192 CPU Power Management \u2192 CFG Lock",
+      "value": "Disabled",
+      "why": "Lets macOS manage CPU power states natively. HackWizard already enables the AppleXcpmCfgLock quirk, so this is optional.",
+      "ifMissing": "Usually hidden on laptops; the quirk covers it.",
+      "required": false,
+      "when": {
+        "cpuVendor": "GenuineIntel"
+      }
+    },
+    {
+      "id": "vtd",
+      "title": "VT-d",
+      "menuPath": "Advanced \u2192 System Agent / CPU \u2192 VT-d",
+      "value": "Disabled (optional)",
+      "why": "HackWizard sets DisableIoMapper so VT-d may stay on; disabling avoids issues on some boards.",
+      "ifMissing": "Fine to skip.",
+      "required": false,
+      "when": {
+        "cpuVendor": "GenuineIntel"
+      }
+    },
+    {
+      "id": "dvmt",
+      "title": "DVMT Pre-Allocated",
+      "menuPath": "Advanced \u2192 Graphics Configuration \u2192 DVMT Pre-Allocated",
+      "value": "64 MB or higher",
+      "why": "Intel iGPU drivers in macOS expect more than the common 32 MB default (HackWizard also patches this for laptops).",
+      "ifMissing": "Usually hidden on laptops; the framebuffer patch covers it.",
+      "required": false,
+      "when": {
+        "cpuVendor": "GenuineIntel"
+      }
+    },
+    {
+      "id": "igpu",
+      "title": "Integrated graphics",
+      "menuPath": "Advanced \u2192 Graphics \u2192 iGPU / Primary Display",
+      "value": "Enabled; primary display = PEG/PCIe if you use an AMD card",
+      "why": "Keeps the iGPU available for Quick Sync while the AMD card drives the screens.",
+      "ifMissing": "",
+      "required": false,
+      "when": {
+        "cpuVendor": "GenuineIntel",
+        "isLaptop": false,
+        "hasCapability": [
+          "gpu-dgpu"
+        ]
+      }
+    },
+    {
+      "id": "above4g",
+      "title": "Above 4G Decoding",
+      "menuPath": "Advanced \u2192 PCI Subsystem \u2192 Above 4G Decoding",
+      "value": "Enabled",
+      "why": "Required for modern GPUs; if the system will not boot with it on, also set Kernel \u2192 Quirks \u2192 npci (see Dortania).",
+      "ifMissing": "",
+      "required": false,
+      "when": {
+        "isLaptop": false
+      }
+    },
+    {
+      "id": "rebar",
+      "title": "Resizable BAR / Smart Access Memory",
+      "menuPath": "Advanced \u2192 PCI Subsystem \u2192 Re-Size BAR",
+      "value": "Disabled",
+      "why": "macOS does not use it and it can prevent booting.",
+      "ifMissing": "",
+      "required": false,
+      "when": {
+        "isLaptop": false
+      }
+    },
+    {
+      "id": "xhci",
+      "title": "XHCI Hand-off",
+      "menuPath": "Advanced \u2192 USB Configuration \u2192 XHCI Hand-off",
+      "value": "Enabled",
+      "why": "Lets macOS take over the USB controllers.",
+      "ifMissing": "Fine to skip if missing.",
+      "required": false,
+      "when": {
+        "isLaptop": false
+      }
+    },
+    {
+      "id": "uma",
+      "title": "UMA Frame Buffer Size",
+      "menuPath": "Advanced \u2192 AMD CBS / Graphics \u2192 UMA Frame Buffer Size",
+      "value": "Highest available (1 GB or more)",
+      "why": "NootedRed needs at least 512 MB of iGPU memory; 1 GB+ is recommended.",
+      "ifMissing": "Many laptops hide it; update the BIOS or leave the default.",
+      "required": false,
+      "when": {
+        "cpuVendor": "AuthenticAMD",
+        "lacksCapability": [
+          "gpu-dgpu"
+        ]
+      }
+    },
+    {
+      "id": "svm",
+      "title": "SVM / Virtualisation",
+      "menuPath": "Advanced \u2192 CPU Configuration \u2192 SVM Mode",
+      "value": "Any",
+      "why": "Not used by macOS on AMD; leave as is.",
+      "ifMissing": "",
+      "required": false,
+      "when": {
+        "cpuVendor": "AuthenticAMD"
+      }
+    },
+    {
+      "id": "sgx",
+      "title": "Intel SGX",
+      "menuPath": "Security \u2192 Intel SGX",
+      "value": "Disabled",
+      "why": "Not used by macOS; occasionally interferes with boot.",
+      "ifMissing": "",
+      "required": false,
+      "when": {
+        "cpuVendor": "GenuineIntel"
+      }
+    },
+    {
+      "id": "serial",
+      "title": "Serial / COM port",
+      "menuPath": "Advanced \u2192 Super IO \u2192 Serial Port",
+      "value": "Disabled",
+      "why": "Legacy serial ports can interfere with macOS on desktops.",
+      "ifMissing": "",
+      "required": false,
+      "when": {
+        "isLaptop": false
+      }
+    },
+    {
+      "id": "save",
+      "title": "Save and exit",
+      "menuPath": "Exit \u2192 Save Changes and Reset (usually F10)",
+      "value": "Yes",
+      "why": "Settings only apply after saving.",
+      "ifMissing": "",
+      "required": true
+    }
+  ],
+  "models": [
+    {
+      "id": "lenovo-thinkpad-t495",
+      "displayName": "Lenovo ThinkPad T495",
+      "manufacturerRegex": "^LENOVO$",
+      "machineTypes": [
+        "20NJ",
+        "20NK"
+      ],
+      "familyRegex": null,
+      "setupKey": "F1",
+      "bootMenuKey": "F12",
+      "includeGeneric": false,
+      "setupNotes": "Power on and immediately tap F1 repeatedly to enter ThinkPad Setup (Enter at the red logo shows the Startup Interrupt menu). Arrow keys move between tabs, Enter opens, F5/F6 change values, Esc goes back, F10 saves and exits.",
+      "settings": [
+        {
+          "id": "secureboot",
+          "title": "Secure Boot",
+          "menuPath": "Security \u2192 Secure Boot \u2192 Secure Boot",
+          "value": "Off",
+          "why": "OpenCore is not signed with Microsoft keys.",
+          "ifMissing": "If greyed out, check 'Secure Boot Mode' isn't locked by your organisation.",
+          "required": true,
+          "lenovoWmi": {
+            "names": [
+              "SecureBoot"
+            ],
+            "values": [
+              "Disable",
+              "Disabled"
+            ]
+          }
+        },
+        {
+          "id": "uefionly",
+          "title": "UEFI/Legacy Boot",
+          "menuPath": "Startup \u2192 UEFI/Legacy Boot",
+          "value": "UEFI Only",
+          "why": "OpenCore is a UEFI application.",
+          "ifMissing": "Some T495 BIOS versions are UEFI-only already.",
+          "required": true,
+          "lenovoWmi": {
+            "names": [
+              "BootMode",
+              "UEFILegacyBoot",
+              "UefiLegacyBoot"
+            ],
+            "values": [
+              "UEFI Only",
+              "UEFIOnly"
+            ]
+          }
+        },
+        {
+          "id": "csm",
+          "title": "CSM Support",
+          "menuPath": "Startup \u2192 CSM Support",
+          "value": "No",
+          "why": "CSM interferes with GOP graphics init.",
+          "ifMissing": "Hidden when 'UEFI Only' is selected \u2014 fine.",
+          "required": true,
+          "lenovoWmi": {
+            "names": [
+              "CSMSupport"
+            ],
+            "values": [
+              "No",
+              "Disable",
+              "Disabled"
+            ]
+          }
+        },
+        {
+          "id": "uma",
+          "title": "UMA Frame Buffer Size",
+          "menuPath": "Config \u2192 Display \u2192 UMA Frame buffer Size",
+          "value": "Highest available (2GB if offered, else 1GB)",
+          "why": "NootedRed needs at least 512 MB of iGPU memory; 1 GB+ is recommended.",
+          "ifMissing": "Older BIOS releases may not show it. Update the BIOS first, or leave the default.",
+          "required": false,
+          "lenovoWmi": {
+            "names": [
+              "UMAFramebufferSize",
+              "UMAFrameBufferSize"
+            ],
+            "pickLargest": true
+          }
+        },
+        {
+          "id": "sleep",
+          "title": "Sleep State",
+          "menuPath": "Config \u2192 Power \u2192 Sleep State",
+          "value": "Linux (S3)",
+          "why": "macOS expects S3 sleep; Windows 'Modern Standby' does not work in macOS.",
+          "ifMissing": "If missing, disable sleep after install.",
+          "required": false,
+          "lenovoWmi": {
+            "names": [
+              "SleepState"
+            ],
+            "values": [
+              "Linux"
+            ]
+          }
+        },
+        {
+          "id": "osdefaults",
+          "title": "OS Optimized Defaults",
+          "menuPath": "Restart \u2192 OS Optimized Defaults",
+          "value": "Disabled",
+          "why": "When enabled it forces Windows-oriented defaults (incl. Secure Boot on).",
+          "ifMissing": "Not on every BIOS version.",
+          "required": false,
+          "lenovoWmi": {
+            "names": [
+              "OSOptimizedDefaults"
+            ],
+            "values": [
+              "Disable",
+              "Disabled"
+            ]
+          }
+        },
+        {
+          "id": "fingerprint",
+          "title": "Fingerprint Reader",
+          "menuPath": "Security \u2192 I/O Port Access \u2192 Fingerprint Reader",
+          "value": "Off",
+          "why": "Never works in macOS; disabling saves power.",
+          "ifMissing": "Skip if there is no reader.",
+          "required": false,
+          "lenovoWmi": {
+            "names": [
+              "FingerprintReader",
+              "FingerprintReaderAccess"
+            ],
+            "values": [
+              "Disable",
+              "Disabled"
+            ]
+          }
+        },
+        {
+          "id": "deviceguard",
+          "title": "Device Guard",
+          "menuPath": "Security \u2192 Device Guard",
+          "value": "Disabled",
+          "why": "Locks Secure Boot and virtualisation settings on when enabled.",
+          "ifMissing": "Not on most T495 BIOS versions.",
+          "required": false,
+          "lenovoWmi": {
+            "names": [
+              "DeviceGuard"
+            ],
+            "values": [
+              "Disable",
+              "Disabled"
+            ]
+          }
+        },
+        {
+          "id": "save",
+          "title": "Save and exit",
+          "menuPath": "Restart \u2192 Exit Saving Changes (or F10)",
+          "value": "Yes",
+          "why": "Settings only apply after saving.",
+          "ifMissing": "",
+          "required": true
+        }
+      ]
+    },
+    {
+      "id": "lenovo-thinkpad-generic",
+      "displayName": "Lenovo ThinkPad",
+      "manufacturerRegex": "^LENOVO$",
+      "machineTypes": [],
+      "familyRegex": "ThinkPad",
+      "setupKey": "F1",
+      "bootMenuKey": "F12",
+      "includeGeneric": true,
+      "setupNotes": "Tap F1 at power-on for ThinkPad Setup (or Enter at the logo, then F1). F10 saves and exits.",
+      "settings": [
+        {
+          "id": "secureboot",
+          "title": "Secure Boot",
+          "menuPath": "Security \u2192 Secure Boot \u2192 Secure Boot",
+          "value": "Off",
+          "why": "OpenCore is not signed with Microsoft keys.",
+          "ifMissing": "",
+          "required": true,
+          "lenovoWmi": {
+            "names": [
+              "SecureBoot"
+            ],
+            "values": [
+              "Disable",
+              "Disabled"
+            ]
+          }
+        },
+        {
+          "id": "uefionly",
+          "title": "UEFI/Legacy Boot",
+          "menuPath": "Startup \u2192 UEFI/Legacy Boot",
+          "value": "UEFI Only",
+          "why": "OpenCore is a UEFI application.",
+          "ifMissing": "Newer ThinkPads are UEFI-only.",
+          "required": true,
+          "lenovoWmi": {
+            "names": [
+              "BootMode",
+              "UEFILegacyBoot",
+              "UefiLegacyBoot"
+            ],
+            "values": [
+              "UEFI Only",
+              "UEFIOnly"
+            ]
+          }
+        },
+        {
+          "id": "sleep",
+          "title": "Sleep State",
+          "menuPath": "Config \u2192 Power \u2192 Sleep State",
+          "value": "Linux (S3)",
+          "why": "macOS cannot use Windows Modern Standby.",
+          "ifMissing": "If missing, sleep will likely not work in macOS.",
+          "required": false,
+          "lenovoWmi": {
+            "names": [
+              "SleepState"
+            ],
+            "values": [
+              "Linux"
+            ]
+          }
+        },
+        {
+          "id": "thunderboltboot",
+          "title": "Thunderbolt BIOS Assist / Security",
+          "menuPath": "Config \u2192 Thunderbolt 3",
+          "value": "BIOS Assist: Disabled, Security: No Security",
+          "why": "Lets macOS see Thunderbolt/USB-C ports.",
+          "ifMissing": "Only on Intel ThinkPads with Thunderbolt.",
+          "required": false,
+          "when": {
+            "cpuVendor": "GenuineIntel"
+          },
+          "lenovoWmi": {
+            "names": [
+              "ThunderboltBIOSAssistMode",
+              "ThunderboltSecurityLevel"
+            ],
+            "values": [
+              "Disabled",
+              "NoSecurity"
+            ]
+          }
+        },
+        {
+          "id": "osdefaults",
+          "title": "OS Optimized Defaults",
+          "menuPath": "Restart \u2192 OS Optimized Defaults",
+          "value": "Disabled",
+          "why": "Forces Windows-oriented defaults when enabled.",
+          "ifMissing": "Not on every BIOS.",
+          "required": false,
+          "lenovoWmi": {
+            "names": [
+              "OSOptimizedDefaults"
+            ],
+            "values": [
+              "Disable",
+              "Disabled"
+            ]
+          }
+        },
+        {
+          "id": "fingerprint",
+          "title": "Fingerprint Reader",
+          "menuPath": "Security \u2192 I/O Port Access \u2192 Fingerprint Reader",
+          "value": "Off",
+          "why": "Never works in macOS.",
+          "ifMissing": "",
+          "required": false,
+          "lenovoWmi": {
+            "names": [
+              "FingerprintReader",
+              "FingerprintReaderAccess"
+            ],
+            "values": [
+              "Disable",
+              "Disabled"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

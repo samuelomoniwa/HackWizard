@@ -1,0 +1,90 @@
+{
+  "schemaVersion": 2,
+  "hostOs": "Microsoft Windows 10.0.22631",
+  "hostArchitecture": "X64",
+  "system": {
+    "manufacturer": "Micro-Star International Co., Ltd.",
+    "model": "MS-7C56",
+    "machineType": "",
+    "family": "B550-A PRO",
+    "version": "B550-A PRO",
+    "biosVendor": "Micro-Star International Co., Ltd.",
+    "biosVersion": "1.0",
+    "biosDate": "2024-01-01",
+    "isLaptop": false,
+    "memoryBytes": 17179869184,
+    "displayWidth": 1920,
+    "displayHeight": 1080
+  },
+  "cpu": {
+    "vendor": "AuthenticAMD",
+    "name": "AMD Ryzen 5 5600X 6-Core Processor",
+    "family": 25,
+    "model": 33,
+    "stepping": 0,
+    "codename": "",
+    "physicalCores": 6,
+    "logicalProcessors": 12
+  },
+  "devices": [
+    {
+      "category": "Gpu",
+      "name": "Radeon RX 580 Series",
+      "pnpId": "PCI\\VEN_1002&DEV_67DF\\0",
+      "vendorId": "1002",
+      "deviceId": "67DF",
+      "bus": "PCI",
+      "ocDevicePath": "PciRoot(0x0)/Pci(0x3,0x1)/Pci(0x0,0x0)",
+      "acpiPath": "",
+      "compatibleIds": [],
+      "service": ""
+    },
+    {
+      "category": "Network",
+      "name": "Realtek PCIe 2.5GbE Family Controller",
+      "pnpId": "PCI\\VEN_10EC&DEV_8125\\0",
+      "vendorId": "10EC",
+      "deviceId": "8125",
+      "bus": "PCI",
+      "ocDevicePath": "PciRoot(0x0)/Pci(0x2,0x2)/Pci(0x0,0x0)",
+      "acpiPath": "",
+      "compatibleIds": [],
+      "service": ""
+    },
+    {
+      "category": "AudioCodec",
+      "name": "Realtek High Definition Audio",
+      "pnpId": "HDAUDIO\\FUNC_01&VEN_10EC&DEV_1220\\0",
+      "vendorId": "10EC",
+      "deviceId": "1220",
+      "bus": "HDAUDIO",
+      "ocDevicePath": "PciRoot(0x0)/Pci(0x8,0x1)/Pci(0x0,0x4)",
+      "acpiPath": "",
+      "compatibleIds": [],
+      "service": ""
+    }
+  ],
+  "disks": [
+    {
+      "number": 0,
+      "model": "Samsung SSD 980 1TB",
+      "serial": "S",
+      "busType": "NVMe",
+      "sizeBytes": 512000000000,
+      "isSystem": true,
+      "isBoot": true,
+      "isRemovable": false
+    }
+  ],
+  "trackpadInterface": "Unknown",
+  "ethernetMac": "001122334455",
+  "acpiDevices": [
+    {
+      "hid": "ACPI0007",
+      "acpiPath": "\\_SB_.C000",
+      "pnpId": "ACPI\\GenuineIntel_-_Intel64\\0"
+    }
+  ],
+  "dsdtSymbols": [],
+  "warnings": []
+}

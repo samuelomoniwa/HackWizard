@@ -1,0 +1,42 @@
+{
+  "blocked": true,
+  "smbios": "MacBookPro16,2",
+  "recommended": "",
+  "blockedMacos": [],
+  "kexts": [
+    "BrightnessKeys.kext",
+    "ECEnabler.kext",
+    "Lilu.kext",
+    "NVMeFix.kext",
+    "SMCBatteryManager.kext",
+    "SMCLightSensor.kext",
+    "VirtualSMC.kext",
+    "VoodooPS2Controller.kext"
+  ],
+  "ssdts": [
+    "SSDT-ALS0",
+    "SSDT-EC-USBX-LAPTOP",
+    "SSDT-PNLF"
+  ],
+  "bootArgs": [
+    "-v",
+    "keepsyms=1",
+    "debug=0x100"
+  ],
+  "deviceProperties": {},
+  "audioLayout": null,
+  "audioCodec": "",
+  "capabilities": [],
+  "matchedRules": [
+    "cpu.amd.zen",
+    "disk.nvme",
+    "gpu.amd.apu.unsupported",
+    "platform.amd-laptop.sleep",
+    "platform.baseline",
+    "platform.input.ps2",
+    "platform.laptop",
+    "platform.laptop.no-als",
+    "smbios.amd.laptop",
+    "wifi.fallback"
+  ]
+}

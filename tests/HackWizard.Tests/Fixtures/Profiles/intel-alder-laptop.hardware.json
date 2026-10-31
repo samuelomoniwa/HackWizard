@@ -1,0 +1,130 @@
+{
+  "schemaVersion": 2,
+  "hostOs": "Microsoft Windows 10.0.22631",
+  "hostArchitecture": "X64",
+  "system": {
+    "manufacturer": "HP",
+    "model": "HP Pavilion Laptop 15-eg2xxx",
+    "machineType": "",
+    "family": "HP Pavilion Laptop 15",
+    "version": "HP Pavilion Laptop 15",
+    "biosVendor": "HP",
+    "biosVersion": "1.0",
+    "biosDate": "2024-01-01",
+    "isLaptop": true,
+    "memoryBytes": 17179869184,
+    "displayWidth": 1920,
+    "displayHeight": 1080
+  },
+  "cpu": {
+    "vendor": "GenuineIntel",
+    "name": "12th Gen Intel(R) Core(TM) i7-1255U",
+    "family": 6,
+    "model": 154,
+    "stepping": 4,
+    "codename": "",
+    "physicalCores": 10,
+    "logicalProcessors": 20
+  },
+  "devices": [
+    {
+      "category": "Gpu",
+      "name": "Intel(R) Iris(R) Xe Graphics",
+      "pnpId": "PCI\\VEN_8086&DEV_46A8\\0",
+      "vendorId": "8086",
+      "deviceId": "46A8",
+      "bus": "PCI",
+      "ocDevicePath": "PciRoot(0x0)/Pci(0x2,0x0)",
+      "acpiPath": "",
+      "compatibleIds": [],
+      "service": ""
+    },
+    {
+      "category": "Gpu",
+      "name": "NVIDIA GeForce MX550",
+      "pnpId": "PCI\\VEN_10DE&DEV_1F9F\\0",
+      "vendorId": "10DE",
+      "deviceId": "1F9F",
+      "bus": "PCI",
+      "ocDevicePath": "PciRoot(0x0)/Pci(0x6,0x0)/Pci(0x0,0x0)",
+      "acpiPath": "",
+      "compatibleIds": [],
+      "service": ""
+    },
+    {
+      "category": "Wifi",
+      "name": "Realtek RTL8852BE WiFi 6",
+      "pnpId": "PCI\\VEN_10EC&DEV_B852\\0",
+      "vendorId": "10EC",
+      "deviceId": "B852",
+      "bus": "PCI",
+      "ocDevicePath": "PciRoot(0x0)/Pci(0x1c,0x0)/Pci(0x0,0x0)",
+      "acpiPath": "",
+      "compatibleIds": [],
+      "service": ""
+    },
+    {
+      "category": "AudioCodec",
+      "name": "Realtek Audio",
+      "pnpId": "HDAUDIO\\FUNC_01&VEN_10EC&DEV_0245\\0",
+      "vendorId": "10EC",
+      "deviceId": "0245",
+      "bus": "HDAUDIO",
+      "ocDevicePath": "PciRoot(0x0)/Pci(0x1f,0x3)",
+      "acpiPath": "",
+      "compatibleIds": [],
+      "service": ""
+    },
+    {
+      "category": "Input",
+      "name": "Standard PS/2 Keyboard",
+      "pnpId": "ACPI\\PNP0303\\0",
+      "vendorId": "",
+      "deviceId": "",
+      "bus": "ACPI",
+      "ocDevicePath": "",
+      "acpiPath": "",
+      "compatibleIds": [
+        "*PNP0303"
+      ],
+      "service": ""
+    },
+    {
+      "category": "Input",
+      "name": "I2C HID Device",
+      "pnpId": "ACPI\\ELAN0001\\0",
+      "vendorId": "",
+      "deviceId": "",
+      "bus": "ACPI",
+      "ocDevicePath": "",
+      "acpiPath": "",
+      "compatibleIds": [
+        "PNP0C50"
+      ],
+      "service": ""
+    }
+  ],
+  "disks": [
+    {
+      "number": 0,
+      "model": "KIOXIA BG5 512GB",
+      "serial": "S",
+      "busType": "NVMe",
+      "sizeBytes": 512000000000,
+      "isSystem": true,
+      "isBoot": true,
+      "isRemovable": false
+    }
+  ],
+  "trackpadInterface": "I2C",
+  "ethernetMac": "001122334455",
+  "acpiDevices": [
+    {
+      "hid": "PNP0C09",
+      "acpiPath": "\\_SB.PC00.LPCB.EC0",
+      "pnpId": "ACPI\\PNP0C09\\0"
+    }
+  ],
+  "dsdtSymbols": [],
+  "warnings": []
+}

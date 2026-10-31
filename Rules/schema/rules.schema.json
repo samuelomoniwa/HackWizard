@@ -1,0 +1,399 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/hackwizard/hackwizard/schema/rules.schema.json",
+  "title": "HackWizard knowledge-base rule file (kb/rules-*.json)",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "category",
+    "rules"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": {
+      "const": 2
+    },
+    "category": {
+      "type": "string"
+    },
+    "rules": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/rule"
+      }
+    }
+  },
+  "$defs": {
+    "plistValue": {
+      "oneOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "integer"
+        },
+        {
+          "type": "string"
+        },
+        {
+          "type": "object",
+          "required": [
+            "data"
+          ],
+          "properties": {
+            "data": {
+              "type": "string",
+              "pattern": "^([0-9A-Fa-f]{2})*$"
+            }
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": [
+            "int32le"
+          ],
+          "properties": {
+            "int32le": {
+              "type": "integer"
+            }
+          },
+          "additionalProperties": false
+        }
+      ],
+      "description": "bool \u2192 <true/>/<false/>, integer \u2192 <integer>, string \u2192 <string> (hex string if the Sample key is <data>), {data:HEX} \u2192 <data>, {int32le:N} \u2192 4-byte <data>."
+    },
+    "match": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "category": {
+          "enum": [
+            "Lpc",
+            "Gpu",
+            "Network",
+            "Wifi",
+            "Bluetooth",
+            "Storage",
+            "StorageController",
+            "Audio",
+            "AudioCodec",
+            "Input",
+            "Usb",
+            "Camera",
+            "CardReader",
+            "Biometric",
+            "Thunderbolt",
+            "Other"
+          ]
+        },
+        "pciIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[0-9A-Fa-f]{4}:([0-9A-Fa-f]{0,4}\\*|[0-9A-Fa-f]{4})$"
+          },
+          "description": "PCI VEN:DEV, USB VID:PID or HDA codec VEN:DEV. '*' or a prefix wildcard ('56*') is allowed for the device part."
+        },
+        "nameRegex": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "devicePathRegex": {
+          "type": "string",
+          "description": "Regex over the OpenCore device path, e.g. iGPU '^PciRoot\\(0x0\\)/Pci\\(0x2,0x0\\)$'."
+        },
+        "cpuVendor": {
+          "enum": [
+            "AuthenticAMD",
+            "GenuineIntel"
+          ]
+        },
+        "cpuFamilies": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        },
+        "cpuModels": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        },
+        "cpuModelMin": {
+          "type": "integer"
+        },
+        "cpuModelMax": {
+          "type": "integer"
+        },
+        "cpuSteppingMin": {
+          "type": "integer"
+        },
+        "cpuSteppingMax": {
+          "type": "integer"
+        },
+        "cpuNameRegex": {
+          "type": "string"
+        },
+        "manufacturerRegex": {
+          "type": "string"
+        },
+        "machineTypes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "modelRegex": {
+          "type": "string"
+        },
+        "isLaptop": {
+          "type": "boolean"
+        },
+        "trackpadInterface": {
+          "enum": [
+            "PS2",
+            "I2C",
+            "Unknown"
+          ]
+        },
+        "acpiHid": {
+          "type": "string"
+        },
+        "hasAcpiHid": {
+          "type": "boolean"
+        },
+        "acpiHidsAbsent": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "dsdtHas": {
+          "type": "string"
+        },
+        "isUefi": {
+          "type": "boolean"
+        },
+        "architecture": {
+          "enum": [
+            "X64",
+            "Arm64"
+          ]
+        },
+        "diskBus": {
+          "enum": [
+            "NVMe",
+            "SATA",
+            "ATA",
+            "USB",
+            "RAID",
+            "SD",
+            "Unknown"
+          ]
+        },
+        "diskModelRegex": {
+          "type": "string"
+        },
+        "hasCapability": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "lacksCapability": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "rule": {
+      "type": "object",
+      "required": [
+        "id",
+        "scope",
+        "component",
+        "status"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9.\\-]+$"
+        },
+        "scope": {
+          "enum": [
+            "device",
+            "disk",
+            "cpu",
+            "system",
+            "always"
+          ]
+        },
+        "component": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "match": {
+          "$ref": "#/$defs/match"
+        },
+        "status": {
+          "enum": [
+            "Supported",
+            "Partial",
+            "Unsupported",
+            "Info"
+          ]
+        },
+        "blocking": {
+          "type": "boolean"
+        },
+        "blockingIfNoAlternative": {
+          "type": "boolean"
+        },
+        "fallback": {
+          "type": "boolean"
+        },
+        "priority": {
+          "type": "integer",
+          "description": "Lower runs first; later patches/SMBIOS/recommendation win. Capabilities from lower priorities are visible to higher ones."
+        },
+        "group": {
+          "type": "string",
+          "description": "Device rules in the same group are exclusive per device (first match by priority)."
+        },
+        "kexts": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^(@[A-Za-z]+|[A-Za-z0-9_\\-]+\\.kext(\\|[a-z0-9.\\-]+)?)$"
+          },
+          "description": "'@Name' = macOS-version-specific variant from macos.json kextVariants; 'X.kext|sourceId' pins a source."
+        },
+        "excludeKexts": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "bootArgs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "ssdts": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "SSDT-EC-USBX-LAPTOP",
+              "SSDT-EC-USBX-DESKTOP",
+              "SSDT-PNLF",
+              "SSDT-ALS0",
+              "SSDT-XOSI",
+              "SSDT-PLUG",
+              "SSDT-AWAC",
+              "SSDT-PMC",
+              "SSDT-RHUB"
+            ]
+          }
+        },
+        "configPatches": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/plistValue"
+          },
+          "description": "Dotted config.plist path \u2192 value; the path must exist in the matching Sample.plist. '$amdVanilla': true merges AMD_Vanilla patches with the core count set."
+        },
+        "deviceProperties": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/$defs/plistValue"
+            }
+          },
+          "description": "OpenCore device path or '{device}' \u2192 properties."
+        },
+        "audioLayouts": {
+          "type": "array",
+          "items": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "audioAutoLayout": {
+          "type": "boolean"
+        },
+        "smbios": {
+          "type": "string",
+          "pattern": "^[A-Za-z]+[0-9]+,[0-9]+$"
+        },
+        "provides": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "requires": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "recommends": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "macos": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "recommended": {
+              "type": "string"
+            },
+            "warn": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            },
+            "block": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            },
+            "maxDarwin": {
+              "type": "integer"
+            },
+            "maxReason": {
+              "type": "string"
+            }
+          }
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "postInstall": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

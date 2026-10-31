@@ -1,0 +1,116 @@
+{
+  "schemaVersion": 2,
+  "category": "storage",
+  "rules": [
+    {
+      "id": "disk.nvme.known-bad",
+      "scope": "disk",
+      "component": "Internal disk",
+      "match": {
+        "diskBus": "NVMe",
+        "diskModelRegex": "(PM981|PM991|PM9B1|MZVLB|MZVLQ|MZ9LQ|MZALQ|2200S|MTFDHBA[0-9]+TCD|BC501|PC601|PC611|Optane|H10|H20)"
+      },
+      "status": "Unsupported",
+      "blockingIfNoAlternative": true,
+      "priority": 50,
+      "notes": [
+        "Known-incompatible NVMe (Samsung PM981/PM991/PM9B1, Micron 2200S, SK hynix BC501/PC601/PC611, Intel Optane H10/H20): kernel panics or installer hangs even with NVMeFix. Replace it with a supported SSD."
+      ]
+    },
+    {
+      "id": "disk.nvme",
+      "scope": "disk",
+      "component": "Internal disk",
+      "match": {
+        "diskBus": "NVMe",
+        "diskModelRegex": "^(?!.*(PM981|PM991|PM9B1|MZVLB|MZVLQ|MZ9LQ|MZALQ|2200S|MTFDHBA[0-9]+TCD|BC501|PC601|PC611|Optane|H10|H20)).*$"
+      },
+      "status": "Supported",
+      "priority": 50,
+      "kexts": [
+        "NVMeFix.kext"
+      ],
+      "notes": [
+        "NVMe SSD; NVMeFix improves power management."
+      ]
+    },
+    {
+      "id": "disk.sata",
+      "scope": "disk",
+      "component": "Internal disk",
+      "match": {
+        "diskBus": "SATA"
+      },
+      "status": "Supported",
+      "priority": 50,
+      "notes": [
+        "SATA/AHCI SSD/HDD works natively (M.2 SATA is not NVMe; NVMeFix is not needed). Enable TRIM after install."
+      ],
+      "postInstall": [
+        "SATA SSD: run 'sudo trimforce enable' in Terminal after the first boot (the Mac restarts)."
+      ]
+    },
+    {
+      "id": "disk.ata",
+      "scope": "disk",
+      "component": "Internal disk",
+      "match": {
+        "diskBus": "ATA"
+      },
+      "status": "Supported",
+      "priority": 50,
+      "notes": [
+        "SATA/AHCI disk works natively."
+      ]
+    },
+    {
+      "id": "disk.raid",
+      "scope": "disk",
+      "component": "Internal disk",
+      "match": {
+        "diskBus": "RAID"
+      },
+      "status": "Unsupported",
+      "blockingIfNoAlternative": true,
+      "priority": 50,
+      "notes": [
+        "The disk is behind Intel RST/RAID (or 'Intel VMD'). macOS needs the SATA controller in AHCI mode and VMD disabled \u2014 change this in the BIOS (see the BIOS guide), then run HackWizard again from Windows (Windows may need Safe Mode once after the switch)."
+      ]
+    },
+    {
+      "id": "storage.vmd",
+      "scope": "device",
+      "component": "Storage controller",
+      "match": {
+        "category": "StorageController",
+        "pciIds": [
+          "8086:9A0B",
+          "8086:467F",
+          "8086:A77F",
+          "8086:7D0B",
+          "8086:AD0B",
+          "8086:09AB"
+        ]
+      },
+      "status": "Unsupported",
+      "priority": 50,
+      "notes": [
+        "Intel VMD/RST controller detected: disable 'VMD' / set SATA mode to AHCI in the BIOS so macOS can see the NVMe drive."
+      ]
+    },
+    {
+      "id": "storage.controller",
+      "scope": "device",
+      "component": "Storage controller",
+      "fallback": true,
+      "match": {
+        "category": "StorageController"
+      },
+      "status": "Info",
+      "priority": 50,
+      "notes": [
+        "AHCI/NVMe controllers are handled natively."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "blocked": false,
+  "smbios": "MacBookPro11,4",
+  "recommended": "monterey",
+  "blockedMacos": [
+    "sequoia",
+    "sonoma",
+    "tahoe",
+    "ventura"
+  ],
+  "kexts": [
+    "@IntelWifi",
+    "AppleALC.kext",
+    "BrightnessKeys.kext",
+    "ECEnabler.kext",
+    "IntelMausi.kext",
+    "Lilu.kext",
+    "SMCBatteryManager.kext",
+    "SMCLightSensor.kext",
+    "VirtualSMC.kext",
+    "VoodooPS2Controller.kext",
+    "WhateverGreen.kext"
+  ],
+  "ssdts": [
+    "SSDT-ALS0",
+    "SSDT-EC-USBX-LAPTOP",
+    "SSDT-PLUG",
+    "SSDT-PNLF"
+  ],
+  "bootArgs": [
+    "-v",
+    "keepsyms=1",
+    "debug=0x100"
+  ],
+  "deviceProperties": {
+    "PciRoot(0x0)/Pci(0x2,0x0)": [
+      "AAPL,ig-platform-id",
+      "device-id",
+      "framebuffer-cursormem",
+      "framebuffer-patch-enable"
+    ]
+  },
+  "audioLayout": null,
+  "audioCodec": "111D:76E0",
+  "capabilities": [
+    "gpu",
+    "net-install"
+  ],
+  "matchedRules": [
+    "audio.hda.analog",
+    "cpu.intel.common",
+    "cpu.intel.haswell-broadwell",
+    "disk.sata",
+    "eth.intel.mausi",
+    "gpu.intel.hd4400.spoof",
+    "platform.baseline",
+    "platform.input.ps2",
+    "platform.laptop",
+    "platform.laptop.no-als",
+    "smbios.haswell.laptop",
+    "wifi.intel"
+  ]
+}

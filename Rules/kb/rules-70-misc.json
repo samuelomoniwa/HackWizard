@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 2,
+  "category": "misc",
+  "rules": [
+    {
+      "id": "usb.controller",
+      "scope": "device",
+      "component": "USB controller",
+      "match": {
+        "category": "Usb"
+      },
+      "status": "Supported",
+      "priority": 70,
+      "notes": [
+        "USB 3 (XHCI) controllers work natively. Map ports after install with USBToolBox (macOS 11.3+ limits each controller to 15 ports without a map)."
+      ]
+    },
+    {
+      "id": "camera.uvc",
+      "scope": "device",
+      "component": "Webcam",
+      "match": {
+        "category": "Camera"
+      },
+      "status": "Supported",
+      "priority": 70,
+      "notes": [
+        "USB (UVC) webcams normally work without drivers once their USB port is in the USB map. MIPI/IPU cameras (some 12th-gen+ laptops) do not."
+      ]
+    },
+    {
+      "id": "biometric",
+      "scope": "device",
+      "component": "Fingerprint / IR camera",
+      "match": {
+        "category": "Biometric"
+      },
+      "status": "Unsupported",
+      "priority": 70,
+      "notes": [
+        "Fingerprint readers and Windows Hello IR cameras never work in macOS (Touch ID needs Apple's Secure Enclave). Disable in BIOS if possible and leave out of the USB map."
+      ]
+    },
+    {
+      "id": "cardreader",
+      "scope": "device",
+      "component": "SD card reader",
+      "match": {
+        "category": "CardReader"
+      },
+      "status": "Unsupported",
+      "priority": 70,
+      "notes": [
+        "No official driver for PCIe Realtek/O2 readers (USB-attached readers usually work). Community drivers exist but are not added automatically."
+      ]
+    },
+    {
+      "id": "thunderbolt",
+      "scope": "device",
+      "component": "Thunderbolt",
+      "match": {
+        "category": "Thunderbolt"
+      },
+      "status": "Partial",
+      "priority": 70,
+      "notes": [
+        "Thunderbolt hot-plug generally does not work; USB-C data/charging usually does. Devices connected at boot may work."
+      ]
+    }
+  ]
+}

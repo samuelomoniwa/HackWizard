@@ -1,0 +1,1255 @@
+{
+  "schemaVersion": 2,
+  "category": "gpu",
+  "rules": [
+    {
+      "id": "gpu.intel.arc",
+      "scope": "device",
+      "group": "gpu",
+      "component": "Graphics (Intel Arc dGPU)",
+      "priority": 24,
+      "match": {
+        "category": "Gpu",
+        "pciIds": [
+          "8086:*"
+        ],
+        "devicePathRegex": "^PciRoot\\(0x[0-9a-f]+\\)/Pci\\([^)]*\\)/"
+      },
+      "status": "Unsupported",
+      "kexts": [
+        "WhateverGreen.kext"
+      ],
+      "deviceProperties": {
+        "{device}": {
+          "disable-gpu": {
+            "data": "01000000"
+          }
+        }
+      },
+      "notes": [
+        "Intel Arc has no macOS driver; it is disabled in macOS."
+      ]
+    },
+    {
+      "id": "gpu.amd.apu.unsupported",
+      "scope": "device",
+      "group": "gpu",
+      "component": "Graphics (AMD iGPU)",
+      "priority": 24,
+      "match": {
+        "category": "Gpu",
+        "pciIds": [
+          "1002:1681",
+          "1002:15BF",
+          "1002:15C8",
+          "1002:1506",
+          "1002:150E",
+          "1002:164E",
+          "1002:13C0",
+          "1002:1900",
+          "1002:1901",
+          "1002:1114"
+        ]
+      },
+      "status": "Unsupported",
+      "notes": [
+        "RDNA2/RDNA3 integrated graphics (Ryzen 6000 and newer, Raphael/Granite Ridge desktop iGPU) have no macOS driver."
+      ]
+    },
+    {
+      "id": "gpu.amd.polaris",
+      "scope": "device",
+      "group": "gpu",
+      "component": "Graphics (AMD dGPU)",
+      "priority": 25,
+      "match": {
+        "category": "Gpu",
+        "pciIds": [
+          "1002:67DF",
+          "1002:67EF",
+          "1002:67FF",
+          "1002:699F",
+          "1002:67E0",
+          "1002:67E3",
+          "1002:67C0",
+          "1002:67C4",
+          "1002:67C7"
+        ],
+        "isLaptop": false
+      },
+      "status": "Supported",
+      "kexts": [
+        "WhateverGreen.kext"
+      ],
+      "provides": [
+        "gpu",
+        "gpu-dgpu"
+      ],
+      "notes": [
+        "AMD Polaris (RX 460\u2013590 / WX series): native support."
+      ]
+    },
+    {
+      "id": "gpu.amd.vega",
+      "scope": "device",
+      "group": "gpu",
+      "component": "Graphics (AMD dGPU)",
+      "priority": 25,
+      "match": {
+        "category": "Gpu",
+        "pciIds": [
+          "1002:687F",
+          "1002:6863",
+          "1002:66AF"
+        ],
+        "isLaptop": false
+      },
+      "status": "Supported",
+      "kexts": [
+        "WhateverGreen.kext"
+      ],
+      "provides": [
+        "gpu",
+        "gpu-dgpu"
+      ],
+      "notes": [
+        "AMD Vega 56/64/Frontier and Radeon VII: native support."
+      ]
+    },
+    {
+      "id": "gpu.amd.navi",
+      "scope": "device",
+      "group": "gpu",
+      "component": "Graphics (AMD dGPU)",
+      "priority": 25,
+      "match": {
+        "category": "Gpu",
+        "pciIds": [
+          "1002:7310",
+          "1002:7312",
+          "1002:731F",
+          "1002:7340",
+          "1002:7341",
+          "1002:73BF",
+          "1002:73A5",
+          "1002:73AF",
+          "1002:73A2",
+          "1002:73A3",
+          "1002:73AB",
+          "1002:73FF",
+          "1002:73E3"
+        ],
+        "isLaptop": false
+      },
+      "status": "Supported",
+      "kexts": [
+        "WhateverGreen.kext"
+      ],
+      "bootArgs": [
+        "agdpmod=pikera"
+      ],
+      "provides": [
+        "gpu",
+        "gpu-dgpu"
+      ],
+      "notes": [
+        "AMD Navi 10/14/21/23 (RX 5500\u20135700, RX 6600\u20136950): native support; agdpmod=pikera fixes black screens."
+      ]
+    },
+    {
+      "id": "gpu.amd.nootedred",
+      "scope": "device",
+      "group": "gpu",
+      "component": "Graphics (AMD iGPU)",
+      "priority": 25,
+      "match": {
+        "category": "Gpu",
+        "pciIds": [
+          "1002:15DD",
+          "1002:15D8",
+          "1002:1636",
+          "1002:1638",
+          "1002:164C",
+          "1002:15E7"
+        ],
+        "lacksCapability": [
+          "gpu-dgpu"
+        ]
+      },
+      "status": "Partial",
+      "kexts": [
+        "NootedRed.kext"
+      ],
+      "excludeKexts": [
+        "WhateverGreen.kext"
+      ],
+      "provides": [
+        "gpu"
+      ],
+      "notes": [
+        "AMD Vega iGPU (Raven/Picasso/Renoir/Lucienne/Cezanne/Barcelo) via ChefKissInc NootedRed \u2014 experimental (occasional crashes, Chromium artefacts). Needs 512 MB+ UMA frame buffer (1 GB+ recommended). WhateverGreen must not be loaded."
+      ]
+    },
+    {
+      "id": "gpu.amd.other",
+      "scope": "device",
+      "group": "gpu",
+      "component": "Graphics (AMD)",
+      "priority": 27,
+      "match": {
+        "category": "Gpu",
+        "pciIds": [
+          "1002:*"
+        ]
+      },
+      "status": "Unsupported",
+      "kexts": [
+        "WhateverGreen.kext"
+      ],
+      "deviceProperties": {
+        "{device}": {
+          "disable-gpu": {
+            "data": "01000000"
+          }
+        }
+      },
+      "notes": [
+        "This AMD GPU is not supported (e.g. Navi 22/24/3x, laptop Radeon, or iGPU next to a dedicated card). It is disabled in macOS."
+      ]
+    },
+    {
+      "id": "gpu.nvidia",
+      "scope": "device",
+      "group": "gpu",
+      "component": "Graphics (NVIDIA)",
+      "priority": 27,
+      "match": {
+        "category": "Gpu",
+        "pciIds": [
+          "10DE:*"
+        ]
+      },
+      "status": "Unsupported",
+      "kexts": [
+        "WhateverGreen.kext"
+      ],
+      "deviceProperties": {
+        "{device}": {
+          "disable-gpu": {
+            "data": "01000000"
+          }
+        }
+      },
+      "notes": [
+        "NVIDIA GPUs have no driver in macOS 12 or later; the card is disabled in macOS. Laptops: Optimus GPUs are turned off, the Intel/AMD iGPU drives the screen; HDMI ports wired to the NVIDIA GPU will not work."
+      ]
+    },
+    {
+      "id": "gpu.intel.gt1",
+      "scope": "device",
+      "group": "gpu",
+      "component": "Graphics (Intel iGPU)",
+      "priority": 29,
+      "match": {
+        "category": "Gpu",
+        "pciIds": [
+          "8086:*"
+        ],
+        "devicePathRegex": "^(PciRoot\\(0x0\\)/Pci\\(0x2,0x0\\))?$",
+        "cpuVendor": "GenuineIntel",
+        "cpuNameRegex": "(Celeron|Pentium|Atom)"
+      },
+      "status": "Unsupported",
+      "notes": [
+        "Celeron/Pentium (GT1) graphics are not supported by macOS; a supported AMD GPU is required (desktops only)."
+      ]
+    },
+    {
+      "id": "gpu.intel.uhd620.spoof",
+      "scope": "device",
+      "group": "gpu",
+      "component": "Graphics (Intel iGPU)",
+      "match": {
+        "category": "Gpu",
+        "pciIds": [
+          "8086:5917",
+          "8086:9B41",
+          "8086:9BCA",
+          "8086:9BCC",
+          "8086:9BC4",
+          "8086:9BC5",
+          "8086:9BC6",
+          "8086:9BE6",
+          "8086:9BF6"
+        ],
+        "devicePathRegex": "^(PciRoot\\(0x0\\)/Pci\\(0x2,0x0\\))?$",
+        "cpuVendor": "GenuineIntel",
+        "cpuModels": [
+          142,
+          165,
+          166
+        ],
+        "isLaptop": true
+      },
+      "status": "Supported",
+      "priority": 30,
+      "kexts": [
+        "WhateverGreen.kext"
+      ],
+      "deviceProperties": {
+        "{device}": {
+          "AAPL,ig-platform-id": {
+            "data": "0900A53E"
+          },
+          "framebuffer-patch-enable": {
+            "data": "01000000"
+          },
+          "framebuffer-stolenmem": {
+            "data": "00003001"
+          },
+          "framebuffer-fbmem": {
+            "data": "00009000"
+          },
+          "device-id": {
+            "data": "9B3E0000"
+          }
+        }
+      },
+      "provides": [
+        "gpu"
+      ],
+      "notes": [
+        "Intel UHD 620/630 (laptop): Coffee Lake framebuffer 0x3EA50009 with device-id spoofed to 0x3E9B (Dortania)."
+      ]
+    },
+    {
+      "id": "gpu.intel.hd4400.spoof",
+      "scope": "device",
+      "group": "gpu",
+      "component": "Graphics (Intel iGPU)",
+      "match": {
+        "category": "Gpu",
+        "pciIds": [
+          "8086:0A16"
+        ],
+        "devicePathRegex": "^(PciRoot\\(0x0\\)/Pci\\(0x2,0x0\\))?$",
+        "cpuVendor": "GenuineIntel",
+        "cpuModels": [
+          60,
+          69,
+          70
+        ],
+        "isLaptop": true
+      },
+      "status": "Supported",
+      "priority": 30,
+      "kexts": [
+        "WhateverGreen.kext"
+      ],
+      "deviceProperties": {
+        "{device}": {
+          "AAPL,ig-platform-id": {
+            "data": "0500260A"
+          },
+          "framebuffer-patch-enable": {
+            "data": "01000000"
+          },
+          "framebuffer-cursormem": {
+            "data": "00009000"
+          },
+          "device-id": {
+            "data": "12040000"
+          }
+        }
+      },
+      "provides": [
+        "gpu"
+      ],
+      "notes": [
+        "Intel HD 4400 (Haswell laptop): fake device-id 0x0412."
+      ],
+      "macos": {
+        "maxDarwin": 21,
+        "maxReason": "HD 4400 (Haswell): Apple removed this iGPU's drivers after macOS Monterey."
+      }
+    },
+    {
+      "id": "gpu.intel.haswell.laptop",
+      "scope": "device",
+      "group": "gpu",
+      "component": "Graphics (Intel iGPU)",
+      "match": {
+        "category": "Gpu",
+        "pciIds": [
+          "8086:*"
+        ],
+        "devicePathRegex": "^(PciRoot\\(0x0\\)/Pci\\(0x2,0x0\\))?$",
+        "cpuVendor": "GenuineIntel",
+        "cpuModels": [
+          60,
+          69,
+          70
+        ],
+        "isLaptop": true
+      },
+      "status": "Supported",
+      "priority": 31,
+      "kexts": [
+        "WhateverGreen.kext"
+      ],
+      "deviceProperties": {
+        "{device}": {
+          "AAPL,ig-platform-id": {
+            "data": "0500260A"
+          },
+          "framebuffer-patch-enable": {
+            "data": "01000000"
+          },
+          "framebuffer-cursormem": {
+            "data": "00009000"
+          }
+        }
+      },
+      "provides": [
+        "gpu"
+      ],
+      "notes": [
+        "Intel HD 4200\u20135100 (Haswell)"
+      ],
+      "macos": {
+        "maxDarwin": 21,
+        "maxReason": "Intel HD 4200\u20135100 (Haswell): Apple removed this iGPU's drivers after macOS Monterey."
+      }
+    },
+    {
+      "id": "gpu.intel.haswell.desktop",
+      "scope": "device",
+      "group": "gpu",
+      "component": "Graphics (Intel iGPU)",
+      "match": {
+        "category": "Gpu",
+        "pciIds": [
+          "8086:*"
+        ],
+        "devicePathRegex": "^(PciRoot\\(0x0\\)/Pci\\(0x2,0x0\\))?$",
+        "cpuVendor": "GenuineIntel",
+        "cpuModels": [
+          60,
+          69,
+          70
+        ],
+        "isLaptop": false,
+        "lacksCapability": [
+          "gpu-dgpu"
+        ]
+      },
+      "status": "Supported",
+      "priority": 31,
+      "kexts": [
+        "WhateverGreen.kext"
+      ],
+      "deviceProperties": {
+        "{device}": {
+          "AAPL,ig-platform-id": {
+            "data": "0300220D"
+          }
+        }
+      },
+      "provides": [
+        "gpu"
+      ],
+      "notes": [
+        "Intel HD 4600 (Haswell)"
+      ],
+      "macos": {
+        "maxDarwin": 21,
+        "maxReason": "Intel HD 4600 (Haswell): Apple removed this iGPU's drivers after macOS Monterey."
+      }
+    },
+    {
+      "id": "gpu.intel.haswell.headless",
+      "scope": "device",
+      "group": "gpu",
+      "component": "Graphics (Intel iGPU)",
+      "match": {
+        "category": "Gpu",
+        "pciIds": [
+          "8086:*"
+        ],
+        "devicePathRegex": "^(PciRoot\\(0x0\\)/Pci\\(0x2,0x0\\))?$",
+        "cpuVendor": "GenuineIntel",
+        "cpuModels": [
+          60,
+          69,
+          70
+        ],
+        "isLaptop": false,
+        "hasCapability": [
+          "gpu-dgpu"
+        ]
+      },
+      "status": "Supported",
+      "priority": 31,
+      "kexts": [
+        "WhateverGreen.kext"
+      ],
+      "deviceProperties": {
+        "{device}": {
+          "AAPL,ig-platform-id": {
+            "data": "04001204"
+          }
+        }
+      },
+      "provides": [
+        "igpu-headless"
+      ],
+      "notes": [
+        "Intel Haswell iGPU (compute only)"
+      ]
+    },
+    {
+      "id": "gpu.intel.broadwell.laptop",
+      "scope": "device",
+      "group": "gpu",
+      "component": "Graphics (Intel iGPU)",
+      "match": {
+        "category": "Gpu",
+        "pciIds": [
+          "8086:*"
+        ],
+        "devicePathRegex": "^(PciRoot\\(0x0\\)/Pci\\(0x2,0x0\\))?$",
+        "cpuVendor": "GenuineIntel",
+        "cpuModels": [
+          61,
+          71
+        ],
+        "isLaptop": true
+      },
+      "status": "Supported",
+      "priority": 31,
+      "kexts": [
+        "WhateverGreen.kext"
+      ],
+      "deviceProperties": {
+        "{device}": {
+          "AAPL,ig-platform-id": {
+            "data": "06002616"
+          },
+          "framebuffer-patch-enable": {
+            "data": "01000000"
+          },
+          "framebuffer-cursormem": {
+            "data": "00009000"
+          }
+        }
+      },
+      "provides": [
+        "gpu"
+      ],
+      "notes": [
+        "Intel HD 5500/6000 (Broadwell)"
+      ],
+      "macos": {
+        "maxDarwin": 21,
+        "maxReason": "Intel HD 5500/6000 (Broadwell): Apple removed this iGPU's drivers after macOS Monterey."
+      }
+    },
+    {
+      "id": "gpu.intel.broadwell.desktop",
+      "scope": "device",
+      "group": "gpu",
+      "component": "Graphics (Intel iGPU)",
+      "match": {
+        "category": "Gpu",
+        "pciIds": [
+          "8086:*"
+        ],
+        "devicePathRegex": "^(PciRoot\\(0x0\\)/Pci\\(0x2,0x0\\))?$",
+        "cpuVendor": "GenuineIntel",
+        "cpuModels": [
+          61,
+          71
+        ],
+        "isLaptop": false,
+        "lacksCapability": [
+          "gpu-dgpu"
+        ]
+      },
+      "status": "Supported",
+      "priority": 31,
+      "kexts": [
+        "WhateverGreen.kext"
+      ],
+      "deviceProperties": {
+        "{device}": {
+          "AAPL,ig-platform-id": {
+            "data": "07002216"
+          }
+        }
+      },
+      "provides": [
+        "gpu"
+      ],
+      "notes": [
+        "Intel Broadwell iGPU"
+      ],
+      "macos": {
+        "maxDarwin": 21,
+        "maxReason": "Intel Broadwell iGPU: Apple removed this iGPU's drivers after macOS Monterey."
+      }
+    },
+    {
+      "id": "gpu.intel.broadwell.headless",
+      "scope": "device",
+      "group": "gpu",
+      "component": "Graphics (Intel iGPU)",
+      "match": {
+        "category": "Gpu",
+        "pciIds": [
+          "8086:*"
+        ],
+        "devicePathRegex": "^(PciRoot\\(0x0\\)/Pci\\(0x2,0x0\\))?$",
+        "cpuVendor": "GenuineIntel",
+        "cpuModels": [
+          61,
+          71
+        ],
+        "isLaptop": false,
+        "hasCapability": [
+          "gpu-dgpu"
+        ]
+      },
+      "status": "Supported",
+      "priority": 31,
+      "kexts": [
+        "WhateverGreen.kext"
+      ],
+      "deviceProperties": {
+        "{device}": {
+          "AAPL,ig-platform-id": {
+            "data": "07002216"
+          }
+        }
+      },
+      "provides": [
+        "igpu-headless"
+      ],
+      "notes": [
+        "Intel Broadwell iGPU (compute only)"
+      ]
+    },
+    {
+      "id": "gpu.intel.skylake.laptop",
+      "scope": "device",
+      "group": "gpu",
+      "component": "Graphics (Intel iGPU)",
+      "match": {
+        "category": "Gpu",
+        "pciIds": [
+          "8086:*"
+        ],
+        "devicePathRegex": "^(PciRoot\\(0x0\\)/Pci\\(0x2,0x0\\))?$",
+        "cpuVendor": "GenuineIntel",
+        "cpuModels": [
+          78,
+          94
+        ],
+        "isLaptop": true
+      },
+      "status": "Supported",
+      "priority": 31,
+      "kexts": [
+        "WhateverGreen.kext"
+      ],
+      "deviceProperties": {
+        "{device}": {
+          "AAPL,ig-platform-id": {
+            "data": "00001619"
+          },
+          "framebuffer-patch-enable": {
+            "data": "01000000"
+          },
+          "framebuffer-stolenmem": {
+            "data": "00003001"
+          },
+          "framebuffer-fbmem": {
+            "data": "00009000"
+          }
+        }
+      },
+      "provides": [
+        "gpu"
+      ],
+      "notes": [
+        "Intel HD 520/530/540 (Skylake)"
+      ],
+      "macos": {
+        "maxDarwin": 21,
+        "maxReason": "Intel HD 520/530/540 (Skylake): Apple removed this iGPU's drivers after macOS Monterey."
+      }
+    },
+    {
+      "id": "gpu.intel.skylake.desktop",
+      "scope": "device",
+      "group": "gpu",
+      "component": "Graphics (Intel iGPU)",
+      "match": {
+        "category": "Gpu",
+        "pciIds": [
+          "8086:*"
+        ],
+        "devicePathRegex": "^(PciRoot\\(0x0\\)/Pci\\(0x2,0x0\\))?$",
+        "cpuVendor": "GenuineIntel",
+        "cpuModels": [
+          78,
+          94
+        ],
+        "isLaptop": false,
+        "lacksCapability": [
+          "gpu-dgpu"
+        ]
+      },
+      "status": "Supported",
+      "priority": 31,
+      "kexts": [
+        "WhateverGreen.kext"
+      ],
+      "deviceProperties": {
+        "{device}": {
+          "AAPL,ig-platform-id": {
+            "data": "00001219"
+          }
+        }
+      },
+      "provides": [
+        "gpu"
+      ],
+      "notes": [
+        "Intel HD 530 (Skylake)"
+      ],
+      "macos": {
+        "maxDarwin": 21,
+        "maxReason": "Intel HD 530 (Skylake): Apple removed this iGPU's drivers after macOS Monterey."
+      }
+    },
+    {
+      "id": "gpu.intel.skylake.headless",
+      "scope": "device",
+      "group": "gpu",
+      "component": "Graphics (Intel iGPU)",
+      "match": {
+        "category": "Gpu",
+        "pciIds": [
+          "8086:*"
+        ],
+        "devicePathRegex": "^(PciRoot\\(0x0\\)/Pci\\(0x2,0x0\\))?$",
+        "cpuVendor": "GenuineIntel",
+        "cpuModels": [
+          78,
+          94
+        ],
+        "isLaptop": false,
+        "hasCapability": [
+          "gpu-dgpu"
+        ]
+      },
+      "status": "Supported",
+      "priority": 31,
+      "kexts": [
+        "WhateverGreen.kext"
+      ],
+      "deviceProperties": {
+        "{device}": {
+          "AAPL,ig-platform-id": {
+            "data": "01001219"
+          }
+        }
+      },
+      "provides": [
+        "igpu-headless"
+      ],
+      "notes": [
+        "Intel Skylake iGPU (compute only)"
+      ]
+    },
+    {
+      "id": "gpu.intel.kaby.laptop",
+      "scope": "device",
+      "group": "gpu",
+      "component": "Graphics (Intel iGPU)",
+      "match": {
+        "category": "Gpu",
+        "pciIds": [
+          "8086:*"
+        ],
+        "devicePathRegex": "^(PciRoot\\(0x0\\)/Pci\\(0x2,0x0\\))?$",
+        "cpuVendor": "GenuineIntel",
+        "cpuModels": [
+          142,
+          158
+        ],
+        "isLaptop": true,
+        "cpuSteppingMax": 9
+      },
+      "status": "Supported",
+      "priority": 31,
+      "kexts": [
+        "WhateverGreen.kext"
+      ],
+      "deviceProperties": {
+        "{device}": {
+          "AAPL,ig-platform-id": {
+            "data": "00001B59"
+          },
+          "framebuffer-patch-enable": {
+            "data": "01000000"
+          },
+          "framebuffer-stolenmem": {
+            "data": "00003001"
+          },
+          "framebuffer-fbmem": {
+            "data": "00009000"
+          }
+        }
+      },
+      "provides": [
+        "gpu"
+      ],
+      "notes": [
+        "Intel HD 620/630 (Kaby Lake)"
+      ]
+    },
+    {
+      "id": "gpu.intel.kaby.desktop",
+      "scope": "device",
+      "group": "gpu",
+      "component": "Graphics (Intel iGPU)",
+      "match": {
+        "category": "Gpu",
+        "pciIds": [
+          "8086:*"
+        ],
+        "devicePathRegex": "^(PciRoot\\(0x0\\)/Pci\\(0x2,0x0\\))?$",
+        "cpuVendor": "GenuineIntel",
+        "cpuModels": [
+          142,
+          158
+        ],
+        "isLaptop": false,
+        "cpuSteppingMax": 9,
+        "lacksCapability": [
+          "gpu-dgpu"
+        ]
+      },
+      "status": "Supported",
+      "priority": 31,
+      "kexts": [
+        "WhateverGreen.kext"
+      ],
+      "deviceProperties": {
+        "{device}": {
+          "AAPL,ig-platform-id": {
+            "data": "00001259"
+          }
+        }
+      },
+      "provides": [
+        "gpu"
+      ],
+      "notes": [
+        "Intel HD 630 (Kaby Lake)"
+      ]
+    },
+    {
+      "id": "gpu.intel.kaby.headless",
+      "scope": "device",
+      "group": "gpu",
+      "component": "Graphics (Intel iGPU)",
+      "match": {
+        "category": "Gpu",
+        "pciIds": [
+          "8086:*"
+        ],
+        "devicePathRegex": "^(PciRoot\\(0x0\\)/Pci\\(0x2,0x0\\))?$",
+        "cpuVendor": "GenuineIntel",
+        "cpuModels": [
+          142,
+          158
+        ],
+        "isLaptop": false,
+        "cpuSteppingMax": 9,
+        "hasCapability": [
+          "gpu-dgpu"
+        ]
+      },
+      "status": "Supported",
+      "priority": 31,
+      "kexts": [
+        "WhateverGreen.kext"
+      ],
+      "deviceProperties": {
+        "{device}": {
+          "AAPL,ig-platform-id": {
+            "data": "03001259"
+          }
+        }
+      },
+      "provides": [
+        "igpu-headless"
+      ],
+      "notes": [
+        "Intel Kaby Lake iGPU (compute only)"
+      ]
+    },
+    {
+      "id": "gpu.intel.coffee.laptop",
+      "scope": "device",
+      "group": "gpu",
+      "component": "Graphics (Intel iGPU)",
+      "match": {
+        "category": "Gpu",
+        "pciIds": [
+          "8086:*"
+        ],
+        "devicePathRegex": "^(PciRoot\\(0x0\\)/Pci\\(0x2,0x0\\))?$",
+        "cpuVendor": "GenuineIntel",
+        "cpuModels": [
+          142,
+          158,
+          165,
+          166
+        ],
+        "isLaptop": true,
+        "cpuSteppingMin": 10
+      },
+      "status": "Supported",
+      "priority": 31,
+      "kexts": [
+        "WhateverGreen.kext"
+      ],
+      "deviceProperties": {
+        "{device}": {
+          "AAPL,ig-platform-id": {
+            "data": "0900A53E"
+          },
+          "framebuffer-patch-enable": {
+            "data": "01000000"
+          },
+          "framebuffer-stolenmem": {
+            "data": "00003001"
+          },
+          "framebuffer-fbmem": {
+            "data": "00009000"
+          }
+        }
+      },
+      "provides": [
+        "gpu"
+      ],
+      "notes": [
+        "Intel UHD 620/630 (Coffee/Whiskey/Comet Lake laptop)"
+      ]
+    },
+    {
+      "id": "gpu.intel.coffee.mobile-desktop",
+      "scope": "device",
+      "group": "gpu",
+      "component": "Graphics (Intel iGPU)",
+      "match": {
+        "category": "Gpu",
+        "pciIds": [
+          "8086:*"
+        ],
+        "devicePathRegex": "^(PciRoot\\(0x0\\)/Pci\\(0x2,0x0\\))?$",
+        "cpuVendor": "GenuineIntel",
+        "cpuModels": [
+          142
+        ],
+        "isLaptop": false,
+        "cpuSteppingMin": 10,
+        "lacksCapability": [
+          "gpu-dgpu"
+        ]
+      },
+      "status": "Supported",
+      "priority": 31,
+      "kexts": [
+        "WhateverGreen.kext"
+      ],
+      "deviceProperties": {
+        "{device}": {
+          "AAPL,ig-platform-id": {
+            "data": "0900A53E"
+          },
+          "framebuffer-patch-enable": {
+            "data": "01000000"
+          },
+          "framebuffer-stolenmem": {
+            "data": "00003001"
+          },
+          "framebuffer-fbmem": {
+            "data": "00009000"
+          }
+        }
+      },
+      "provides": [
+        "gpu"
+      ],
+      "notes": [
+        "Intel UHD 620 / Iris Plus 655 (NUC/mini PC)"
+      ]
+    },
+    {
+      "id": "gpu.intel.coffee.desktop",
+      "scope": "device",
+      "group": "gpu",
+      "component": "Graphics (Intel iGPU)",
+      "match": {
+        "category": "Gpu",
+        "pciIds": [
+          "8086:*"
+        ],
+        "devicePathRegex": "^(PciRoot\\(0x0\\)/Pci\\(0x2,0x0\\))?$",
+        "cpuVendor": "GenuineIntel",
+        "cpuModels": [
+          158
+        ],
+        "isLaptop": false,
+        "cpuSteppingMin": 10,
+        "lacksCapability": [
+          "gpu-dgpu"
+        ]
+      },
+      "status": "Supported",
+      "priority": 31,
+      "kexts": [
+        "WhateverGreen.kext"
+      ],
+      "deviceProperties": {
+        "{device}": {
+          "AAPL,ig-platform-id": {
+            "data": "07009B3E"
+          }
+        }
+      },
+      "provides": [
+        "gpu"
+      ],
+      "notes": [
+        "Intel UHD 630 (Coffee Lake desktop)"
+      ]
+    },
+    {
+      "id": "gpu.intel.coffee.headless",
+      "scope": "device",
+      "group": "gpu",
+      "component": "Graphics (Intel iGPU)",
+      "match": {
+        "category": "Gpu",
+        "pciIds": [
+          "8086:*"
+        ],
+        "devicePathRegex": "^(PciRoot\\(0x0\\)/Pci\\(0x2,0x0\\))?$",
+        "cpuVendor": "GenuineIntel",
+        "cpuModels": [
+          158
+        ],
+        "isLaptop": false,
+        "cpuSteppingMin": 10,
+        "hasCapability": [
+          "gpu-dgpu"
+        ]
+      },
+      "status": "Supported",
+      "priority": 31,
+      "kexts": [
+        "WhateverGreen.kext"
+      ],
+      "deviceProperties": {
+        "{device}": {
+          "AAPL,ig-platform-id": {
+            "data": "0300983E"
+          }
+        }
+      },
+      "provides": [
+        "igpu-headless"
+      ],
+      "notes": [
+        "Intel UHD 630 (compute only)"
+      ]
+    },
+    {
+      "id": "gpu.intel.comet.desktop",
+      "scope": "device",
+      "group": "gpu",
+      "component": "Graphics (Intel iGPU)",
+      "match": {
+        "category": "Gpu",
+        "pciIds": [
+          "8086:*"
+        ],
+        "devicePathRegex": "^(PciRoot\\(0x0\\)/Pci\\(0x2,0x0\\))?$",
+        "cpuVendor": "GenuineIntel",
+        "cpuModels": [
+          165
+        ],
+        "isLaptop": false,
+        "lacksCapability": [
+          "gpu-dgpu"
+        ]
+      },
+      "status": "Supported",
+      "priority": 31,
+      "kexts": [
+        "WhateverGreen.kext"
+      ],
+      "deviceProperties": {
+        "{device}": {
+          "AAPL,ig-platform-id": {
+            "data": "07009B3E"
+          },
+          "device-id": {
+            "data": "9B3E0000"
+          }
+        }
+      },
+      "provides": [
+        "gpu"
+      ],
+      "notes": [
+        "Intel UHD 630 (Comet Lake desktop)"
+      ]
+    },
+    {
+      "id": "gpu.intel.comet.headless",
+      "scope": "device",
+      "group": "gpu",
+      "component": "Graphics (Intel iGPU)",
+      "match": {
+        "category": "Gpu",
+        "pciIds": [
+          "8086:*"
+        ],
+        "devicePathRegex": "^(PciRoot\\(0x0\\)/Pci\\(0x2,0x0\\))?$",
+        "cpuVendor": "GenuineIntel",
+        "cpuModels": [
+          165
+        ],
+        "isLaptop": false,
+        "hasCapability": [
+          "gpu-dgpu"
+        ]
+      },
+      "status": "Supported",
+      "priority": 31,
+      "kexts": [
+        "WhateverGreen.kext"
+      ],
+      "deviceProperties": {
+        "{device}": {
+          "AAPL,ig-platform-id": {
+            "data": "0300C89B"
+          }
+        }
+      },
+      "provides": [
+        "igpu-headless"
+      ],
+      "notes": [
+        "Intel UHD 630 Comet Lake (compute only)"
+      ]
+    },
+    {
+      "id": "gpu.intel.icelake",
+      "scope": "device",
+      "group": "gpu",
+      "component": "Graphics (Intel iGPU)",
+      "match": {
+        "category": "Gpu",
+        "pciIds": [
+          "8086:*"
+        ],
+        "devicePathRegex": "^(PciRoot\\(0x0\\)/Pci\\(0x2,0x0\\))?$",
+        "cpuVendor": "GenuineIntel",
+        "cpuModels": [
+          126
+        ],
+        "isLaptop": true
+      },
+      "status": "Supported",
+      "priority": 31,
+      "kexts": [
+        "WhateverGreen.kext"
+      ],
+      "deviceProperties": {
+        "{device}": {
+          "AAPL,ig-platform-id": {
+            "data": "0000528A"
+          },
+          "framebuffer-patch-enable": {
+            "data": "01000000"
+          },
+          "framebuffer-stolenmem": {
+            "data": "00003001"
+          },
+          "framebuffer-fbmem": {
+            "data": "00009000"
+          }
+        }
+      },
+      "provides": [
+        "gpu"
+      ],
+      "notes": [
+        "Intel Iris Plus G4/G7 (Ice Lake)"
+      ]
+    },
+    {
+      "id": "gpu.intel.unsupported-gen",
+      "scope": "device",
+      "group": "gpu",
+      "component": "Graphics (Intel iGPU)",
+      "priority": 31,
+      "match": {
+        "category": "Gpu",
+        "pciIds": [
+          "8086:*"
+        ],
+        "devicePathRegex": "^(PciRoot\\(0x0\\)/Pci\\(0x2,0x0\\))?$",
+        "cpuVendor": "GenuineIntel",
+        "cpuModels": [
+          140,
+          141,
+          154,
+          186,
+          170,
+          189,
+          197,
+          167,
+          151,
+          183,
+          191,
+          198
+        ]
+      },
+      "status": "Unsupported",
+      "notes": [
+        "Intel Xe / Arc integrated graphics (11th gen and newer) have no macOS driver. Desktops need a supported AMD Radeon card."
+      ]
+    },
+    {
+      "id": "gpu.fallback",
+      "scope": "device",
+      "component": "Graphics",
+      "fallback": true,
+      "match": {
+        "category": "Gpu"
+      },
+      "status": "Unsupported",
+      "notes": [
+        "No rule for this GPU. It will not be accelerated in macOS."
+      ]
+    }
+  ]
+}

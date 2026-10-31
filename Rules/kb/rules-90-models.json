@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 2,
+  "category": "models",
+  "rules": [
+    {
+      "id": "model.lenovo.t495",
+      "scope": "system",
+      "component": "Lenovo ThinkPad T495",
+      "match": {
+        "manufacturerRegex": "^LENOVO$",
+        "machineTypes": [
+          "20NJ",
+          "20NK"
+        ]
+      },
+      "status": "Supported",
+      "priority": 100,
+      "macos": {
+        "recommended": "sequoia"
+      },
+      "notes": [
+        "Tested profile: Picasso APU, Vega 6 via NootedRed, ALC257, Intel AC 9260, RTL8111, PS/2 input."
+      ]
+    }
+  ]
+}

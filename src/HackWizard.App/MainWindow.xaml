@@ -1,0 +1,60 @@
+<Window x:Class="HackWizard.App.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="HackWizard — OpenCore USB creator" Width="1180" Height="820" MinWidth="900" MinHeight="600"
+        Background="{DynamicResource Brush.Background}" Foreground="{DynamicResource Brush.Foreground}" FontFamily="Segoe UI" FontSize="14"
+        WindowStartupLocation="CenterScreen">
+    <Window.InputBindings>
+        <KeyBinding Key="Right" Modifiers="Alt" Command="{Binding NextCommand}"/>
+        <KeyBinding Key="Left" Modifiers="Alt" Command="{Binding BackCommand}"/>
+        <KeyBinding Key="Escape" Command="{Binding CancelCommand}"/>
+    </Window.InputBindings>
+    <DockPanel>
+        <Border DockPanel.Dock="Top" Background="{DynamicResource Brush.Surface}" BorderBrush="{DynamicResource Brush.Border}" BorderThickness="0,0,0,1" Padding="16,10">
+            <DockPanel>
+                <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
+                    <Button Content="Copy _diagnostics" Command="{Binding CopyDiagnosticsCommand}" ToolTip="Copy a troubleshooting summary to the clipboard"/>
+                    <Button Content="Open _logs" Command="{Binding OpenLogsCommand}"/>
+                    <Button Content="_Theme" Command="{Binding ToggleThemeCommand}" ToolTip="Switch light/dark" Margin="0"/>
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock Text="HackWizard" FontSize="22" FontWeight="Bold"/>
+                    <TextBlock Text="{Binding StepLabel}" Foreground="{DynamicResource Brush.Muted}"/>
+                </StackPanel>
+            </DockPanel>
+        </Border>
+        <Border DockPanel.Dock="Bottom" Background="{DynamicResource Brush.Surface}" BorderBrush="{DynamicResource Brush.Border}" BorderThickness="0,1,0,0" Padding="16,10">
+            <DockPanel>
+                <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
+                    <Button Content="_Cancel operation" Command="{Binding CancelCommand}"/>
+                    <Button Content="‹ _Back" Command="{Binding BackCommand}"/>
+                    <Button Content="{Binding NextText}" Command="{Binding NextCommand}" Style="{StaticResource PrimaryButton}" Margin="0" AutomationProperties.Name="Next step"/>
+                </StackPanel>
+                <StackPanel VerticalAlignment="Center" Margin="0,0,16,0">
+                    <TextBlock Text="{Binding Current.Status}" Foreground="{DynamicResource Brush.Muted}" TextTrimming="CharacterEllipsis" TextWrapping="NoWrap"/>
+                    <ProgressBar Height="6" Margin="0,4,0,0" Value="{Binding Current.Progress, Mode=OneWay}" Maximum="100" IsIndeterminate="{Binding Current.IsBusy, Mode=OneWay}"/>
+                </StackPanel>
+            </DockPanel>
+        </Border>
+        <Border DockPanel.Dock="Left" Width="240" Background="{DynamicResource Brush.Surface}" BorderBrush="{DynamicResource Brush.Border}" BorderThickness="0,0,1,0">
+            <StackPanel Margin="10">
+                <ProgressBar Height="4" Value="{Binding OverallProgress, Mode=OneWay}" Maximum="100" Margin="0,0,0,10"/>
+                <ListBox ItemsSource="{Binding Steps}" SelectedIndex="{Binding Index, Mode=OneWay}" IsHitTestVisible="False" Focusable="False" BorderThickness="0">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate><TextBlock Text="{Binding Title}" Padding="2,6"/></DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </StackPanel>
+        </Border>
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="20,14" Focusable="False">
+            <StackPanel>
+                <TextBlock Text="{Binding Current.Title}" FontSize="22" FontWeight="SemiBold"/>
+                <TextBlock Text="{Binding Current.Explanation}" Foreground="{DynamicResource Brush.Muted}" Margin="0,4,0,12"/>
+                <Border Style="{StaticResource Danger}" Visibility="{Binding Current.HasError, Converter={StaticResource NonEmpty}}">
+                    <TextBlock Text="{Binding Current.Error}" Foreground="{DynamicResource Brush.Bad}" FontWeight="SemiBold"/>
+                </Border>
+                <ContentControl Content="{Binding Current}" Focusable="False"/>
+            </StackPanel>
+        </ScrollViewer>
+    </DockPanel>
+</Window>

@@ -1,0 +1,42 @@
+{
+  "blocked": false,
+  "smbios": "MacPro7,1",
+  "recommended": "sequoia",
+  "blockedMacos": [],
+  "kexts": [
+    "AppleALC.kext",
+    "Lilu.kext",
+    "LucyRTL8125Ethernet.kext",
+    "NVMeFix.kext",
+    "RestrictEvents.kext",
+    "VirtualSMC.kext",
+    "WhateverGreen.kext"
+  ],
+  "ssdts": [
+    "SSDT-EC-USBX-DESKTOP"
+  ],
+  "bootArgs": [
+    "-v",
+    "keepsyms=1",
+    "debug=0x100"
+  ],
+  "deviceProperties": {},
+  "audioLayout": null,
+  "audioCodec": "10EC:1220",
+  "capabilities": [
+    "gpu",
+    "gpu-dgpu",
+    "net-install"
+  ],
+  "matchedRules": [
+    "audio.hda.analog",
+    "cpu.amd.zen",
+    "disk.nvme",
+    "eth.realtek.rtl8125",
+    "gpu.amd.polaris",
+    "platform.amd.cpur",
+    "platform.baseline",
+    "platform.desktop",
+    "smbios.amd.desktop.dgpu"
+  ]
+}

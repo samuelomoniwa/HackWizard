@@ -1,0 +1,39 @@
+{
+  "blocked": true,
+  "smbios": "",
+  "recommended": "",
+  "blockedMacos": [],
+  "kexts": [
+    "BrightnessKeys.kext",
+    "ECEnabler.kext",
+    "Lilu.kext",
+    "NVMeFix.kext",
+    "SMCBatteryManager.kext",
+    "SMCLightSensor.kext",
+    "VirtualSMC.kext",
+    "VoodooPS2Controller.kext"
+  ],
+  "ssdts": [
+    "SSDT-ALS0",
+    "SSDT-EC-USBX-LAPTOP",
+    "SSDT-PNLF"
+  ],
+  "bootArgs": [
+    "-v",
+    "keepsyms=1",
+    "debug=0x100"
+  ],
+  "deviceProperties": {},
+  "audioLayout": null,
+  "audioCodec": "",
+  "capabilities": [],
+  "matchedRules": [
+    "cpu.unsupported",
+    "disk.nvme",
+    "platform.arm64",
+    "platform.baseline",
+    "platform.input.unknown-laptop",
+    "platform.laptop",
+    "platform.laptop.no-als"
+  ]
+}

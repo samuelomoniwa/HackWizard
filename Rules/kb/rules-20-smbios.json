@@ -1,0 +1,485 @@
+{
+  "schemaVersion": 2,
+  "category": "smbios",
+  "rules": [
+    {
+      "id": "smbios.haswell.laptop",
+      "scope": "system",
+      "component": "Mac model (SMBIOS)",
+      "match": {
+        "cpuVendor": "GenuineIntel",
+        "cpuFamilies": [
+          6
+        ],
+        "cpuModels": [
+          60,
+          69,
+          70
+        ],
+        "isLaptop": true
+      },
+      "status": "Info",
+      "priority": 90,
+      "smbios": "MacBookPro11,4",
+      "notes": [
+        "Haswell laptop \u2192 MacBookPro11,4 (last supported: Monterey)."
+      ]
+    },
+    {
+      "id": "smbios.haswell.desktop",
+      "scope": "system",
+      "component": "Mac model (SMBIOS)",
+      "match": {
+        "cpuVendor": "GenuineIntel",
+        "cpuFamilies": [
+          6
+        ],
+        "cpuModels": [
+          60,
+          69,
+          70
+        ],
+        "isLaptop": false
+      },
+      "status": "Info",
+      "priority": 90,
+      "smbios": "iMac16,2",
+      "notes": [
+        "Haswell desktop \u2192 iMac16,2 (Monterey-compatible)."
+      ]
+    },
+    {
+      "id": "smbios.broadwell.laptop",
+      "scope": "system",
+      "component": "Mac model (SMBIOS)",
+      "match": {
+        "cpuVendor": "GenuineIntel",
+        "cpuFamilies": [
+          6
+        ],
+        "cpuModels": [
+          61,
+          71
+        ],
+        "isLaptop": true
+      },
+      "status": "Info",
+      "priority": 90,
+      "smbios": "MacBookPro12,1",
+      "notes": [
+        "Broadwell laptop \u2192 MacBookPro12,1."
+      ]
+    },
+    {
+      "id": "smbios.broadwell.desktop",
+      "scope": "system",
+      "component": "Mac model (SMBIOS)",
+      "match": {
+        "cpuVendor": "GenuineIntel",
+        "cpuFamilies": [
+          6
+        ],
+        "cpuModels": [
+          61,
+          71
+        ],
+        "isLaptop": false
+      },
+      "status": "Info",
+      "priority": 90,
+      "smbios": "iMac16,2",
+      "notes": [
+        "Broadwell desktop \u2192 iMac16,2."
+      ]
+    },
+    {
+      "id": "smbios.skylake.u",
+      "scope": "system",
+      "component": "Mac model (SMBIOS)",
+      "match": {
+        "cpuVendor": "GenuineIntel",
+        "cpuFamilies": [
+          6
+        ],
+        "cpuModels": [
+          78
+        ],
+        "isLaptop": true
+      },
+      "status": "Info",
+      "priority": 90,
+      "smbios": "MacBookPro13,1",
+      "notes": [
+        "Skylake U laptop \u2192 MacBookPro13,1."
+      ]
+    },
+    {
+      "id": "smbios.skylake.h",
+      "scope": "system",
+      "component": "Mac model (SMBIOS)",
+      "match": {
+        "cpuVendor": "GenuineIntel",
+        "cpuFamilies": [
+          6
+        ],
+        "cpuModels": [
+          94
+        ],
+        "isLaptop": true
+      },
+      "status": "Info",
+      "priority": 90,
+      "smbios": "MacBookPro13,3",
+      "notes": [
+        "Skylake H laptop \u2192 MacBookPro13,3."
+      ]
+    },
+    {
+      "id": "smbios.skylake.desktop",
+      "scope": "system",
+      "component": "Mac model (SMBIOS)",
+      "match": {
+        "cpuVendor": "GenuineIntel",
+        "cpuFamilies": [
+          6
+        ],
+        "cpuModels": [
+          78,
+          94
+        ],
+        "isLaptop": false
+      },
+      "status": "Info",
+      "priority": 90,
+      "smbios": "iMac17,1",
+      "notes": [
+        "Skylake desktop \u2192 iMac17,1."
+      ]
+    },
+    {
+      "id": "smbios.kaby.u",
+      "scope": "system",
+      "component": "Mac model (SMBIOS)",
+      "match": {
+        "cpuVendor": "GenuineIntel",
+        "cpuFamilies": [
+          6
+        ],
+        "cpuModels": [
+          142
+        ],
+        "cpuSteppingMax": 9,
+        "isLaptop": true
+      },
+      "status": "Info",
+      "priority": 90,
+      "smbios": "MacBookPro14,1",
+      "notes": [
+        "Kaby Lake U laptop \u2192 MacBookPro14,1 (last supported: Ventura)."
+      ]
+    },
+    {
+      "id": "smbios.kaby.h",
+      "scope": "system",
+      "component": "Mac model (SMBIOS)",
+      "match": {
+        "cpuVendor": "GenuineIntel",
+        "cpuFamilies": [
+          6
+        ],
+        "cpuModels": [
+          158
+        ],
+        "cpuSteppingMax": 9,
+        "isLaptop": true
+      },
+      "status": "Info",
+      "priority": 90,
+      "smbios": "MacBookPro14,3",
+      "notes": [
+        "Kaby Lake H laptop \u2192 MacBookPro14,3."
+      ]
+    },
+    {
+      "id": "smbios.kaby.desktop",
+      "scope": "system",
+      "component": "Mac model (SMBIOS)",
+      "match": {
+        "cpuVendor": "GenuineIntel",
+        "cpuFamilies": [
+          6
+        ],
+        "cpuModels": [
+          142,
+          158
+        ],
+        "cpuSteppingMax": 9,
+        "isLaptop": false,
+        "lacksCapability": [
+          "gpu-dgpu"
+        ]
+      },
+      "status": "Info",
+      "priority": 90,
+      "smbios": "iMac18,1",
+      "notes": [
+        "Kaby Lake desktop (iGPU) \u2192 iMac18,1."
+      ]
+    },
+    {
+      "id": "smbios.kaby.desktop.dgpu",
+      "scope": "system",
+      "component": "Mac model (SMBIOS)",
+      "match": {
+        "cpuVendor": "GenuineIntel",
+        "cpuFamilies": [
+          6
+        ],
+        "cpuModels": [
+          142,
+          158
+        ],
+        "cpuSteppingMax": 9,
+        "isLaptop": false,
+        "hasCapability": [
+          "gpu-dgpu"
+        ]
+      },
+      "status": "Info",
+      "priority": 90,
+      "smbios": "iMac18,3",
+      "notes": [
+        "Kaby Lake desktop with AMD GPU \u2192 iMac18,3."
+      ]
+    },
+    {
+      "id": "smbios.coffee.u",
+      "scope": "system",
+      "component": "Mac model (SMBIOS)",
+      "match": {
+        "cpuVendor": "GenuineIntel",
+        "cpuFamilies": [
+          6
+        ],
+        "cpuModels": [
+          142
+        ],
+        "cpuSteppingMin": 10
+      },
+      "status": "Info",
+      "priority": 90,
+      "smbios": "MacBookPro15,2",
+      "notes": [
+        "8th\u201310th gen U (Kaby R/Whiskey/Comet U42) \u2192 MacBookPro15,2."
+      ]
+    },
+    {
+      "id": "smbios.coffee.h",
+      "scope": "system",
+      "component": "Mac model (SMBIOS)",
+      "match": {
+        "cpuVendor": "GenuineIntel",
+        "cpuFamilies": [
+          6
+        ],
+        "cpuModels": [
+          158
+        ],
+        "cpuSteppingMin": 10,
+        "isLaptop": true
+      },
+      "status": "Info",
+      "priority": 90,
+      "smbios": "MacBookPro15,1",
+      "notes": [
+        "Coffee Lake H laptop \u2192 MacBookPro15,1."
+      ]
+    },
+    {
+      "id": "smbios.coffee.desktop",
+      "scope": "system",
+      "component": "Mac model (SMBIOS)",
+      "match": {
+        "cpuVendor": "GenuineIntel",
+        "cpuFamilies": [
+          6
+        ],
+        "cpuModels": [
+          158
+        ],
+        "cpuSteppingMin": 10,
+        "isLaptop": false
+      },
+      "status": "Info",
+      "priority": 90,
+      "smbios": "iMac19,1",
+      "notes": [
+        "Coffee Lake desktop \u2192 iMac19,1."
+      ]
+    },
+    {
+      "id": "smbios.comet.desktop",
+      "scope": "system",
+      "component": "Mac model (SMBIOS)",
+      "match": {
+        "cpuVendor": "GenuineIntel",
+        "cpuFamilies": [
+          6
+        ],
+        "cpuModels": [
+          165
+        ],
+        "isLaptop": false
+      },
+      "status": "Info",
+      "priority": 90,
+      "smbios": "iMac20,1",
+      "notes": [
+        "Comet Lake desktop \u2192 iMac20,1."
+      ]
+    },
+    {
+      "id": "smbios.comet.h",
+      "scope": "system",
+      "component": "Mac model (SMBIOS)",
+      "match": {
+        "cpuVendor": "GenuineIntel",
+        "cpuFamilies": [
+          6
+        ],
+        "cpuModels": [
+          165
+        ],
+        "isLaptop": true
+      },
+      "status": "Info",
+      "priority": 90,
+      "smbios": "MacBookPro16,1",
+      "notes": [
+        "Comet Lake H laptop \u2192 MacBookPro16,1."
+      ]
+    },
+    {
+      "id": "smbios.comet.u62",
+      "scope": "system",
+      "component": "Mac model (SMBIOS)",
+      "match": {
+        "cpuVendor": "GenuineIntel",
+        "cpuFamilies": [
+          6
+        ],
+        "cpuModels": [
+          166
+        ]
+      },
+      "status": "Info",
+      "priority": 90,
+      "smbios": "MacBookPro16,3",
+      "notes": [
+        "Comet Lake U62 laptop \u2192 MacBookPro16,3."
+      ]
+    },
+    {
+      "id": "smbios.icelake",
+      "scope": "system",
+      "component": "Mac model (SMBIOS)",
+      "match": {
+        "cpuVendor": "GenuineIntel",
+        "cpuFamilies": [
+          6
+        ],
+        "cpuModels": [
+          126
+        ]
+      },
+      "status": "Info",
+      "priority": 90,
+      "smbios": "MacBookAir9,1",
+      "notes": [
+        "Ice Lake laptop \u2192 MacBookAir9,1."
+      ]
+    },
+    {
+      "id": "smbios.intel.dgpu-only",
+      "scope": "system",
+      "component": "Mac model (SMBIOS)",
+      "match": {
+        "cpuVendor": "GenuineIntel",
+        "cpuFamilies": [
+          6
+        ],
+        "cpuModels": [
+          167,
+          151,
+          183,
+          191,
+          198
+        ],
+        "isLaptop": false
+      },
+      "status": "Info",
+      "priority": 90,
+      "smbios": "MacPro7,1",
+      "notes": [
+        "11th\u201314th gen / Arrow Lake desktop (AMD GPU drives the display) \u2192 MacPro7,1 (+RestrictEvents to silence memory/PCI warnings)."
+      ],
+      "kexts": [
+        "RestrictEvents.kext"
+      ]
+    },
+    {
+      "id": "smbios.amd.laptop",
+      "scope": "system",
+      "component": "Mac model (SMBIOS)",
+      "match": {
+        "cpuVendor": "AuthenticAMD",
+        "isLaptop": true
+      },
+      "status": "Info",
+      "priority": 90,
+      "smbios": "MacBookPro16,2",
+      "notes": [
+        "AMD laptop (NootedRed) \u2192 MacBookPro16,2."
+      ]
+    },
+    {
+      "id": "smbios.amd.desktop.dgpu",
+      "scope": "system",
+      "component": "Mac model (SMBIOS)",
+      "match": {
+        "cpuVendor": "AuthenticAMD",
+        "isLaptop": false,
+        "hasCapability": [
+          "gpu-dgpu"
+        ]
+      },
+      "status": "Info",
+      "priority": 90,
+      "smbios": "MacPro7,1",
+      "notes": [
+        "AMD desktop with AMD GPU \u2192 MacPro7,1 (+RestrictEvents)."
+      ],
+      "kexts": [
+        "RestrictEvents.kext"
+      ]
+    },
+    {
+      "id": "smbios.amd.desktop.apu",
+      "scope": "system",
+      "component": "Mac model (SMBIOS)",
+      "match": {
+        "cpuVendor": "AuthenticAMD",
+        "isLaptop": false,
+        "lacksCapability": [
+          "gpu-dgpu"
+        ]
+      },
+      "status": "Info",
+      "priority": 90,
+      "smbios": "iMac20,1",
+      "notes": [
+        "AMD APU desktop (NootedRed) \u2192 iMac20,1."
+      ]
+    }
+  ]
+}

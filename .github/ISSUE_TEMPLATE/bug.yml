@@ -1,0 +1,11 @@
+name: Bug
+description: Something in HackWizard went wrong.
+labels: [bug]
+body:
+  - type: textarea
+    id: diag
+    attributes: { label: Diagnostics, description: "Click 'Copy diagnostics' in HackWizard and paste here.", render: text }
+    validations: { required: true }
+  - type: textarea
+    id: steps
+    attributes: { label: Steps to reproduce }
