@@ -161,6 +161,8 @@ public sealed class KbMacosVersions
 {
     public int SchemaVersion { get; set; }
     public List<KbMacosVersion> Versions { get; set; } = new();
+    /// <summary>SMBIOS model -> processor name of the real Mac (used for the optional 'Mac model CPU name').</summary>
+    public Dictionary<string, string> SmbiosCpuNames { get; set; } = new();
 }
 
 public sealed class KbMacosVersion

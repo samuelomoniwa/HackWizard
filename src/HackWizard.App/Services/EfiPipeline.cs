@@ -75,6 +75,7 @@ public static class EfiPipeline
     public static async Task<DownloadSet> DownloadAllAsync(WizardContext ctx, bool offline, Action<string, DownloadProgress> report, CancellationToken ct)
     {
         var kb = ctx.Kb; var c = ctx.Compat!; var macos = ctx.SelectedMacos!;
+        if (!c.Kexts.Contains("RestrictEvents.kext", StringComparer.OrdinalIgnoreCase)) c.Kexts.Add("RestrictEvents.kext");
         var dm = new DownloadManager(CreateHttp(), AppPaths.Cache) { Offline = offline };
         IProgress<DownloadProgress> P(string id) => new Progress<DownloadProgress>(p => report(id, p));
 
@@ -198,6 +199,9 @@ public static class EfiPipeline
             SamplePlist = sample, Compat = c, OrderedKexts = ordered, SsdtFiles = ctx.Ssdts.Select(s => s.Name + ".aml").ToList(),
             Drivers = drivers, AmdPatches = amd, Identity = identity, Rom = ConfigBuilder.RomFromMac(hw.EthernetMac)
         });
+        if (ctx.ShowMacCpuName && MacCpuName(ctx.Kb, c.Smbios) is { Length: > 0 } cpuName)
+            foreach (var cfg in new[] { outputs.Debug, outputs.Release })
+                ApplyCpuName(cfg, cpuName, forceForIntel: hw.Cpu.Vendor == "GenuineIntel");
         var cfgPath = Path.Combine(oc, "config.plist");
         var relPath = Path.Combine(oc, "config-release.plist");
         PlistWriter.WriteFile(outputs.Debug, cfgPath);
@@ -276,6 +280,30 @@ public static class EfiPipeline
             "HackWizard USB\r\n\r\nEFI\\                       OpenCore bootloader + config\r\ncom.apple.recovery.boot\\   macOS Recovery (online installer: needs a wired connection)\r\n" +
             "Utilities\\BIOS-Guide.*     firmware settings for this PC\r\nUtilities\\Post-Install-Guide.html  what to do after installing\r\n" +
             $"\r\nSMBIOS {r.Identity.Model}  Serial {r.Identity.Serial}  (check it is NOT valid at checkcoverage.apple.com)\r\n");
+    }
+
+    public const string RestrictEventsGuid = "4D1FDA02-38C7-4A6A-9CC6-4BCCA8B30102";
+
+    public static string MacCpuName(KnowledgeBase kb, string? smbios) =>
+        smbios != null && kb.Macos.SmbiosCpuNames.TryGetValue(smbios, out var n) ? n : "";
+
+    /// <summary>Sets RestrictEvents' custom CPU brand string (NVRAM revcpuname). Intel CPUs also need revcpu=1.</summary>
+    public static void ApplyCpuName(PDict cfg, string name, bool forceForIntel)
+    {
+        var nv = cfg.Dict("NVRAM");
+        var add = nv.Dict("Add");
+        if (add[RestrictEventsGuid] is not PDict d) add[RestrictEventsGuid] = d = new PDict();
+        d.Set("revcpuname", new PString(name));
+        var del = nv.Dict("Delete");
+        if (del[RestrictEventsGuid] is not PArray a) del[RestrictEventsGuid] = a = new PArray();
+        if (!a.OfType<PString>().Any(s => s.Value == "revcpuname")) a.Add(new PString("revcpuname"));
+        if (forceForIntel)
+        {
+            var apple = add.Dict(ConfigBuilder.AppleVendorGuid);
+            var args = (apple.Str("boot-args") ?? "").Split(' ', StringSplitOptions.RemoveEmptyEntries).ToList();
+            RulesEngine.AddBootArg(args, "revcpu=1");
+            apple.Set("boot-args", string.Join(' ', args));
+        }
     }
 
     public static void CopyLogs(string stagingDir)

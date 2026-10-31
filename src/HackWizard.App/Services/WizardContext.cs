@@ -15,6 +15,8 @@ public sealed class WizardContext
     public HardwareReport? Hardware { get; set; }
     public CompatibilityResult? Compat { get; set; }
     public KbMacosVersion? SelectedMacos { get; set; }
+    /// <summary>true = About This Mac shows the Mac model's Intel CPU name; false = the real CPU name.</summary>
+    public bool ShowMacCpuName { get; set; }
     public IReadOnlyList<GeneratedSsdt> Ssdts { get; set; } = Array.Empty<GeneratedSsdt>();
     public AcpiDumpResult? AcpiDump { get; set; }
     public DownloadSet? Downloads { get; set; }

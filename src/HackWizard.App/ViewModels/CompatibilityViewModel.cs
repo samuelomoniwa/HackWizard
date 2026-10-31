@@ -46,6 +46,21 @@ public sealed class CompatibilityViewModel : StepViewModel
         }
     }
 
+    public bool ShowRealCpu
+    {
+        get => !Ctx.ShowMacCpuName;
+        set { if (value && Ctx.ShowMacCpuName) { Ctx.ShowMacCpuName = false; Ctx.Build = null; OnPropertyChanged(nameof(ShowRealCpu)); OnPropertyChanged(nameof(ShowMacCpu)); } }
+    }
+    public bool ShowMacCpu
+    {
+        get => Ctx.ShowMacCpuName;
+        set { if (value && !Ctx.ShowMacCpuName) { Ctx.ShowMacCpuName = true; Ctx.Build = null; OnPropertyChanged(nameof(ShowRealCpu)); OnPropertyChanged(nameof(ShowMacCpu)); } }
+    }
+    public string RealCpuLabel => $"Show my real processor: {Ctx.Hardware?.Cpu.Name}";
+    public string MacCpuLabel => EfiPipeline.MacCpuName(Ctx.Kb, Ctx.Compat?.Smbios) is { Length: > 0 } n
+        ? $"Show the Mac model's processor: {n} (as in a real {Ctx.Compat!.Smbios})"
+        : "Show the Mac model's processor (not available for this Mac model)";
+
     public override bool CanProceed => Ctx.Compat is { IsBlocked: false } c && SelectedMacos != null && !c.MacosBlocks.ContainsKey(SelectedMacos.Id);
     public override Task OnEnterAsync() { Evaluate(); return Task.CompletedTask; }
 
@@ -59,7 +74,7 @@ public sealed class CompatibilityViewModel : StepViewModel
         foreach (var v in Ctx.Kb.Macos.Versions) MacosVersions.Add(v);
         SelectedMacos = Ctx.SelectedMacos is { } prev && MacosVersions.Contains(prev) && !c.MacosBlocks.ContainsKey(prev.Id) ? prev : MacosVersions.FirstOrDefault(v => v.Id == c.RecommendedMacos);
         ReportWriter.WriteHtml(Ctx.Hardware!, c, Path.Combine(AppPaths.Reports, "hardware-report.html"));
-        foreach (var p in new[] { nameof(BlockingText), nameof(IsBlocked), nameof(MacosWarning), nameof(KbVersion), nameof(SmbiosText), nameof(WarningsText) }) OnPropertyChanged(p);
+        foreach (var p in new[] { nameof(BlockingText), nameof(IsBlocked), nameof(MacosWarning), nameof(KbVersion), nameof(SmbiosText), nameof(WarningsText), nameof(RealCpuLabel), nameof(MacCpuLabel) }) OnPropertyChanged(p);
         Status = c.IsBlocked ? "This PC cannot continue — see the red box." : $"{c.Smbios}; recommended {c.RecommendedMacos}; {c.EffectiveKexts.Count()} kexts, {c.Ssdts.Count} SSDTs planned.";
         RaiseState();
     }

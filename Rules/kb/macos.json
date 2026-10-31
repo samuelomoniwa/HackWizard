@@ -200,5 +200,26 @@
         "Highest version for Haswell/Broadwell/Skylake integrated graphics."
       ]
     }
-  ]
+  ],
+  "smbiosCpuNames": {
+    "MacBookPro11,4": "Intel Core i7-4770HQ",
+    "MacBookPro12,1": "Intel Core i5-5257U",
+    "MacBookPro13,1": "Intel Core i5-6360U",
+    "MacBookPro13,3": "Intel Core i7-6700HQ",
+    "MacBookPro14,1": "Intel Core i5-7360U",
+    "MacBookPro14,3": "Intel Core i7-7820HQ",
+    "MacBookPro15,1": "Intel Core i7-8750H",
+    "MacBookPro15,2": "Intel Core i5-8259U",
+    "MacBookPro16,1": "Intel Core i7-9750H",
+    "MacBookPro16,2": "Intel Core i5-1038NG7",
+    "MacBookPro16,3": "Intel Core i5-8257U",
+    "MacBookAir9,1": "Intel Core i3-1000NG4",
+    "iMac16,2": "Intel Core i5-5675R",
+    "iMac17,1": "Intel Core i5-6500",
+    "iMac18,1": "Intel Core i5-7360U",
+    "iMac18,3": "Intel Core i5-7500",
+    "iMac19,1": "Intel Core i5-8500",
+    "iMac20,1": "Intel Core i5-10500",
+    "MacPro7,1": "Intel Xeon W-3223"
+  }
 }

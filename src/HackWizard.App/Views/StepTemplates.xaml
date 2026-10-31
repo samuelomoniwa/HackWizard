@@ -88,6 +88,11 @@
                 <TextBlock Text="{Binding KbVersion}" VerticalAlignment="Center" Foreground="{DynamicResource Brush.Muted}"/>
             </StackPanel>
             <TextBlock Text="{Binding MacosWarning}" Foreground="{DynamicResource Brush.Warn}" Margin="0,8,0,0"/>
+            <TextBlock Text="Processor name shown in About This Mac" Style="{StaticResource H2}"/>
+            <RadioButton GroupName="cpuname" IsChecked="{Binding ShowRealCpu}" Content="{Binding RealCpuLabel}" Margin="0,0,0,4"/>
+            <RadioButton GroupName="cpuname" IsChecked="{Binding ShowMacCpu}" Content="{Binding MacCpuLabel}"/>
+            <TextBlock Text="Cosmetic only (via RestrictEvents): the real core count, speed and CPU features are unchanged, and apps still see your real processor."
+                       Foreground="{DynamicResource Brush.Muted}" Margin="0,4,0,0"/>
         </StackPanel>
     </DataTemplate>
 
